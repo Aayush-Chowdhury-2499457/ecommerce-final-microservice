@@ -1,0 +1,13 @@
+package com.cts.authservice.repository;
+
+import com.cts.authservice.entity.Auth;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
+
+@Repository
+public interface AuthRepository extends JpaRepository<Auth, Long> {
+    Optional<Auth> findByUserId(Long userId);
+    boolean existsByUserId(Long userId);
+}

@@ -7,14 +7,6 @@
         <option value="$PROJECT_DIR$/services/auth-service/pom.xml" />
         <option value="$PROJECT_DIR$/services/cart-service/pom.xml" />
         <option value="$PROJECT_DIR$/services/user-service/pom.xml" />
-        <option value="$PROJECT_DIR$/services/order-service/pom.xml" />
-        <option value="$PROJECT_DIR$/services/review-service/pom.xml" />
-        <option value="$PROJECT_DIR$/services/payment-service/pom.xml" />
-        <option value="$PROJECT_DIR$/services/product-service/pom.xml" />
-        <option value="$PROJECT_DIR$/infrastructure/api-gateway/pom.xml" />
-        <option value="$PROJECT_DIR$/infrastructure/config-server/pom.xml" />
-        <option value="$PROJECT_DIR$/infrastructure/eureka-server/pom.xml" />
-        <option value="$PROJECT_DIR$/infrastructure/circuit-breaker/pom.xml" />
       </list>
     </option>
   </component>
