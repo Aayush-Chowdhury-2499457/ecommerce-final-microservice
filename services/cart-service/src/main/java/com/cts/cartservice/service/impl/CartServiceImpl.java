@@ -2,7 +2,11 @@ package com.cts.cartservice.service.impl;
 
 import com.cts.cartservice.client.OrderServiceClient;
 import com.cts.cartservice.client.ProductServiceClient;
-import com.cts.cartservice.dto.*;
+import com.cts.cartservice.dto.request.AddCartItemDTO;
+import com.cts.cartservice.dto.request.CheckoutDTO;
+import com.cts.cartservice.dto.request.PlaceOrderDTO;
+import com.cts.cartservice.dto.request.UpdateCartItemDTO;
+import com.cts.cartservice.dto.response.*;
 import com.cts.cartservice.entity.CartItem;
 import com.cts.cartservice.entity.ShoppingCart;
 import com.cts.cartservice.exception.custom.InvalidCartOperationException;
@@ -12,10 +16,13 @@ import com.cts.cartservice.exception.custom.ShoppingCartNotFoundException;
 import com.cts.cartservice.repository.CartItemRepository;
 import com.cts.cartservice.repository.ShoppingCartRepository;
 import com.cts.cartservice.service.CartService;
+import feign.FeignException;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -26,6 +33,9 @@ import java.util.Optional;
 @Service
 @AllArgsConstructor
 public class CartServiceImpl implements CartService {
+
+    private static final String PRODUCT_SERVICE_CB = "productService";
+    private static final String ORDER_SERVICE_CB = "orderService";
 
     private final CartItemRepository cartItemRepository;
     private final ShoppingCartRepository shoppingCartRepository;
@@ -66,12 +76,11 @@ public class CartServiceImpl implements CartService {
 
     @Override
     @Transactional
-    @CircuitBreaker(name = "product-service", fallbackMethod = "addItemFallback")
     public ShoppingCartResponseDTO addItem(Long userId, AddCartItemDTO request) {
         ShoppingCart shoppingCart = shoppingCartRepository.findByUserId(userId)
                 .orElseGet(() -> shoppingCartRepository.save(new ShoppingCart(userId)));
 
-        ProductDTO product = productServiceClient.getProductById(request.getProductId());
+        ProductDTO product = fetchProduct(request.getProductId());
         if (product == null) {
             throw new ProductNotFoundException(
                     "Product not found for id=" + request.getProductId());
@@ -101,14 +110,8 @@ public class CartServiceImpl implements CartService {
         return toCartResponse(shoppingCart);
     }
 
-    public ShoppingCartResponseDTO addItemFallback(Long userId, AddCartItemDTO request, Throwable t) {
-        log.error("Product service unavailable while adding item for userId={}, cause={}", userId, t.getMessage());
-        throw new ServiceUnavailableException("Product service unavailable, please try again later");
-    }
-
     @Override
     @Transactional
-    @CircuitBreaker(name = "product-service", fallbackMethod = "updateItemFallback")
     public ShoppingCartResponseDTO updateItemQuantity(Long userId, UpdateCartItemDTO request) {
         ShoppingCart shoppingCart = shoppingCartRepository.findByUserId(userId)
                 .orElseThrow(() -> new ShoppingCartNotFoundException(
@@ -119,7 +122,7 @@ public class CartServiceImpl implements CartService {
                 .orElseThrow(() -> new InvalidCartOperationException(
                         "Product " + request.getProductId() + " is not in this user's cart"));
 
-        ProductDTO product = productServiceClient.getProductById(request.getProductId());
+        ProductDTO product = fetchProduct(request.getProductId());
         if (product == null) {
             throw new ProductNotFoundException(
                     "Product not found for id=" + request.getProductId());
@@ -133,11 +136,6 @@ public class CartServiceImpl implements CartService {
         cartItemRepository.save(cartItem);
         shoppingCartRepository.save(shoppingCart);
         return toCartResponse(shoppingCart);
-    }
-
-    public ShoppingCartResponseDTO updateItemFallback(Long userId, UpdateCartItemDTO request, Throwable t) {
-        log.error("Product service unavailable while updating item for userId={}, cause={}", userId, t.getMessage());
-        throw new ServiceUnavailableException("Product service unavailable, please try again later");
     }
 
     @Override
@@ -166,7 +164,6 @@ public class CartServiceImpl implements CartService {
 
     @Override
     @Transactional
-    @CircuitBreaker(name = "order-service", fallbackMethod = "checkoutFallback")
     public CheckoutResponseDTO checkout(Long userId, CheckoutDTO request) {
         ShoppingCart shoppingCart = shoppingCartRepository.findByUserId(userId)
                 .orElseThrow(() -> new ShoppingCartNotFoundException(
@@ -182,7 +179,7 @@ public class CartServiceImpl implements CartService {
         placeOrderDTO.setAddressId(request.getAddressId());
 
         log.info("Checkout: calling order-service for userId={}", userId);
-        OrderResponseDTO orderResponse = orderServiceClient.placeOrder(placeOrderDTO);
+        OrderResponseDTO orderResponse = placeOrder(placeOrderDTO);
 
         boolean paid = "PAID".equalsIgnoreCase(orderResponse.getPaymentStatus());
         boolean placed = "PLACED".equalsIgnoreCase(orderResponse.getOrderStatus());
@@ -209,13 +206,6 @@ public class CartServiceImpl implements CartService {
 
         return response;
     }
-
-    public CheckoutResponseDTO checkoutFallback(Long userId, CheckoutDTO request, Throwable t) {
-        log.error("Order service unavailable during checkout for userId={}, cause={}",
-                userId, t.getMessage());
-        throw new IllegalStateException("Order service unavailable, please try again later");
-    }
-
 
 
     private ShoppingCartResponseDTO toCartResponse(ShoppingCart shoppingCart) {
@@ -245,7 +235,7 @@ public class CartServiceImpl implements CartService {
     private CartItemResponseDTO toCartItemResponse(CartItem cartItem) {
         ProductDTO productDTO;
         try {
-            productDTO = productServiceClient.getProductById(cartItem.getProductId());
+            productDTO = fetchProduct(cartItem.getProductId());
         } catch (Exception e) {
             log.warn("Could not find product for productId={}", cartItem.getProductId());
             productDTO = null;
@@ -271,4 +261,33 @@ public class CartServiceImpl implements CartService {
         return dto;
     }
 
+
+    // ---------- Feign Helpers with Circuit Breaker and Retry ---------- //
+
+    @Retry(name = PRODUCT_SERVICE_CB)
+    @CircuitBreaker(name = PRODUCT_SERVICE_CB, fallbackMethod = "fetchProductFallback")
+    public ProductDTO fetchProduct(Long productId) {
+        ResponseEntity<ProductDTO> response = productServiceClient.getProductById(productId);
+        return response.getBody();
+    }
+
+    public ProductDTO fetchProductFallback(Long productId, Throwable ex) {
+        if (ex instanceof FeignException fe && fe.status() == 404) {
+            throw new ProductNotFoundException("Product not found for id=" + productId);
+        }
+        log.error("Product Service Fallback: {}", ex.getMessage());
+        throw new ServiceUnavailableException("Product Service Unavailable, please try again later");
+    }
+
+    @Retry(name = ORDER_SERVICE_CB)
+    @CircuitBreaker(name = ORDER_SERVICE_CB, fallbackMethod = "placeOrderFallback")
+    public OrderResponseDTO placeOrder(PlaceOrderDTO placeOrderDTO) {
+        ResponseEntity<OrderResponseDTO> response = orderServiceClient.placeOrder(placeOrderDTO);
+        return response.getBody();
+    }
+
+    public OrderResponseDTO placeOrderFallback(PlaceOrderDTO placeOrderDTO, Throwable ex) {
+        log.error("Order Service Fallback for Checkout: {}", ex.getMessage());
+        throw new ServiceUnavailableException("Order Service Unavailable, please try again later");
+    }
 }

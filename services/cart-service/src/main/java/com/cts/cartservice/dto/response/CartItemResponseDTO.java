@@ -1,15 +1,13 @@
-package com.cts.cartservice.dto;
+package com.cts.cartservice.dto.response;
 
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class CartItemResponseDTO {
     private Long cartItemId;
     private Long productId;

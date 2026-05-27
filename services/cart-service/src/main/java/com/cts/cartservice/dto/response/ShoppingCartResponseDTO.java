@@ -1,8 +1,6 @@
-package com.cts.cartservice.dto;
+package com.cts.cartservice.dto.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -10,6 +8,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class ShoppingCartResponseDTO {
 
     private Long shoppingCartId;

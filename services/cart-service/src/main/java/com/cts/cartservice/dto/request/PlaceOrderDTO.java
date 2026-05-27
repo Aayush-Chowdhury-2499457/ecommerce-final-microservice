@@ -1,12 +1,11 @@
-package com.cts.cartservice.dto;
+package com.cts.cartservice.dto.request;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class PlaceOrderDTO {
 
     private Long userId;

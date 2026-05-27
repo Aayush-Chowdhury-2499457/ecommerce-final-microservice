@@ -1,6 +1,10 @@
 package com.cts.cartservice.service;
 
-import com.cts.cartservice.dto.*;
+import com.cts.cartservice.dto.request.AddCartItemDTO;
+import com.cts.cartservice.dto.request.CheckoutDTO;
+import com.cts.cartservice.dto.request.UpdateCartItemDTO;
+import com.cts.cartservice.dto.response.CheckoutResponseDTO;
+import com.cts.cartservice.dto.response.ShoppingCartResponseDTO;
 
 public interface CartService {
 

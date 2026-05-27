@@ -1,14 +1,13 @@
-package com.cts.cartservice.dto;
+package com.cts.cartservice.dto.request;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class UpdateCartItemDTO {
 
     @NotNull(message = "product_id is required")

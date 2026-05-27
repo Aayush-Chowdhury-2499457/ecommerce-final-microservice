@@ -18,6 +18,7 @@ import feign.FeignException;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
 import io.jsonwebtoken.Claims;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -38,6 +39,7 @@ public class AuthServiceImpl implements AuthService {
 
 
     @Override
+    @Transactional
     public RegisterResponseDTO register(RegisterRequestDTO registerRequestDTO) {
         // 1. Build the create-user payload
         CreateUserRequestDTO createUserRequestDTO = CreateUserRequestDTO.builder()
@@ -63,6 +65,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
+    @Transactional
     public LoginResponseDTO login(LoginRequestDTO loginRequestDTO) {
         // 1. Find User in User Service by Username or Email
         UserDTO userDTO = resolveUser(loginRequestDTO.getUsernameOrEmail());
@@ -90,6 +93,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
+    @Transactional
     public ValidateResponseDTO validate(String authHeader) {
         if(authHeader == null || !authHeader.startsWith("Bearer ")) {
             throw new AuthException("Missing or Malformed Authorization Header");

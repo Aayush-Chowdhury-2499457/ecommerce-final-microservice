@@ -1,9 +1,7 @@
 package com.cts.cartservice.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -17,6 +15,7 @@ import java.util.List;
 @Entity @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Table(name = "shopping_carts")
 @EntityListeners(AuditingEntityListener.class)
 public class ShoppingCart {
