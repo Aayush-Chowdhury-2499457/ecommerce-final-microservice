@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
                 .email(dto.getEmail())
                 .phoneNumber(dto.getPhoneNumber())
                 .dateOfBirth(dto.getDateOfBirth())
-                .role(dto.getRole() != null ? dto.getRole() : Role.CUSTOMER)
+                .role(Role.CUSTOMER)
                 .build();
 
         return toDto(userRepository.save(user));

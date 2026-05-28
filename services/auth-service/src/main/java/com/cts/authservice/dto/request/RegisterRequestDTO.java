@@ -30,6 +30,7 @@ public class RegisterRequestDTO {
     @Pattern(regexp = "\\d{10}", message = "Phone Number must be exactly 10 digits")
     private String phoneNumber;
 
-    @NotBlank(message = "Date of Birth is required")
+    @NotNull(message = "Date of Birth is required")
+    @Past(message = "Date of Birth must be in the past")
     private LocalDate dateOfBirth;
 }

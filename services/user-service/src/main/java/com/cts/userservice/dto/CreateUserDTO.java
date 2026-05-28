@@ -1,6 +1,5 @@
 package com.cts.userservice.dto;
 
-import com.cts.userservice.entity.Role;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
@@ -26,6 +25,4 @@ public class CreateUserDTO {
 
     @Past
     private LocalDate dateOfBirth;
-
-    private Role role;
 }
