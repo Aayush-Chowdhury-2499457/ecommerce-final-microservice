@@ -1,5 +1,7 @@
 package org.example.dummypaymentapi.controller;
 
+import org.example.dummypaymentapi.dto.request.ProcessPaymentRequest;
+import org.example.dummypaymentapi.dto.response.ProcessPaymentResponse;
 import org.example.dummypaymentapi.service.DummyPaymentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
