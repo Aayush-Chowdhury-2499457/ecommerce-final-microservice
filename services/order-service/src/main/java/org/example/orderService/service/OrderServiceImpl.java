@@ -14,18 +14,20 @@ import org.example.orderService.dtos.responses.OrderResponse;
 import org.example.orderService.entity.Order;
 import org.example.orderService.entity.OrderItem;
 import org.example.orderService.enums.OrderStatus;
+import org.example.orderService.exceptions.InvalidCartException;
+import org.example.orderService.exceptions.InvalidOrderStateException;
 import org.example.orderService.exceptions.OrderCancellationException;
 import org.example.orderService.exceptions.ResourceNotFoundException;
+import org.example.orderService.exceptions.ServiceUnavailableException;
 import org.example.orderService.repository.OrderItemRepository;
 import org.example.orderService.repository.OrderRepository;
 import org.springframework.stereotype.Service;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 import java.util.stream.Collectors;
-
 
 @Service
 @RequiredArgsConstructor
@@ -42,17 +44,18 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional
-    public OrderResponse placeOrder(PlaceOrderRequest request) {
+    public OrderResponse placeOrder(PlaceOrderRequest request)
+            throws InvalidCartException, ServiceUnavailableException {
 
-        // Step 1: Fetch cart + items via CartServiceClient [circuit breaker]
-        CartDto cart = cartServiceClient.getCartById(request.getCartId());
+        // Step 1: Fetch cart by userId via CartServiceClient [circuit breaker]
+        CartDto cart = cartServiceClient.getCartByUserId(request.getUserId());
 
         if (cart.getCartItems() == null || cart.getCartItems().isEmpty()) {
-            throw new IllegalStateException("Cart is empty, cannot place order");
+            throw new InvalidCartException("Cart is empty, cannot place order");
         }
 
         if (!cart.getUserId().equals(request.getUserId())) {
-            throw new IllegalStateException("Cart does not belong to this user");
+            throw new InvalidCartException("Cart does not belong to this user");
         }
 
         // Step 2: Fetch product details + build order items [circuit breaker per call]
@@ -80,7 +83,7 @@ public class OrderServiceImpl implements OrderService {
 
         Order order = Order.builder()
                 .userId(request.getUserId())
-                .cartId(request.getCartId())
+                .cartId(cart.getShoppingCartId())
                 .addressId(address.getAddressId())
                 .totalPrice(totalPrice)
                 .build();
@@ -93,20 +96,13 @@ public class OrderServiceImpl implements OrderService {
 
         // Step 5: Clear cart items via CartServiceClient [circuit breaker]
         try {
-            cartServiceClient.clearCartItems(request.getCartId());
+            cartServiceClient.clearCartItems(request.getUserId());
         } catch (Exception e) {
-            // Fallback: log and flag — order is already persisted
-            log.error("Failed to clear cart items for cartId={}, flagging for manual cleanup. Error: {}",
-                    request.getCartId(), e.getMessage());
+            log.error("Failed to clear cart items for userId={}, flagging for manual cleanup. Error: {}",
+                    request.getUserId(), e.getMessage());
         }
 
-        // Step 6: Freeze cart via CartServiceClient [circuit breaker]
-        try {
-            cartServiceClient.freezeCart(request.getCartId());
-        } catch (Exception e) {
-            log.error("Failed to freeze cart for cartId={}, flagging for manual freeze. Error: {}",
-                    request.getCartId(), e.getMessage());
-        }
+        // Step 6: Freeze cart removed — cart-service has no freeze endpoint
 
         return mapToOrderResponse(savedOrder);
     }
@@ -130,7 +126,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public OrderResponse getOrderById(Long orderId) {
+    public OrderResponse getOrderById(Long orderId)
+            throws ResourceNotFoundException {
         Order order = findOrderOrThrow(orderId);
         return mapToOrderResponse(order);
     }
@@ -144,29 +141,60 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional
-    public OrderResponse updateOrderStatus(Long orderId, UpdateOrderStatusRequest request) {
+    public OrderResponse updateOrderStatus(Long orderId, UpdateOrderStatusRequest request)
+            throws ResourceNotFoundException, InvalidOrderStateException {
         Order order = findOrderOrThrow(orderId);
+
+        if (order.getOrderStatus() == OrderStatus.CANCELLED) {
+            throw new InvalidOrderStateException(
+                    "Cannot update status of a cancelled order"
+            );
+        }
+
+        if (order.getOrderStatus() == OrderStatus.DELIVERED) {
+            throw new InvalidOrderStateException(
+                    "Cannot update status of a delivered order"
+            );
+        }
+
         order.setOrderStatus(request.getOrderStatus());
         return mapToOrderResponse(orderRepository.save(order));
     }
 
     @Override
     @Transactional
-    public OrderResponse updatePaymentStatus(Long orderId, UpdatePaymentStatusRequest request) {
+    public OrderResponse updatePaymentStatus(Long orderId, UpdatePaymentStatusRequest request)
+            throws ResourceNotFoundException, InvalidOrderStateException {
         Order order = findOrderOrThrow(orderId);
+
+        if (order.getPaymentStatus().name().equals("PAID") ||
+                order.getPaymentStatus().name().equals("REFUNDED")) {
+            throw new InvalidOrderStateException(
+                    "Payment status cannot be updated — current status is: "
+                            + order.getPaymentStatus()
+            );
+        }
+
         order.setPaymentStatus(request.getPaymentStatus());
         return mapToOrderResponse(orderRepository.save(order));
     }
 
     @Override
     @Transactional
-    public OrderResponse cancelOrder(Long orderId) {
+    public OrderResponse cancelOrder(Long orderId)
+            throws ResourceNotFoundException, OrderCancellationException, InvalidOrderStateException {
         Order order = findOrderOrThrow(orderId);
 
         if (order.getOrderStatus() == OrderStatus.SHIPPED ||
                 order.getOrderStatus() == OrderStatus.DELIVERED) {
             throw new OrderCancellationException(
                     "Cannot cancel order that is already " + order.getOrderStatus()
+            );
+        }
+
+        if (order.getOrderStatus() == OrderStatus.CANCELLED) {
+            throw new InvalidOrderStateException(
+                    "Order is already cancelled"
             );
         }
 

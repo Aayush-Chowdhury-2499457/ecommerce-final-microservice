@@ -1,6 +1,4 @@
 package com.cts.cartservice.controller;
-
-import com.cts.cartservice.dto.*;
 import com.cts.cartservice.dto.request.AddCartItemDTO;
 import com.cts.cartservice.dto.request.CheckoutDTO;
 import com.cts.cartservice.dto.request.UpdateCartItemDTO;
@@ -9,6 +7,7 @@ import com.cts.cartservice.dto.response.ShoppingCartResponseDTO;
 import com.cts.cartservice.service.CartService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

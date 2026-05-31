@@ -1,5 +1,7 @@
 package org.example.orderService.dtos.external;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import lombok.*;
 
 import java.util.List;
@@ -8,8 +10,17 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CartDto {
-    private Long cartId;
+
+    @NotNull(message = "Shopping cart ID cannot be null")
+    private Long shoppingCartId;
+
+    @NotNull(message = "User ID cannot be null")
     private Long userId;
-    private Boolean isActive;
+
+    @NotNull(message = "Cart items cannot be null")
+    @NotEmpty(message = "Cart must have at least one item")
+    @Valid
     private List<CartItemDto> cartItems;
+
+    private Double totalPrice;
 }

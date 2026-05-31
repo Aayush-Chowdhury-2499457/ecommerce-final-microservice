@@ -17,23 +17,26 @@ public class PaymentController {
 
     private final PaymentService paymentService;
 
-    // POST /api/payments/initiate
-    @PostMapping("/initiate")
-    public ResponseEntity<PaymentResponse> initiatePayment(
+    // POST /api/payments/process-payment
+    @PostMapping("/process-payment")
+    public ResponseEntity<PaymentResponse> processPayment(
+            @RequestHeader("X-User-Id") Long userId,
             @RequestBody InitiatePaymentRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(paymentService.initiatePayment(request));
+                .body(paymentService.processPayment(request));
     }
 
     // GET /api/payments
     @GetMapping
-    public ResponseEntity<List<PaymentResponse>> getAllPayments() {
+    public ResponseEntity<List<PaymentResponse>> getAllPayments(
+            @RequestHeader("X-User-Id") Long userId) {
         return ResponseEntity.ok(paymentService.getAllPayments());
     }
 
     // GET /api/payments/{paymentId}
     @GetMapping("/{paymentId}")
     public ResponseEntity<PaymentResponse> getPaymentById(
+            @RequestHeader("X-User-Id") Long userId,
             @PathVariable Long paymentId) {
         return ResponseEntity.ok(paymentService.getPaymentById(paymentId));
     }
@@ -41,9 +44,8 @@ public class PaymentController {
     // GET /api/payments/orders/{orderId}
     @GetMapping("/orders/{orderId}")
     public ResponseEntity<PaymentResponse> getPaymentByOrderId(
+            @RequestHeader("X-User-Id") Long userId,
             @PathVariable Long orderId) {
         return ResponseEntity.ok(paymentService.getPaymentByOrderId(orderId));
     }
-
-    // /api/payments/callback removed — no longer needed
 }

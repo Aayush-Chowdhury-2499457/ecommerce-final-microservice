@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class OrderServiceClientFallback implements OrderServiceClient {
 
     @Override
-    public void updatePaymentStatus(Long orderId, UpdatePaymentStatusRequest request) {
+    public void updatePaymentStatus(Long orderId, Long id, UpdatePaymentStatusRequest request) {
         // Per spec: log failure, retry via scheduled job
         log.error("Order service unavailable. Failed to update payment status " +
                         "for orderId={}. Status={} will need manual update or retry.",

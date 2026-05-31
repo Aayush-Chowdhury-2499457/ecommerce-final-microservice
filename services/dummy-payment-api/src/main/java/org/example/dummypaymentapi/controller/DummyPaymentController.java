@@ -1,5 +1,7 @@
 package org.example.dummypaymentapi.controller;
 
+import org.example.dummypaymentapi.dto.request.ProcessPaymentRequest;
+import org.example.dummypaymentapi.dto.response.ProcessPaymentResponse;
 import org.example.dummypaymentapi.service.DummyPaymentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -12,8 +14,7 @@ public class DummyPaymentController {
 
     private final DummyPaymentService dummyPaymentService;
 
-    // POST /dummy-payment/initiate
-    // POST /dummy-payment/process
+
     @PostMapping("/process")
     public ResponseEntity<ProcessPaymentResponse> processPayment(
             @RequestBody ProcessPaymentRequest request) {

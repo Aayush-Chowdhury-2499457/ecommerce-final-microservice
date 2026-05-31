@@ -1,6 +1,5 @@
 package org.example.dummypaymentapi.service.impl;
 
-import org.example.dummypaymentapi.client.PaymentServiceCallbackClient;
 import org.example.dummypaymentapi.dto.request.ProcessPaymentRequest;
 import org.example.dummypaymentapi.dto.response.ProcessPaymentResponse;
 import org.example.dummypaymentapi.entity.DummyTransaction;
@@ -20,7 +19,6 @@ import java.util.UUID;
 public class DummyPaymentServiceImpl implements DummyPaymentService {
 
     private final DummyTransactionRepository transactionRepository;
-    private final PaymentServiceCallbackClient paymentServiceCallbackClient;
 
     @Override
     @Transactional

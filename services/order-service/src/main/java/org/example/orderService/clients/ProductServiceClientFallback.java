@@ -1,6 +1,5 @@
 package org.example.orderService.clients;
 
-
 import org.example.orderService.dtos.external.ProductDto;
 import org.example.orderService.exceptions.ServiceUnavailableException;
 import org.springframework.stereotype.Component;

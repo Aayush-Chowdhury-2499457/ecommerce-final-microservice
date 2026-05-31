@@ -29,11 +29,11 @@ public class PaymentServiceImpl implements PaymentService {
     private final DummyPaymentClient dummyPaymentClient;
     private final OrderServiceClient orderServiceClient;
 
-    // ─── Initiate Payment ─────────────────────────────────────────────────────
+    // ─── Process Payment ──────────────────────────────────────────────────────
 
     @Override
     @Transactional
-    public PaymentResponse initiatePayment(InitiatePaymentRequest request) {
+    public PaymentResponse processPayment(InitiatePaymentRequest request) {
 
         // Call dummy payment API — processes and returns SUCCESS directly
         ProcessPaymentRequest processRequest = new ProcessPaymentRequest(
@@ -56,7 +56,7 @@ public class PaymentServiceImpl implements PaymentService {
                 .orderId(request.getOrderId())
                 .amount(request.getAmount())
                 .paymentStatus(paymentStatus)
-                .paymentLink(null)  // no payment link in new flow
+                .paymentLink(null)
                 .transactionId(processResponse.getTransactionId())
                 .build();
 
@@ -67,11 +67,12 @@ public class PaymentServiceImpl implements PaymentService {
                 processResponse.getTransactionId(),
                 paymentStatus);
 
-        // Immediately notify order-service
+        // Notify order-service
         String orderPaymentStatus = paymentStatus == PaymentStatus.SUCCESS
                 ? "PAID" : "FAILED";
 
         orderServiceClient.updatePaymentStatus(
+                1L,
                 request.getOrderId(),
                 new UpdatePaymentStatusRequest(orderPaymentStatus)
         );

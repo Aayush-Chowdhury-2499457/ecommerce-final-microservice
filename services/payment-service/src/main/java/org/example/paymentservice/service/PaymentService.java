@@ -7,13 +7,11 @@ import java.util.List;
 
 public interface PaymentService {
 
-    PaymentResponse initiatePayment(InitiatePaymentRequest request);
+    PaymentResponse processPayment(InitiatePaymentRequest request);
 
     List<PaymentResponse> getAllPayments();
 
     PaymentResponse getPaymentById(Long paymentId);
 
     PaymentResponse getPaymentByOrderId(Long orderId);
-
-    // handleCallback removed — no longer needed
 }
