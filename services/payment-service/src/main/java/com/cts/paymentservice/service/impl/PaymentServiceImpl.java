@@ -7,6 +7,7 @@ import com.cts.paymentservice.dto.request.InitiatePaymentRequest;
 import com.cts.paymentservice.dto.response.PaymentResponse;
 import com.cts.paymentservice.entity.Payment;
 import com.cts.paymentservice.enums.PaymentStatus;
+import com.cts.paymentservice.exception.custom.PaymentAlreadyExistsException;
 import com.cts.paymentservice.exception.custom.ResourceNotFoundException;
 import com.cts.paymentservice.gateway.DummyPaymentGateway;
 import com.cts.paymentservice.gateway.OrderServiceGateway;
@@ -34,6 +35,12 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     @Transactional
     public PaymentResponse initiatePayment(InitiatePaymentRequest request, Long userId) {
+
+        // Idempotency: reject if this order is already paid
+        if (paymentRepository.existsByOrderIdAndPaymentStatus(request.getOrderId(), PaymentStatus.SUCCESS)) {
+            throw new PaymentAlreadyExistsException(
+                    "Payment already completed for orderId: " + request.getOrderId());
+        }
 
         // Call dummy payment API — processes and returns SUCCESS directly
         ProcessPaymentRequest processRequest = new ProcessPaymentRequest(

@@ -1,6 +1,7 @@
 package com.cts.paymentservice.repository;
 
 import com.cts.paymentservice.entity.Payment;
+import com.cts.paymentservice.enums.PaymentStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,4 +11,5 @@ import java.util.Optional;
 public interface PaymentRepository extends JpaRepository<Payment, Long> {
 
     Optional<Payment> findByOrderId(Long orderId);
+    boolean existsByOrderIdAndPaymentStatus(Long orderId, PaymentStatus status);
 }

@@ -46,4 +46,15 @@ public class ProductServiceGateway {
         log.error("Product Service Fallback (reduceStock): {}", ex.getMessage());
         throw new ServiceUnavailableException("Product Service Unavailable, please try again later");
     }
+
+    @Retry(name = PRODUCT_SERVICE_CB)
+    @CircuitBreaker(name = PRODUCT_SERVICE_CB, fallbackMethod = "restockFallback")
+    public ProductDTO restock(Long productId, Integer quantity) {
+        return productServiceClient.restock(productId, new ReduceStockDTO(quantity));
+    }
+
+    public ProductDTO restockFallback(Long productId, Integer quantity, Throwable ex) {
+        log.error("Failed to restock product {} (qty {}): {}", productId, quantity, ex.getMessage());
+        return null;
+    }
 }

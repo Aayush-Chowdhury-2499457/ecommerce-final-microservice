@@ -170,28 +170,25 @@ public class CartServiceImpl implements CartService {
         log.info("Checkout: calling order-service for userId={}", userId);
         OrderResponseDTO orderResponse = orderServiceGateway.placeOrder(placeOrderDTO);
 
-        boolean paid = "PAID".equalsIgnoreCase(orderResponse.getPaymentStatus());
         boolean placed = "PLACED".equalsIgnoreCase(orderResponse.getOrderStatus());
 
         CheckoutResponseDTO response = CheckoutResponseDTO.builder()
                 .orderId(orderResponse.getOrderId())
                 .orderStatus(orderResponse.getOrderStatus())
-                .paymentStatus(orderResponse.getPaymentStatus())
+                .paymentStatus(orderResponse.getPaymentStatus())   // PENDING here — expected
                 .totalPrice(orderResponse.getTotalPrice())
                 .build();
 
-        if (paid && placed) {
+        if (placed) {
             shoppingCart.getCartItemList().clear();
             shoppingCartRepository.save(shoppingCart);
-            response.setMessage("Order placed successfully");
+            response.setMessage("Order placed successfully. Proceed to payment.");
             log.info("Checkout success: orderId={}, cart cleared for userId={}",
                     orderResponse.getOrderId(), userId);
         } else {
-            response.setMessage("Payment failed, cart retained");
-            log.warn("Checkout failed: orderId={}, status={}/{}",
-                    orderResponse.getOrderId(),
-                    orderResponse.getOrderStatus(),
-                    orderResponse.getPaymentStatus());
+            response.setMessage("Order could not be placed, please try again.");
+            log.warn("Checkout failed: orderId={}, status={}",
+                    orderResponse.getOrderId(), orderResponse.getOrderStatus());
         }
 
         return response;
