@@ -42,12 +42,16 @@ public class UserController {
     }
 
     @GetMapping("/username/{username}")
-    public ResponseEntity<UserResponseDTO> byUsername(@PathVariable String username) {
+    public ResponseEntity<UserResponseDTO> byUsername(@PathVariable String username,
+                                                      @RequestHeader(value = "X-User-Role", required = false) String role) {
+        AuthUtil.requireRoleIfPresent(role, AuthUtil.ROLE_ADMIN);
         return ResponseEntity.ok(userService.findByUsername(username));
     }
 
     @GetMapping("/email/{email}")
-    public ResponseEntity<UserResponseDTO> byEmail(@PathVariable String email) {
+    public ResponseEntity<UserResponseDTO> byEmail(@PathVariable String email,
+                                                   @RequestHeader(value = "X-User-Role", required = false) String role) {
+        AuthUtil.requireRoleIfPresent(role, AuthUtil.ROLE_ADMIN);
         return ResponseEntity.ok(userService.findByEmail(email));
     }
 
@@ -55,9 +59,8 @@ public class UserController {
     public ResponseEntity<UserResponseDTO> update(
             @PathVariable Long userId,
             @RequestHeader(value = "X-User-Id", required = false) Long callerId,
-            @RequestHeader(value = "X-User-Role", required = false) String role,
             @Valid @RequestBody UpdateUserDTO dto) {
-        AuthUtil.requireSelfOrAdmin(userId, callerId, role);
+        AuthUtil.requireOwner(userId, callerId);
         return ResponseEntity.ok(userService.update(userId, dto));
     }
 

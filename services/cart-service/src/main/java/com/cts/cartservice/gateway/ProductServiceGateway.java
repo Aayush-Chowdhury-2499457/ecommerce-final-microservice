@@ -6,6 +6,7 @@ import com.cts.cartservice.exception.custom.DownstreamException;
 import com.cts.cartservice.exception.custom.ServiceUnavailableException;
 import feign.FeignException;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +23,7 @@ public class ProductServiceGateway {
 
     private final ProductServiceClient productServiceClient;
 
+    @RateLimiter(name = PRODUCT_SERVICE_CB)
     @Retry(name = PRODUCT_SERVICE_CB)
     @CircuitBreaker(name = PRODUCT_SERVICE_CB, fallbackMethod = "fetchProductFallback")
     public ProductDTO fetchProduct(Long productId) {

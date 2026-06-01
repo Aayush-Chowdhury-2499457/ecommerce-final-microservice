@@ -4,6 +4,7 @@ import com.cts.paymentservice.client.OrderServiceClient;
 import com.cts.paymentservice.dto.external.UpdatePaymentStatusRequest;
 import com.cts.paymentservice.exception.custom.ServiceUnavailableException;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +18,7 @@ public class OrderServiceGateway {
     private static final String ORDER_SERVICE_CB = "orderService";
     private final OrderServiceClient orderServiceClient;
 
+    @RateLimiter(name = ORDER_SERVICE_CB)
     @Retry(name = ORDER_SERVICE_CB)
     @CircuitBreaker(name = ORDER_SERVICE_CB, fallbackMethod = "updatePaymentStatusFallback")
     public void updatePaymentStatus(Long orderId, UpdatePaymentStatusRequest request) {

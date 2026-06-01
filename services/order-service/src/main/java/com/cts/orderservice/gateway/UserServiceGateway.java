@@ -6,6 +6,7 @@ import com.cts.orderservice.exception.custom.DownstreamException;
 import com.cts.orderservice.exception.custom.ResourceNotFoundException;
 import com.cts.orderservice.exception.custom.ServiceUnavailableException;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +21,7 @@ public class UserServiceGateway {
 
     private final UserServiceClient userServiceClient;
 
+    @RateLimiter(name = USER_SERVICE_CB)
     @Retry(name = USER_SERVICE_CB)
     @CircuitBreaker(name = USER_SERVICE_CB, fallbackMethod = "getAddressFallback")
     public AddressDTO getAddress(Long userId, Long addressId) {

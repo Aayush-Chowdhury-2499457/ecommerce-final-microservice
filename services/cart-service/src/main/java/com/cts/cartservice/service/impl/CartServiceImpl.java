@@ -50,15 +50,6 @@ public class CartServiceImpl implements CartService {
 
     @Override
     @Transactional
-    public ShoppingCartResponseDTO getCartByUserId(Long userId) {
-        ShoppingCart shoppingCart = shoppingCartRepository.findByUserId(userId)
-                .orElseThrow(() -> new ShoppingCartNotFoundException(
-                        "Cart not found for userId=" + userId));
-        return toCartResponse(shoppingCart);
-    }
-
-    @Override
-    @Transactional
     public void clearCart(Long userId) {
         ShoppingCart shoppingCart = shoppingCartRepository.findByUserId(userId)
                 .orElseThrow(() -> new ShoppingCartNotFoundException(

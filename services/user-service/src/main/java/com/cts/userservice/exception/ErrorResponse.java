@@ -1,4 +1,4 @@
-package com.cts.reviewservice.exception;
+package com.cts.userservice.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

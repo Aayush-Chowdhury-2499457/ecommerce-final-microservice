@@ -1,4 +1,4 @@
-package com.cts.productservice.config;
+package com.cts.userservice.config;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.context.annotation.Bean;
@@ -10,7 +10,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import java.util.Optional;
 
 @Configuration
-public class AuditorAwareImpl {
+public class AuditingConfig {
 
     /**
      * Pulls the caller's userId from the X-User-Id header injected by the API Gateway

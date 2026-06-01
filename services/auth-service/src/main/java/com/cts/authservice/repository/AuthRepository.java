@@ -9,5 +9,4 @@ import java.util.Optional;
 @Repository
 public interface AuthRepository extends JpaRepository<Auth, Long> {
     Optional<Auth> findByUserId(Long userId);
-    boolean existsByUserId(Long userId);
 }

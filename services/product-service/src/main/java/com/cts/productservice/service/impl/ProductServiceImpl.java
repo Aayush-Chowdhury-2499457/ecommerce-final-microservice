@@ -90,15 +90,15 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @Transactional
-    public ProductResponseDTO updateStock(Long productId, UpdateStockDTO dto) {
+    public ProductResponseDTO updateStock(Long productId, StockQuantityDTO dto) {
         Product product = getOrThrow(productId);
-        product.setStock(dto.getStock());
+        product.setStock(dto.getQuantity());
         return toDto(product);
 
     }
     @Override
     @Transactional
-    public ProductResponseDTO reduceStock(Long productId, ReduceStockDTO dto) {
+    public ProductResponseDTO reduceStock(Long productId, StockQuantityDTO dto) {
         Product product = getOrThrow(productId);
         Integer quantity = dto.getQuantity();
         if (product.getStock() < quantity) {
@@ -120,7 +120,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @Transactional
-    public ProductResponseDTO restock(Long productId, ReduceStockDTO dto) {
+    public ProductResponseDTO restock(Long productId, StockQuantityDTO dto) {
         Product product = getOrThrow(productId);
         product.setStock(product.getStock() + dto.getQuantity());
         return toDto(product);

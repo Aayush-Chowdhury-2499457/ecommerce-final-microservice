@@ -10,8 +10,6 @@ public interface CartService {
 
     ShoppingCartResponseDTO getOrCreateCart(Long userId);
 
-    ShoppingCartResponseDTO getCartByUserId(Long userId);
-
     void clearCart(Long userId);
 
     ShoppingCartResponseDTO addItem(Long userId, AddCartItemDTO request);
