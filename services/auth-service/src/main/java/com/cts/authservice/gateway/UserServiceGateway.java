@@ -8,6 +8,7 @@ import com.cts.authservice.exception.custom.AuthException;
 import com.cts.authservice.exception.custom.DownstreamException;
 import com.cts.authservice.exception.custom.ServiceUnavailableException;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +23,7 @@ public class UserServiceGateway {
     private static final String USER_SERVICE_CB = "userService";
     private final UserServiceClient userServiceClient;
 
+    @RateLimiter(name = USER_SERVICE_CB)
     @Retry(name = USER_SERVICE_CB)
     @CircuitBreaker(name = USER_SERVICE_CB, fallbackMethod = "createUserFallback")
     public RegisterResponseDTO createUser(CreateUserRequestDTO dto) {
@@ -34,6 +36,7 @@ public class UserServiceGateway {
         throw new ServiceUnavailableException("User Service Unavailable, cannot create user");
     }
 
+    @RateLimiter(name = USER_SERVICE_CB)
     @Retry(name = USER_SERVICE_CB)
     @CircuitBreaker(name = USER_SERVICE_CB, fallbackMethod = "userFetchFallback")
     public UserDTO getUserByUsername(String username) {

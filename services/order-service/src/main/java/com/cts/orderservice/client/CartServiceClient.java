@@ -11,6 +11,4 @@ public interface CartServiceClient {
     @GetMapping("/api/carts")
     ShoppingCartDTO getCart(@RequestHeader("X-User-Id") Long userId);
 
-    @DeleteMapping("/api/carts/clear")
-    void clearCartItems(@RequestHeader("X-User-Id") Long userId);
 }

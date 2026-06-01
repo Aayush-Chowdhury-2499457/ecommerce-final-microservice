@@ -1,6 +1,5 @@
 package com.cts.cartservice.controller;
 
-import com.cts.cartservice.dto.*;
 import com.cts.cartservice.dto.request.AddCartItemDTO;
 import com.cts.cartservice.dto.request.CheckoutDTO;
 import com.cts.cartservice.dto.request.UpdateCartItemDTO;

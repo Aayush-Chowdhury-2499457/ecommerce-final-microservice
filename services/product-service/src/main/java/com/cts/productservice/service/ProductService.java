@@ -18,11 +18,11 @@ public interface ProductService {
 
     ProductResponseDTO update(Long productId, UpdateProductDTO dto);
 
-    ProductResponseDTO updateStock(Long productId, UpdateStockDTO dto);
+    ProductResponseDTO updateStock(Long productId, StockQuantityDTO dto);
 
-    ProductResponseDTO reduceStock(Long productId, ReduceStockDTO dto);
+    ProductResponseDTO reduceStock(Long productId, StockQuantityDTO dto);
 
     void delete(Long productId);
 
-    ProductResponseDTO restock(Long productId, ReduceStockDTO dto);
+    ProductResponseDTO restock(Long productId, StockQuantityDTO dto);
 }

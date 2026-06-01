@@ -11,8 +11,17 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig {
 
-    private final SessionCreationPolicy SESSION_POLICY = SessionCreationPolicy.STATELESS;
-    private final String[] PERMIT_ALL_MATCHERS = { "/api/auth/login", "/api/auth/register", "/api/auth/validate" };
+    private static final SessionCreationPolicy SESSION_POLICY = SessionCreationPolicy.STATELESS;
+    private static final String[] PERMIT_ALL_MATCHERS = {
+            "/api/auth/login",
+            "/api/auth/register",
+            "/api/auth/validate" ,
+            "/v3/api-docs",
+            "/v3/api-docs/**",
+            "/swagger-ui.html",
+            "/swagger-ui/**",
+            "/webjars/**"
+    };
 
     @Bean
     public PasswordEncoder passwordEncoder() {

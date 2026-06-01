@@ -22,7 +22,10 @@ public class ValidationFilter implements GlobalFilter {
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         String path = exchange.getRequest().getURI().getPath();
 
-        if (path.startsWith("/api/auth/")) {
+        if (path.startsWith("/api/auth/")
+                || path.startsWith("/swagger-ui")
+                || path.startsWith("/webjars")
+                || path.contains("/v3/api-docs")) {
             return chain.filter(exchange);
         }
 

@@ -1,6 +1,5 @@
 package com.cts.authservice.service.impl;
 
-import com.cts.authservice.client.UserServiceClient;
 import com.cts.authservice.dto.request.CreateUserRequestDTO;
 import com.cts.authservice.dto.request.LoginRequestDTO;
 import com.cts.authservice.dto.request.RegisterRequestDTO;
@@ -10,21 +9,15 @@ import com.cts.authservice.dto.response.UserDTO;
 import com.cts.authservice.dto.response.ValidateResponseDTO;
 import com.cts.authservice.entity.Auth;
 import com.cts.authservice.exception.custom.AuthException;
-import com.cts.authservice.exception.custom.ServiceUnavailableException;
 import com.cts.authservice.gateway.UserServiceGateway;
 import com.cts.authservice.repository.AuthRepository;
 import com.cts.authservice.security.util.JwtUtil;
 import com.cts.authservice.service.AuthService;
-import feign.FeignException;
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
-import io.github.resilience4j.retry.annotation.Retry;
-import io.jsonwebtoken.Claims;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Service
@@ -35,8 +28,6 @@ public class AuthServiceImpl implements AuthService {
     private final UserServiceGateway userServiceGateway;
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
-
-
 
     @Override
     @Transactional
@@ -93,7 +84,6 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    @Transactional
     public ValidateResponseDTO validate(String authHeader) {
         if(authHeader == null || !authHeader.startsWith("Bearer ")) {
             throw new AuthException("Missing or Malformed Authorization Header");

@@ -56,14 +56,14 @@ public class ProductController {
     @PatchMapping("/{productId}/stock")
     public ResponseEntity<ProductResponseDTO> updateStock(@RequestHeader(value = "X-User-Role", required = false) String role,
                                                           @PathVariable Long productId,
-                                                          @Valid @RequestBody UpdateStockDTO dto) {
+                                                          @Valid @RequestBody StockQuantityDTO dto) {
         AuthUtil.requireRole(role, AuthUtil.ROLE_ADMIN);
         return ResponseEntity.ok(productService.updateStock(productId, dto));
     }
 
     @PutMapping("/{productId}/reduce-stock")
     public ResponseEntity<ProductResponseDTO> reduceStock(@RequestHeader(value = "X-User-Role", required = false) String role,
-                                                          @PathVariable Long productId, @Valid @RequestBody ReduceStockDTO dto) {
+                                                          @PathVariable Long productId, @Valid @RequestBody StockQuantityDTO dto) {
         AuthUtil.requireRoleIfPresent(role, AuthUtil.ROLE_ADMIN);
         return ResponseEntity.ok(productService.reduceStock(productId, dto));
     }
@@ -79,7 +79,7 @@ public class ProductController {
     @PutMapping("/{productId}/restock")
     public ResponseEntity<ProductResponseDTO> restock(
             @RequestHeader(value = "X-User-Role", required = false) String role,
-            @PathVariable Long productId, @Valid @RequestBody ReduceStockDTO dto) {
+            @PathVariable Long productId, @Valid @RequestBody StockQuantityDTO dto) {
         AuthUtil.requireRoleIfPresent(role, AuthUtil.ROLE_ADMIN);
         return ResponseEntity.ok(productService.restock(productId, dto));
     }

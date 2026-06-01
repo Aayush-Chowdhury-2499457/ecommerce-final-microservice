@@ -6,6 +6,7 @@ import com.cts.orderservice.exception.custom.DownstreamException;
 import com.cts.orderservice.exception.custom.ResourceNotFoundException;
 import com.cts.orderservice.exception.custom.ServiceUnavailableException;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +21,7 @@ public class CartServiceGateway {
 
     private final CartServiceClient cartServiceClient;
 
+    @RateLimiter(name = CART_SERVICE_CB)
     @Retry(name = CART_SERVICE_CB)
     @CircuitBreaker(name = CART_SERVICE_CB, fallbackMethod = "getCartFallback")
     public ShoppingCartDTO getCart(Long userId) {
@@ -34,14 +36,4 @@ public class CartServiceGateway {
         throw new ServiceUnavailableException("Cart Service Unavailable, please try again later");
     }
 
-
-    @Retry(name = CART_SERVICE_CB)
-    @CircuitBreaker(name = CART_SERVICE_CB, fallbackMethod = "clearCartFallback")
-    public void clearCart(Long userId) {
-        cartServiceClient.clearCartItems(userId);
-    }
-
-    public void clearCartFallback(Long userId, Throwable ex) {
-        log.error("Failed to clear cart items for userId={}. Error: {}", userId, ex.getMessage());
-    }
 }

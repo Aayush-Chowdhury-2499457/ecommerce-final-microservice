@@ -1,4 +1,4 @@
-package com.cts.reviewservice.config;
+package com.cts.productservice.config;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.context.annotation.Bean;
@@ -10,8 +10,13 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import java.util.Optional;
 
 @Configuration
-public class AuditorAwareImpl {
+public class AuditingConfig {
 
+    /**
+     * Pulls the caller's userId from the X-User-Id header injected by the API Gateway
+     * (the gateway validates the JWT and forwards the userId as a header).
+     * Falls back to "SYSTEM" if the header isn't present (e.g. internal calls).
+     */
     @Bean
     public AuditorAware<String> auditorAware() {
         return () -> {

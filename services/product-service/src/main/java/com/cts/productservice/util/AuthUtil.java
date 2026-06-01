@@ -3,7 +3,6 @@ package com.cts.productservice.util;
 import com.cts.productservice.exception.custom.UnauthorizedAccessException;
 import org.springframework.stereotype.Component;
 
-@Component
 public final class AuthUtil {
     public static final String ROLE_ADMIN = "ADMIN";
     public static final String ROLE_CUSTOMER = "CUSTOMER";

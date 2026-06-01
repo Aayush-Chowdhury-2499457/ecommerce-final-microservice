@@ -1,6 +1,5 @@
 package com.cts.userservice.exception;
 
-import com.cts.reviewservice.exception.ErrorResponse;
 import com.cts.userservice.exception.custom.DuplicateResourceException;
 import com.cts.userservice.exception.custom.ResourceNotFoundException;
 import com.cts.userservice.exception.custom.UnauthorizedAccessException;

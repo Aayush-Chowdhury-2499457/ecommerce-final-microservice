@@ -4,7 +4,7 @@ import jakarta.validation.constraints.Positive;
 import lombok.Data;
 
 @Data
-public class ReduceStockDTO {
+public class StockQuantityDTO {
 
     @NotNull
     @Positive
