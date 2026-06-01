@@ -5,21 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b8647389-d648-4047-9917-e10377d5d181" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/exception/custom/PaymentAlreadyExistsException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/service/impl/CartServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/service/impl/CartServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/client/ProductServiceClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/client/ProductServiceClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/controller/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/gateway/ProductServiceGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/gateway/ProductServiceGateway.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/service/impl/OrderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/service/impl/OrderServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/client/OrderServiceClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/client/OrderServiceClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/gateway/OrderServiceGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/gateway/OrderServiceGateway.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/repository/PaymentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/repository/PaymentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/service/impl/PaymentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/service/impl/PaymentServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/controller/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/service/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/service/impl/ProductServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/service/impl/ProductServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/client/DummyPaymentClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/client/DummyPaymentClient.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -215,9 +202,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.ApiGatewayApplication" />
+        <item itemvalue="Spring Boot.PaymentServiceApplication" />
         <item itemvalue="Spring Boot.DummyPaymentApiApplication" />
         <item itemvalue="Spring Boot.OrderServiceApplication" />
-        <item itemvalue="Spring Boot.PaymentServiceApplication" />
         <item itemvalue="Spring Boot.ReviewServiceApplication" />
       </list>
     </recent_temporary>
