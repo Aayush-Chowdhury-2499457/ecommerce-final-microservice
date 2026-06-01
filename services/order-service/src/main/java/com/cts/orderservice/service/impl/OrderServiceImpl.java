@@ -96,10 +96,6 @@ public class OrderServiceImpl implements OrderService {
 
         Order savedOrder = orderRepository.save(order);
 
-        // Step 5: Clear cart items via CartServiceClient [circuit breaker]
-        // Order is already persisted; clearing is best-effort (handled by fallback).
-        cartServiceGateway.clearCart(request.getUserId());
-
         return mapToOrderResponse(savedOrder);
     }
 
@@ -155,12 +151,18 @@ public class OrderServiceImpl implements OrderService {
     public OrderResponseDTO cancelOrder(Long orderId) {
         Order order = findOrderOrThrow(orderId);
 
+        if (order.getOrderStatus() == OrderStatus.CANCELLED) {
+            throw new OrderCancellationException("Order is already cancelled");   // prevents double-restock
+        }
         if (order.getOrderStatus() == OrderStatus.SHIPPED ||
                 order.getOrderStatus() == OrderStatus.DELIVERED) {
             throw new OrderCancellationException(
-                    "Cannot cancel order that is already " + order.getOrderStatus()
-            );
+                    "Cannot cancel order that is already " + order.getOrderStatus());
         }
+
+        // Restore stock that was decremented at placeOrder
+        order.getOrderItems().forEach(item ->
+                productServiceGateway.restock(item.getProductId(), item.getQuantity()));
 
         order.setOrderStatus(OrderStatus.CANCELLED);
         return mapToOrderResponse(orderRepository.save(order));

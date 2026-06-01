@@ -23,4 +23,6 @@ public interface ProductService {
     ProductResponseDTO reduceStock(Long productId, ReduceStockDTO dto);
 
     void delete(Long productId);
+
+    ProductResponseDTO restock(Long productId, ReduceStockDTO dto);
 }

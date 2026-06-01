@@ -118,6 +118,14 @@ public class ProductServiceImpl implements ProductService {
         productRepository.deleteById(productId);
     }
 
+    @Override
+    @Transactional
+    public ProductResponseDTO restock(Long productId, ReduceStockDTO dto) {
+        Product product = getOrThrow(productId);
+        product.setStock(product.getStock() + dto.getQuantity());
+        return toDto(product);
+    }
+
     /* ---------------- helpers ---------------- */
     private Product getOrThrow(Long productId) {
         return productRepository.findById(productId)

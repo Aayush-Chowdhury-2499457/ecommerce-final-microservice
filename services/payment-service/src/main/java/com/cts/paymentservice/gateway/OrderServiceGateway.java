@@ -2,6 +2,7 @@ package com.cts.paymentservice.gateway;
 
 import com.cts.paymentservice.client.OrderServiceClient;
 import com.cts.paymentservice.dto.external.UpdatePaymentStatusRequest;
+import com.cts.paymentservice.exception.custom.ServiceUnavailableException;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +24,9 @@ public class OrderServiceGateway {
     }
 
     public void updatePaymentStatusFallback(Long orderId, UpdatePaymentStatusRequest request, Throwable ex) {
-        log.error("Order service unavailable. Failed to update payment status for orderId={}, status={}. Error: {}",
+        log.error("Failed to update order payment status for orderId={}, status={}. Error: {}",
                 orderId, request.getPaymentStatus(), ex.getMessage());
+        throw new ServiceUnavailableException(
+                "Payment could not be completed: order status update failed. Please retry.");
     }
 }

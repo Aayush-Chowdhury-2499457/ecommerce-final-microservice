@@ -1,9 +1,6 @@
 package com.cts.paymentservice.exception;
 
-import com.cts.paymentservice.exception.custom.DownstreamException;
-import com.cts.paymentservice.exception.custom.ResourceNotFoundException;
-import com.cts.paymentservice.exception.custom.ServiceUnavailableException;
-import com.cts.paymentservice.exception.custom.UnauthorizedAccessException;
+import com.cts.paymentservice.exception.custom.*;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -35,6 +32,13 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> handleDownstream(DownstreamException ex, HttpServletRequest request) {
         log.error("Downstream Exception: {}", ex.getMessage());
         return buildResponse(HttpStatus.valueOf(ex.getStatusCode()), ex, request.getRequestURI(), ex.getMessage());
+    }
+
+    @ExceptionHandler(PaymentAlreadyExistsException.class)
+    public ResponseEntity<ErrorResponse> handlePaymentExists(PaymentAlreadyExistsException ex,
+                                                             HttpServletRequest request) {
+        log.warn("Duplicate payment: {}", ex.getMessage());
+        return buildResponse(HttpStatus.CONFLICT, ex, request.getRequestURI(), ex.getMessage());
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

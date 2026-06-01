@@ -76,7 +76,7 @@ public class OrderController {
     }
 
     // PATCH /api/orders/{orderId}/payment-status
-    @PatchMapping("/{orderId}/payment-status")
+    @PutMapping("/{orderId}/payment-status")
     public ResponseEntity<OrderResponseDTO> updatePaymentStatus(
             @PathVariable Long orderId,
             @Valid @RequestBody UpdatePaymentStatusRequestDTO request) {
