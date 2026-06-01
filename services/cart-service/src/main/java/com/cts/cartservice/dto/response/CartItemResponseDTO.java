@@ -5,9 +5,9 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class CartItemResponseDTO {
     private Long cartItemId;
     private Long productId;
@@ -15,10 +15,4 @@ public class CartItemResponseDTO {
     private Double unitPrice;
     private Integer quantity;
     private Double subTotal;
-
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
-
-    private String createdBy;
-    private String updatedBy;
 }

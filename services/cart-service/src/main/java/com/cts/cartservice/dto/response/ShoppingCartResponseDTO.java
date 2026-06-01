@@ -15,10 +15,4 @@ public class ShoppingCartResponseDTO {
     private Long userId;
     private List<CartItemResponseDTO> cartItems;
     private Double totalPrice;
-
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
-
-    private String createdBy;
-    private String updatedBy;
 }

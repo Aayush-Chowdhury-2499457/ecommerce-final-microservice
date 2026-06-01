@@ -3,9 +3,9 @@ package com.cts.cartservice.dto.response;
 import lombok.*;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class CheckoutResponseDTO {
     private Long orderId;
     private String orderStatus;

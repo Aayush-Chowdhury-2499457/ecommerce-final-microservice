@@ -1,75 +1,80 @@
 package com.cts.reviewservice.exception;
 
+import com.cts.reviewservice.exception.custom.DownstreamException;
 import com.cts.reviewservice.exception.custom.DuplicateReviewException;
-import com.cts.reviewservice.exception.custom.ForbiddenException;
+import com.cts.reviewservice.exception.custom.UnauthorizedAccessException;
 import com.cts.reviewservice.exception.custom.PurchaseNotVerifiedException;
 import com.cts.reviewservice.exception.custom.ResourceNotFoundException;
 import com.cts.reviewservice.exception.custom.ServiceUnavailableException;
+import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.stream.Collectors;
 
+@Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<Map<String, Object>> notFound(ResourceNotFoundException ex) {
-        return build(HttpStatus.NOT_FOUND, ex.getMessage());
+    public ResponseEntity<ErrorResponse> notFound(ResourceNotFoundException ex, HttpServletRequest request) {
+        log.warn("Resource not found: {}", ex.getMessage());
+        return buildResponse(HttpStatus.NOT_FOUND, ex, request.getRequestURI(), ex.getMessage());
     }
 
-    @ExceptionHandler(ForbiddenException.class)
-    public ResponseEntity<Map<String, Object>> forbidden(ForbiddenException ex) {
-        return build(HttpStatus.FORBIDDEN, ex.getMessage());
-    }
-
-    @ExceptionHandler(PurchaseNotVerifiedException.class)
-    public ResponseEntity<Map<String, Object>> notVerified(PurchaseNotVerifiedException ex) {
-        return build(HttpStatus.FORBIDDEN, ex.getMessage());
+    @ExceptionHandler({UnauthorizedAccessException.class, PurchaseNotVerifiedException.class})
+    public ResponseEntity<ErrorResponse> forbidden(RuntimeException ex, HttpServletRequest request) {
+        log.warn("Forbidden: {}", ex.getMessage());
+        return buildResponse(HttpStatus.FORBIDDEN, ex, request.getRequestURI(), ex.getMessage());
     }
 
     @ExceptionHandler(DuplicateReviewException.class)
-    public ResponseEntity<Map<String, Object>> duplicate(DuplicateReviewException ex) {
-        return build(HttpStatus.CONFLICT, ex.getMessage());
+    public ResponseEntity<ErrorResponse> duplicate(DuplicateReviewException ex, HttpServletRequest request) {
+        log.warn("Duplicate review: {}", ex.getMessage());
+        return buildResponse(HttpStatus.CONFLICT, ex, request.getRequestURI(), ex.getMessage());
     }
 
     @ExceptionHandler(ServiceUnavailableException.class)
-    public ResponseEntity<Map<String, Object>> serviceDown(ServiceUnavailableException ex) {
-        return build(HttpStatus.SERVICE_UNAVAILABLE, ex.getMessage());
+    public ResponseEntity<ErrorResponse> serviceDown(ServiceUnavailableException ex, HttpServletRequest request) {
+        log.error("Service unavailable: {}", ex.getMessage());
+        return buildResponse(HttpStatus.SERVICE_UNAVAILABLE, ex, request.getRequestURI(), ex.getMessage());
+    }
+
+    @ExceptionHandler(DownstreamException.class)
+    public ResponseEntity<ErrorResponse> downstream(DownstreamException ex, HttpServletRequest request) {
+        log.error("Downstream Exception: {}", ex.getMessage());
+        return buildResponse(HttpStatus.valueOf(ex.getStatusCode()), ex, request.getRequestURI(), ex.getMessage());
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Map<String, Object>> validation(MethodArgumentNotValidException ex) {
-        Map<String, String> fieldErrors = new HashMap<>();
-        for (FieldError fe : ex.getBindingResult().getFieldErrors()) {
-            fieldErrors.put(fe.getField(), fe.getDefaultMessage());
-        }
-        Map<String, Object> body = baseBody(HttpStatus.BAD_REQUEST, "Validation failed");
-        body.put("fieldErrors", fieldErrors);
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
+    public ResponseEntity<ErrorResponse> validation(MethodArgumentNotValidException ex, HttpServletRequest request) {
+        String fieldErrors = ex.getBindingResult().getFieldErrors()
+                .stream().map(fe -> fe.getField() + ": " + fe.getDefaultMessage())
+                .collect(Collectors.joining(", "));
+        log.warn("Validation failed: {}", fieldErrors);
+        return buildResponse(HttpStatus.BAD_REQUEST, ex, request.getRequestURI(), fieldErrors);
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<Map<String, Object>> generic(Exception ex) {
-        return build(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
+    public ResponseEntity<ErrorResponse> generic(Exception ex, HttpServletRequest request) {
+        log.error("Unexpected error", ex);
+        return buildResponse(HttpStatus.INTERNAL_SERVER_ERROR, ex, request.getRequestURI(), ex.getMessage());
     }
 
-    private ResponseEntity<Map<String, Object>> build(HttpStatus status, String message) {
-        return ResponseEntity.status(status).body(baseBody(status, message));
-    }
-
-    private Map<String, Object> baseBody(HttpStatus status, String message) {
-        Map<String, Object> body = new HashMap<>();
-        body.put("timestamp", LocalDateTime.now());
-        body.put("status", status.value());
-        body.put("error", status.getReasonPhrase());
-        body.put("message", message);
-        return body;
+    private ResponseEntity<ErrorResponse> buildResponse(HttpStatus status, Exception ex, String path, String message) {
+        ErrorResponse body = ErrorResponse.builder()
+                .timestamp(LocalDateTime.now())
+                .status(status.value())
+                .error(status.getReasonPhrase())
+                .errorClass(ex.getClass().getSimpleName())
+                .message(message)
+                .path(path)
+                .build();
+        return ResponseEntity.status(status).body(body);
     }
 }

@@ -1,15 +1,13 @@
 package com.cts.reviewservice.service.impl;
 
-import com.cts.reviewservice.client.HasPurchasedResponseDTO;
-import com.cts.reviewservice.client.OrderServiceClient;
 import com.cts.reviewservice.dto.CreateReviewDTO;
 import com.cts.reviewservice.dto.ReviewResponseDTO;
 import com.cts.reviewservice.dto.UpdateReviewDTO;
 import com.cts.reviewservice.entity.Review;
 import com.cts.reviewservice.exception.custom.DuplicateReviewException;
-import com.cts.reviewservice.exception.custom.ForbiddenException;
 import com.cts.reviewservice.exception.custom.PurchaseNotVerifiedException;
 import com.cts.reviewservice.exception.custom.ResourceNotFoundException;
+import com.cts.reviewservice.gateway.OrderServiceGateway;
 import com.cts.reviewservice.repository.ReviewRepository;
 import com.cts.reviewservice.service.ReviewService;
 import lombok.RequiredArgsConstructor;
@@ -22,10 +20,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ReviewServiceImpl implements ReviewService {
 
-    private static final String ROLE_ADMIN = "ADMIN";
-
     private final ReviewRepository reviewRepository;
-    private final OrderServiceClient orderServiceClient;
+    private final OrderServiceGateway orderServiceGateway;
 
     /* ---------------- Create ---------------- */
     @Override
@@ -38,15 +34,9 @@ public class ReviewServiceImpl implements ReviewService {
         }
 
         // 2. verify purchase via order-service (Feign + circuit breaker fallback)
-        HasPurchasedResponseDTO hp = orderServiceClient.hasPurchased(callerUserId, dto.getProductId());
-        if (hp == null || !hp.isHasPurchased()) {
+        Boolean purchased = orderServiceGateway.hasPurchased(callerUserId, dto.getProductId());
+        if (purchased == null || !purchased) {
             throw new PurchaseNotVerifiedException("You can only review products you have purchased");
-        }
-
-        // 3. cross-check the submitted orderId
-        if (hp.getOrderId() != null && !hp.getOrderId().equals(dto.getOrderId())) {
-            throw new PurchaseNotVerifiedException(
-                    "Provided orderId does not match a purchase of this product");
         }
 
         Review review = Review.builder()
@@ -96,14 +86,8 @@ public class ReviewServiceImpl implements ReviewService {
     /* ---------------- Update (owner only) ---------------- */
     @Override
     @Transactional
-    public ReviewResponseDTO update(Long reviewId, Long callerUserId, String callerRole,
-                                    UpdateReviewDTO dto) {
+    public ReviewResponseDTO update(Long reviewId, UpdateReviewDTO dto) {
         Review review = getOrThrow(reviewId);
-
-        if (!review.getUserId().equals(callerUserId)) {
-            throw new ForbiddenException("You can only edit your own review");
-        }
-
         review.setRating(dto.getRating());
         review.setDescription(dto.getDescription());
         return toDto(review);
@@ -112,15 +96,8 @@ public class ReviewServiceImpl implements ReviewService {
     /* ---------------- Delete (owner OR admin) ---------------- */
     @Override
     @Transactional
-    public void delete(Long reviewId, Long callerUserId, String callerRole) {
+    public void delete(Long reviewId) {
         Review review = getOrThrow(reviewId);
-
-        boolean isOwner = review.getUserId().equals(callerUserId);
-        boolean isAdmin = ROLE_ADMIN.equalsIgnoreCase(callerRole);
-
-        if (!isOwner && !isAdmin) {
-            throw new ForbiddenException("You can only delete your own review");
-        }
         reviewRepository.delete(review);
     }
 

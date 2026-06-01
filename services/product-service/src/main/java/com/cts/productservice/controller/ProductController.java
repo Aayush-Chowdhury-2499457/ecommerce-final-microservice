@@ -1,10 +1,8 @@
 package com.cts.productservice.controller;
 
-import com.cts.productservice.dto.CreateProductDTO;
-import com.cts.productservice.dto.ProductResponseDTO;
-import com.cts.productservice.dto.UpdateProductDTO;
-import com.cts.productservice.dto.UpdateStockDTO;
+import com.cts.productservice.dto.*;
 import com.cts.productservice.service.ProductService;
+import com.cts.productservice.util.AuthUtil;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -21,7 +19,9 @@ public class ProductController {
     private final ProductService productService;
 
     @PostMapping
-    public ResponseEntity<ProductResponseDTO> create(@Valid @RequestBody CreateProductDTO dto) {
+    public ResponseEntity<ProductResponseDTO> create(@RequestHeader(value = "X-User-Role", required = false) String role,
+                                                     @Valid @RequestBody CreateProductDTO dto) {
+        AuthUtil.requireRole(role, AuthUtil.ROLE_ADMIN);
         return ResponseEntity.status(HttpStatus.CREATED).body(productService.create(dto));
     }
 
@@ -46,19 +46,32 @@ public class ProductController {
     }
 
     @PutMapping("/{productId}")
-    public ResponseEntity<ProductResponseDTO> update(@PathVariable Long productId,
-                                                    @Valid @RequestBody UpdateProductDTO dto) {
+    public ResponseEntity<ProductResponseDTO> update(@RequestHeader(value = "X-User-Role", required = false) String role,
+                                                     @PathVariable Long productId,
+                                                     @Valid @RequestBody UpdateProductDTO dto) {
+        AuthUtil.requireRole(role, AuthUtil.ROLE_ADMIN);
         return ResponseEntity.ok(productService.update(productId, dto));
     }
 
     @PatchMapping("/{productId}/stock")
-    public ResponseEntity<ProductResponseDTO> updateStock(@PathVariable Long productId,
-                                                         @Valid @RequestBody UpdateStockDTO dto) {
+    public ResponseEntity<ProductResponseDTO> updateStock(@RequestHeader(value = "X-User-Role", required = false) String role,
+                                                          @PathVariable Long productId,
+                                                          @Valid @RequestBody UpdateStockDTO dto) {
+        AuthUtil.requireRole(role, AuthUtil.ROLE_ADMIN);
         return ResponseEntity.ok(productService.updateStock(productId, dto));
     }
 
+    @PatchMapping("/{productId}/reduce-stock")
+    public ResponseEntity<ProductResponseDTO> reduceStock(@RequestHeader(value = "X-User-Role", required = false) String role,
+                                                          @PathVariable Long productId, @Valid @RequestBody ReduceStockDTO dto) {
+        AuthUtil.requireRoleIfPresent(role, AuthUtil.ROLE_ADMIN);
+        return ResponseEntity.ok(productService.reduceStock(productId, dto));
+    }
+
     @DeleteMapping("/{productId}")
-    public ResponseEntity<Void> delete(@PathVariable Long productId) {
+    public ResponseEntity<Void> delete(@RequestHeader(value = "X-User-Role", required = false) String role,
+                                       @PathVariable Long productId) {
+        AuthUtil.requireRole(role, AuthUtil.ROLE_ADMIN);
         productService.delete(productId);
         return ResponseEntity.noContent().build();
     }

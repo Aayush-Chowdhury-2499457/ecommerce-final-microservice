@@ -9,8 +9,7 @@ import lombok.*;
 @Builder
 public class CheckoutDTO {
 
-    @NotNull(message = "address id is required")
+    @NotNull(message = "Address Id is required")
     private Long addressId;
-
 
 }
