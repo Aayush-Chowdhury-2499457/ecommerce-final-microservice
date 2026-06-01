@@ -4,6 +4,7 @@ import com.cts.userservice.dto.CreateUserDTO;
 import com.cts.userservice.dto.UpdateUserDTO;
 import com.cts.userservice.dto.UserResponseDTO;
 import com.cts.userservice.service.UserService;
+import com.cts.userservice.util.AuthUtil;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -24,13 +25,19 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.create(dto));
     }
 
-    @GetMapping
-    public ResponseEntity<List<UserResponseDTO>> all() {
+    @GetMapping  // ADMIN
+    public ResponseEntity<List<UserResponseDTO>> all(
+            @RequestHeader(value = "X-User-Role", required = false) String role) {
+        AuthUtil.requireRole(role, AuthUtil.ROLE_ADMIN);
         return ResponseEntity.ok(userService.findAll());
     }
 
-    @GetMapping("/{userId}")
-    public ResponseEntity<UserResponseDTO> byId(@PathVariable Long userId) {
+    @GetMapping("/{userId}")  // self-or-admin
+    public ResponseEntity<UserResponseDTO> byId(
+            @PathVariable Long userId,
+            @RequestHeader(value = "X-User-Id", required = false) Long callerId,
+            @RequestHeader(value = "X-User-Role", required = false) String role) {
+        AuthUtil.requireSelfOrAdmin(userId, callerId, role);
         return ResponseEntity.ok(userService.findById(userId));
     }
 
@@ -44,14 +51,21 @@ public class UserController {
         return ResponseEntity.ok(userService.findByEmail(email));
     }
 
-    @PutMapping("/{userId}")
-    public ResponseEntity<UserResponseDTO> update(@PathVariable Long userId,
-                                                  @Valid @RequestBody UpdateUserDTO dto) {
+    @PutMapping("/{userId}")  // self-or-admin
+    public ResponseEntity<UserResponseDTO> update(
+            @PathVariable Long userId,
+            @RequestHeader(value = "X-User-Id", required = false) Long callerId,
+            @RequestHeader(value = "X-User-Role", required = false) String role,
+            @Valid @RequestBody UpdateUserDTO dto) {
+        AuthUtil.requireSelfOrAdmin(userId, callerId, role);
         return ResponseEntity.ok(userService.update(userId, dto));
     }
 
-    @DeleteMapping("/{userId}")
-    public ResponseEntity<Void> delete(@PathVariable Long userId) {
+    @DeleteMapping("/{userId}")  // ADMIN
+    public ResponseEntity<Void> delete(
+            @RequestHeader(value = "X-User-Role", required = false) String role,
+            @PathVariable Long userId) {
+        AuthUtil.requireRole(role, AuthUtil.ROLE_ADMIN);
         userService.delete(userId);
         return ResponseEntity.noContent().build();
     }

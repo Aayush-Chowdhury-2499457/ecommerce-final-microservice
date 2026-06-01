@@ -3,6 +3,7 @@ package com.cts.productservice.controller;
 import com.cts.productservice.dto.CategoryDTO;
 import com.cts.productservice.dto.CategoryResponseDTO;
 import com.cts.productservice.service.CategoryService;
+import com.cts.productservice.util.AuthUtil;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,9 @@ public class CategoryController {
     private final CategoryService categoryService;
 
     @PostMapping
-    public ResponseEntity<CategoryResponseDTO> create(@Valid @RequestBody CategoryDTO dto) {
+    public ResponseEntity<CategoryResponseDTO> create(@RequestHeader(value = "X-User-Role", required = false) String role,
+                                                      @Valid @RequestBody CategoryDTO dto) {
+        AuthUtil.requireRole(role, AuthUtil.ROLE_ADMIN);
         return ResponseEntity.status(HttpStatus.CREATED).body(categoryService.create(dto));
     }
 
@@ -39,13 +42,17 @@ public class CategoryController {
     }
 
     @PutMapping("/{categoryId}")
-    public ResponseEntity<CategoryResponseDTO> update(@PathVariable Long categoryId,
-                                                     @Valid @RequestBody CategoryDTO dto) {
+    public ResponseEntity<CategoryResponseDTO> update(@RequestHeader(value = "X-User-Role", required = false) String role,
+                                                      @PathVariable Long categoryId,
+                                                      @Valid @RequestBody CategoryDTO dto) {
+        AuthUtil.requireRole(role, AuthUtil.ROLE_ADMIN);
         return ResponseEntity.ok(categoryService.update(categoryId, dto));
     }
 
     @DeleteMapping("/{categoryId}")
-    public ResponseEntity<Void> delete(@PathVariable Long categoryId) {
+    public ResponseEntity<Void> delete(@RequestHeader(value = "X-User-Role", required = false) String role,
+                                       @PathVariable Long categoryId) {
+        AuthUtil.requireRole(role, AuthUtil.ROLE_ADMIN);
         categoryService.delete(categoryId);
         return ResponseEntity.noContent().build();
     }

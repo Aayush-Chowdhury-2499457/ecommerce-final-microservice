@@ -27,12 +27,12 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponseDTO> login(@Valid @RequestBody LoginRequestDTO loginRequestDTO) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(authService.login(loginRequestDTO));
+        return ResponseEntity.status(HttpStatus.OK).body(authService.login(loginRequestDTO));
     }
 
     @PostMapping("/validate")
     public ResponseEntity<ValidateResponseDTO> validate(@RequestHeader(HttpHeaders.AUTHORIZATION) String authHeader) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(authService.validate(authHeader));
+        return ResponseEntity.status(HttpStatus.OK).body(authService.validate(authHeader));
     }
 
 }

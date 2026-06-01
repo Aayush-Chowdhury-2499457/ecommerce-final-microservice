@@ -1,47 +1,72 @@
 package com.cts.authservice.exception;
 
 import com.cts.authservice.exception.custom.AuthException;
+import com.cts.authservice.exception.custom.DownstreamException;
 import com.cts.authservice.exception.custom.ServiceUnavailableException;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.time.LocalDateTime;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(AuthException.class)
-    public ResponseEntity<Map<String, Object>> handleAuth(AuthException ex) {
+    public ResponseEntity<ErrorResponse> handleAuth(AuthException ex,
+                                                    HttpServletRequest request) {
         log.warn("Authentication failed: {}", ex.getMessage());
-        return buildResponse(HttpStatus.UNAUTHORIZED, ex);
+        return buildResponse(HttpStatus.UNAUTHORIZED, ex, request.getRequestURI(), ex.getMessage());
     }
 
     @ExceptionHandler(ServiceUnavailableException.class)
-    public ResponseEntity<Map<String, Object>> handleServiceUnavailable(ServiceUnavailableException ex) {
+    public ResponseEntity<ErrorResponse> handleServiceUnavailable(ServiceUnavailableException ex,
+                                                                  HttpServletRequest request) {
         log.error("Service unavailable: {}", ex.getMessage());
-        return buildResponse(HttpStatus.SERVICE_UNAVAILABLE, ex);
+        return buildResponse(HttpStatus.SERVICE_UNAVAILABLE, ex, request.getRequestURI(), ex.getMessage());
+    }
+
+    @ExceptionHandler(DownstreamException.class)
+    public ResponseEntity<ErrorResponse> handleDownstream(DownstreamException ex,
+                                                          HttpServletRequest request) {
+        log.error("Downstream Exception: {}", ex.getMessage());
+        HttpStatus status = HttpStatus.valueOf(ex.getStatusCode());
+        return buildResponse(status, ex, request.getRequestURI(), ex.getMessage());
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ErrorResponse> handleValidation(MethodArgumentNotValidException ex,
+                                                          HttpServletRequest request) {
+        String fieldErrors = ex.getBindingResult().getFieldErrors()
+                .stream()
+                .map(fe -> fe.getField() + ": " + fe.getDefaultMessage())
+                .collect(Collectors.joining(", "));
+        log.warn("Validation failed: {}", fieldErrors);
+        return buildResponse(HttpStatus.BAD_REQUEST, ex, request.getRequestURI(), fieldErrors);
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<Map<String, Object>> handleGeneric(Exception ex) {
+    public ResponseEntity<ErrorResponse> handleGeneric(Exception ex,
+                                                       HttpServletRequest request) {
         log.error("Unexpected error", ex);
-        return buildResponse(HttpStatus.INTERNAL_SERVER_ERROR, ex);
+        return buildResponse(HttpStatus.INTERNAL_SERVER_ERROR, ex, request.getRequestURI(), ex.getMessage());
     }
 
-
-    private ResponseEntity<Map<String, Object>> buildResponse(HttpStatus status, Exception ex) {
-        Map<String, Object> body = new LinkedHashMap<>();
-        body.put("timestamp", LocalDateTime.now());
-        body.put("status", status.value());
-        body.put("error", status.getReasonPhrase());
-        body.put("errorClass", ex.getClass().getSimpleName());
-        body.put("message", ex.getMessage());
+    private ResponseEntity<ErrorResponse> buildResponse(HttpStatus status, Exception ex, String path, String message) {
+        ErrorResponse body = ErrorResponse.builder()
+                .timestamp(LocalDateTime.now())
+                .status(status.value())
+                .error(status.getReasonPhrase())
+                .errorClass(ex.getClass().getSimpleName())
+                .message(message)
+                .path(path)
+                .build();
         return ResponseEntity.status(status).body(body);
     }
 }

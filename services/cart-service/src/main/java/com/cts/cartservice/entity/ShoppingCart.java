@@ -13,9 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Table(name = "shopping_carts")
 @EntityListeners(AuditingEntityListener.class)
 public class ShoppingCart {
@@ -55,9 +55,4 @@ public class ShoppingCart {
     @LastModifiedBy
     @Column(name = "updated_by")
     private String updatedBy;
-
-
-    public ShoppingCart(Long userId) {
-        this.userId = userId;
-    }
 }

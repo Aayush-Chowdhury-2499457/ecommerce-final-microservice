@@ -20,7 +20,7 @@ public interface ReviewService {
 
     Double averageRatingForProduct(Long productId);
 
-    ReviewResponseDTO update(Long reviewId, Long callerUserId, String callerRole, UpdateReviewDTO dto);
+    ReviewResponseDTO update(Long reviewId, UpdateReviewDTO dto);
 
-    void delete(Long reviewId, Long callerUserId, String callerRole);
+    void delete(Long reviewId);
 }

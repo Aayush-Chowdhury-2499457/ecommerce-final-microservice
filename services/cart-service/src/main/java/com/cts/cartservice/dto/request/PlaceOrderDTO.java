@@ -7,7 +7,6 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class PlaceOrderDTO {
-
     private Long userId;
     private Long shoppingCartId;
     private Long addressId;

@@ -3,61 +3,80 @@ package com.cts.productservice.exception;
 import com.cts.productservice.exception.custom.DuplicateResourceException;
 import com.cts.productservice.exception.custom.InvalidOperationException;
 import com.cts.productservice.exception.custom.ResourceNotFoundException;
+import com.cts.productservice.exception.custom.UnauthorizedAccessException;
+import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.stream.Collectors;
 
+@Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<Map<String, Object>> notFound(ResourceNotFoundException ex) {
-        return build(HttpStatus.NOT_FOUND, ex.getMessage());
+    public ResponseEntity<ErrorResponse> handleResourceNotFound(ResourceNotFoundException ex,
+                                                                HttpServletRequest request) {
+        log.warn("Resource not found: {}", ex.getMessage());
+        return buildResponse(HttpStatus.NOT_FOUND, ex, request.getRequestURI(), ex.getMessage());
     }
 
     @ExceptionHandler(DuplicateResourceException.class)
-    public ResponseEntity<Map<String, Object>> conflict(DuplicateResourceException ex) {
-        return build(HttpStatus.CONFLICT, ex.getMessage());
+    public ResponseEntity<ErrorResponse> handleDuplicateResource(DuplicateResourceException ex,
+                                                                 HttpServletRequest request) {
+        log.warn("Duplicate resource: {}", ex.getMessage());
+        return buildResponse(HttpStatus.CONFLICT, ex, request.getRequestURI(), ex.getMessage());
     }
 
     @ExceptionHandler(InvalidOperationException.class)
-    public ResponseEntity<Map<String, Object>> invalid(InvalidOperationException ex) {
-        return build(HttpStatus.BAD_REQUEST, ex.getMessage());
+    public ResponseEntity<ErrorResponse> handleInvalidOperation(InvalidOperationException ex,
+                                                                HttpServletRequest request) {
+        log.warn("Invalid operation: {}", ex.getMessage());
+        return buildResponse(HttpStatus.BAD_REQUEST, ex, request.getRequestURI(), ex.getMessage());
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Map<String, Object>> validation(MethodArgumentNotValidException ex) {
-        Map<String, String> fieldErrors = new HashMap<>();
-        for (FieldError fe : ex.getBindingResult().getFieldErrors()) {
-            fieldErrors.put(fe.getField(), fe.getDefaultMessage());
-        }
-        Map<String, Object> body = baseBody(HttpStatus.BAD_REQUEST, "Validation failed");
-        body.put("fieldErrors", fieldErrors);
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
+    public ResponseEntity<ErrorResponse> handleValidation(MethodArgumentNotValidException ex,
+                                                          HttpServletRequest request) {
+        String fieldErrors = ex.getBindingResult().getFieldErrors()
+                .stream()
+                .map(fe -> fe.getField() + ": " + fe.getDefaultMessage())
+                .collect(Collectors.joining(", "));
+        log.warn("Validation failed: {}", fieldErrors);
+        return buildResponse(HttpStatus.BAD_REQUEST, ex, request.getRequestURI(), fieldErrors);
+    }
+
+    @ExceptionHandler(UnauthorizedAccessException.class)
+    public ResponseEntity<ErrorResponse> handleUnauthorizedAccess(UnauthorizedAccessException ex,
+                                                                  HttpServletRequest request) {
+        log.warn("Access denied: {}", ex.getMessage());
+        return buildResponse(HttpStatus.FORBIDDEN, ex, request.getRequestURI(), ex.getMessage());
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<Map<String, Object>> generic(Exception ex) {
-        return build(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
+    public ResponseEntity<ErrorResponse> handleGeneric(Exception ex,
+                                                       HttpServletRequest request) {
+        log.error("Unexpected error", ex);
+        return buildResponse(HttpStatus.INTERNAL_SERVER_ERROR, ex, request.getRequestURI(), ex.getMessage());
     }
 
-    private ResponseEntity<Map<String, Object>> build(HttpStatus status, String message) {
-        return ResponseEntity.status(status).body(baseBody(status, message));
-    }
-
-    private Map<String, Object> baseBody(HttpStatus status, String message) {
-        Map<String, Object> body = new HashMap<>();
-        body.put("timestamp", LocalDateTime.now());
-        body.put("status", status.value());
-        body.put("error", status.getReasonPhrase());
-        body.put("message", message);
-        return body;
+    private ResponseEntity<ErrorResponse> buildResponse(HttpStatus status,
+                                                        Exception ex,
+                                                        String path,
+                                                        String message) {
+        ErrorResponse body = ErrorResponse.builder()
+                .timestamp(LocalDateTime.now())
+                .status(status.value())
+                .error(status.getReasonPhrase())
+                .errorClass(ex.getClass().getSimpleName())
+                .message(message)
+                .path(path)
+                .build();
+        return ResponseEntity.status(status).body(body);
     }
 }

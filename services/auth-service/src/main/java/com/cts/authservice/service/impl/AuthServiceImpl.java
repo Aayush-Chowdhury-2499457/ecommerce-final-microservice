@@ -11,6 +11,7 @@ import com.cts.authservice.dto.response.ValidateResponseDTO;
 import com.cts.authservice.entity.Auth;
 import com.cts.authservice.exception.custom.AuthException;
 import com.cts.authservice.exception.custom.ServiceUnavailableException;
+import com.cts.authservice.gateway.UserServiceGateway;
 import com.cts.authservice.repository.AuthRepository;
 import com.cts.authservice.security.util.JwtUtil;
 import com.cts.authservice.service.AuthService;
@@ -30,9 +31,8 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
 
-    private static final String USER_SERVICE_CB = "userService";
     private final AuthRepository authRepository;
-    private final UserServiceClient userServiceClient;
+    private final UserServiceGateway userServiceGateway;
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
 
@@ -51,7 +51,7 @@ public class AuthServiceImpl implements AuthService {
                     .build();
 
         // 2. Call user-service to create the user
-        RegisterResponseDTO registerResponseDTO = createUserInUserService(createUserRequestDTO);
+        RegisterResponseDTO registerResponseDTO = userServiceGateway.createUser(createUserRequestDTO);
 
         // 3. Save credentials locally
         Auth auth = Auth.builder()
@@ -86,10 +86,10 @@ public class AuthServiceImpl implements AuthService {
     }
 
     private UserDTO resolveUser(String usernameOrEmail) {
-        if(usernameOrEmail.contains("@")) {
-            return getUserByEmail(usernameOrEmail);
+        if (usernameOrEmail.contains("@")) {
+            return userServiceGateway.getUserByEmail(usernameOrEmail);
         }
-        return getUserByUsername(usernameOrEmail);
+        return userServiceGateway.getUserByUsername(usernameOrEmail);
     }
 
     @Override
@@ -107,41 +107,5 @@ public class AuthServiceImpl implements AuthService {
                 .userId(userId)
                 .role(role)
                 .build();
-    }
-
-    // ---------- Feign Helpers with Circuit Breaker and Retry ---------- //
-
-    @Retry(name = USER_SERVICE_CB)
-    @CircuitBreaker(name = USER_SERVICE_CB, fallbackMethod = "createUserFallback")
-    public RegisterResponseDTO createUserInUserService(CreateUserRequestDTO createUserRequestDTO) {
-        ResponseEntity<RegisterResponseDTO> response = userServiceClient.createUser(createUserRequestDTO);
-        return response.getBody();
-    }
-
-    public RegisterResponseDTO createUserFallback(CreateUserRequestDTO createUserRequestDTO, Throwable ex) {
-        log.error("User Service Fallback for Registration: {}", ex.getMessage());
-        throw new ServiceUnavailableException("User Service Unavailable, cannot create user");
-    }
-
-    @Retry(name = USER_SERVICE_CB)
-    @CircuitBreaker(name = USER_SERVICE_CB, fallbackMethod = "userFetchFallback")
-    public UserDTO getUserByUsername(String username) {
-        ResponseEntity<UserDTO> response = userServiceClient.getUserByUsername(username);
-        return response.getBody();
-    }
-
-    @Retry(name = USER_SERVICE_CB)
-    @CircuitBreaker(name = USER_SERVICE_CB, fallbackMethod = "userFetchFallback")
-    public UserDTO getUserByEmail(String email) {
-        ResponseEntity<UserDTO> response =  userServiceClient.getUserByEmail(email);
-        return response.getBody();
-    }
-
-    public UserDTO userFetchFallback(String username, Throwable ex) {
-        if(ex instanceof FeignException fe && fe.status() == 404) {
-            throw new AuthException("Invalid Credentials");
-        }
-        log.error("User Service Fallback for Login: {}", ex.getMessage());
-        throw new ServiceUnavailableException("User Service Unavailable, cannot login");
     }
 }
