@@ -5,72 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b8647389-d648-4047-9917-e10377d5d181" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/config/OpenApiConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/config/OpenApiConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/config/OpenApiConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/config/OpenApiConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/config/OpenApiConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/config/OpenApiConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/config/OpenApiConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/auth-service/src/test/java/com/cts/authservice/controller/AuthControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/auth-service/src/test/java/com/cts/authservice/service/AuthServiceImplTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/user-service/src/test/java/com/cts/userservice/controller/AddressControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/user-service/src/test/java/com/cts/userservice/controller/UserControllerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/api-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/api-gateway/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/api-gateway/src/main/java/com/cts/apigateway/filter/ValidationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/api-gateway/src/main/java/com/cts/apigateway/filter/ValidationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/api-gateway/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/api-gateway/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/config-server/src/main/resources/config/api-gateway.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/config-server/src/main/resources/config/auth-service.properties" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/config-server/src/main/resources/config/auth-service.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/config-server/src/main/resources/config/cart-service.properties" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/config-server/src/main/resources/config/cart-service.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/config-server/src/main/resources/config/order-service.properties" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/config-server/src/main/resources/config/order-service.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/config-server/src/main/resources/config/payment-service.properties" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/config-server/src/main/resources/config/payment-service.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/config-server/src/main/resources/config/review-service.properties" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/config-server/src/main/resources/config/review-service.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/eureka-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/eureka-server/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/auth-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/entity/Auth.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/entity/Auth.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/gateway/UserServiceGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/gateway/UserServiceGateway.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/repository/AuthRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/repository/AuthRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/security/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/security/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/service/impl/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/service/impl/AuthServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/auth-service/src/test/java/com/cts/authservice/AuthServiceApplicationTests.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/services/cart-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/config/AuditorAwareImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/config/AuditingConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/controller/CartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/controller/CartController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/dto/response/ShoppingCartResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/dto/response/ShoppingCartResponseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/gateway/OrderServiceGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/gateway/OrderServiceGateway.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/gateway/ProductServiceGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/gateway/ProductServiceGateway.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/repository/ShoppingCartRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/repository/ShoppingCartRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/service/CartService.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/service/CartService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/service/impl/CartServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/service/impl/CartServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/order-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/client/CartServiceClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/client/CartServiceClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/config/AuditorAwareImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/config/AuditingConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/entity/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/entity/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/gateway/CartServiceGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/gateway/CartServiceGateway.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/gateway/ProductServiceGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/gateway/ProductServiceGateway.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/gateway/UserServiceGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/gateway/UserServiceGateway.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/payment-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/payment-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/config/AuditorAwareImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/config/AuditingConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/gateway/DummyPaymentGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/gateway/DummyPaymentGateway.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/gateway/OrderServiceGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/gateway/OrderServiceGateway.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/cart-service/src/test/java/com/cts/cartservice/CartServiceApplicationTests.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/services/product-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/product-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/config/AuditorAwareImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/config/AuditingConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/controller/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/dto/ReduceStockDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/dto/StockQuantityDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/dto/UpdateStockDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/service/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/service/impl/ProductServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/service/impl/ProductServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/util/AuthUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/util/AuthUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/review-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/review-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/config/AuditorAwareImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/config/AuditingConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/gateway/OrderServiceGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/gateway/OrderServiceGateway.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/review-service/src/test/java/com/cts/reviewservice/ReviewServiceApplicationTests.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/services/user-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/config/AuditorAwareImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/config/AuditingConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/exception/ErrorResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/exception/ErrorResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/user-service/src/test/java/com/cts/userservice/UserServiceApplicationTests.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageOptionsProvider">
+    <option name="myAddOrReplace" value="1" />
+  </component>
+  <component name="ExportToHTMLSettings">
+    <option name="OPEN_IN_BROWSER" value="true" />
+    <option name="OUTPUT_DIRECTORY" value="C:\Users\2499457\Desktop" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -110,7 +71,18 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "JUnit.All in auth-service.executor": "Coverage",
+    "JUnit.All in cart-service (1).executor": "Coverage",
+    "JUnit.All in cart-service.executor": "Coverage",
+    "JUnit.All in review-service.executor": "Coverage",
+    "JUnit.All in user-service (1).executor": "Coverage",
+    "JUnit.All in user-service (2).executor": "Coverage",
+    "JUnit.All in user-service (3).executor": "Coverage",
+    "JUnit.All in user-service.executor": "Coverage",
+    "JUnit.Auth Service Tests.executor": "Coverage",
     "JUnit.ReviewServiceApplicationTests.executor": "Coverage",
+    "JUnit.User Service Tests.executor": "Coverage",
+    "JUnit.com.cts.userservice in user-service.executor": "Coverage",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
@@ -127,6 +99,7 @@
     "Spring Boot.ReviewServiceApplication.executor": "Run",
     "Spring Boot.UserServiceApplication.executor": "Run",
     "com.intellij.ide.FileNotInSourceRootChecker.no.check": "true",
+    "deletionFromPopupRequiresConfirmation": "false",
     "git-widget-placeholder": "aayush-branch",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/2499457/Desktop/FINAL PROJECT/ecommerce-final-microservice/services/user-service/src/main/java/com/cts/userservice",
@@ -164,15 +137,12 @@
         <entry key="SpringBootApplicationConfigurationType">
           <value>
             <map>
-              <entry key="ApiGatewayApplication" value="STOPPED" />
               <entry key="AuthServiceApplication" value="STOPPED" />
               <entry key="CartServiceApplication" value="STOPPED" />
               <entry key="ConfigServerApplication" value="STOPPED" />
-              <entry key="DummyPaymentApiApplication" value="STOPPED" />
               <entry key="EurekaServerApplication" value="STOPPED" />
-              <entry key="OrderServiceApplication" value="STOPPED" />
-              <entry key="PaymentServiceApplication" value="STOPPED" />
               <entry key="ProductServiceApplication" value="STOPPED" />
+              <entry key="ReviewServiceApplication" value="STOPPED" />
               <entry key="UserServiceApplication" value="STOPPED" />
             </map>
           </value>
@@ -180,75 +150,111 @@
       </map>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.ApiGatewayApplication">
-    <configuration name="ApiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
-      <module name="api-gateway" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.cts.apigateway.ApiGatewayApplication" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.cts.apigateway.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+  <component name="RunManager" selected="JUnit.All in auth-service">
+    <configuration name="All in auth-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="auth-service" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DummyPaymentApiApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
-      <module name="dummy-payment-api" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.cts.dummypaymentapi.DummyPaymentApiApplication" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.cts.dummypaymentapi.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+    <configuration name="All in cart-service (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="cart-service" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="OrderServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
-      <module name="order-service" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.cts.orderservice.OrderServiceApplication" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.cts.orderservice.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+    <configuration name="All in cart-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="cart-service" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PaymentServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
-      <module name="payment-service" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.cts.paymentservice.PaymentServiceApplication" />
+    <configuration name="All in review-service (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="review-service" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in user-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="user-service" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Auth Service Tests" type="JUnit" factoryName="JUnit">
+      <module name="auth-service" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.cts.paymentservice.*" />
+          <option name="PATTERN" value="com.cts.authservice.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="com.cts.authservice.service.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="com.cts.authservice.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="com.cts.authservice" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="User Service Tests" type="JUnit" factoryName="JUnit">
+      <module name="user-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cts.userservice.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="com.cts.userservice.service.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="com.cts.userservice.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.cts.userservice" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="Spring Boot.ApiGatewayApplication" />
-      <item itemvalue="Spring Boot.DummyPaymentApiApplication" />
-      <item itemvalue="Spring Boot.OrderServiceApplication" />
-      <item itemvalue="Spring Boot.PaymentServiceApplication" />
+      <item itemvalue="JUnit.User Service Tests" />
+      <item itemvalue="JUnit.Auth Service Tests" />
+      <item itemvalue="JUnit.All in auth-service" />
+      <item itemvalue="JUnit.All in cart-service" />
+      <item itemvalue="JUnit.All in cart-service (1)" />
+      <item itemvalue="JUnit.All in review-service (1)" />
+      <item itemvalue="JUnit.All in user-service" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.ApiGatewayApplication" />
-        <item itemvalue="Spring Boot.DummyPaymentApiApplication" />
-        <item itemvalue="Spring Boot.OrderServiceApplication" />
-        <item itemvalue="Spring Boot.PaymentServiceApplication" />
+        <item itemvalue="JUnit.All in auth-service" />
+        <item itemvalue="JUnit.All in review-service (1)" />
+        <item itemvalue="JUnit.All in user-service" />
+        <item itemvalue="JUnit.All in cart-service (1)" />
+        <item itemvalue="JUnit.All in cart-service" />
       </list>
     </recent_temporary>
   </component>
@@ -290,5 +296,21 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ecommerce_final_microservice$Auth_Service_Tests.ic" NAME="Auth Service Tests Coverage Results" MODIFIED="1780335124656" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>com.cts.authservice.service.*</FILTER>
+      <FILTER>com.cts.authservice.service.impl.*</FILTER>
+      <FILTER>com.cts.authservice.controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ecommerce_final_microservice$All_in_auth_service.ic" NAME="All in auth-service Coverage Results" MODIFIED="1780335019786" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/ecommerce_final_microservice$User_Service_Tests.ic" NAME="User Service Tests Coverage Results" MODIFIED="1780335264153" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>com.cts.userservice.service.*</FILTER>
+      <FILTER>com.cts.userservice.service.impl.*</FILTER>
+      <FILTER>com.cts.userservice.controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ecommerce_final_microservice$All_in_review_service.ic" NAME="All in review-service Coverage Results" MODIFIED="1780336778023" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/ecommerce_final_microservice$All_in_cart_service__1_.ic" NAME="All in cart-service (1) Coverage Results" MODIFIED="1780337060631" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/ecommerce_final_microservice$All_in_user_service.ic" NAME="All in user-service Coverage Results" MODIFIED="1780334964707" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
   </component>
 </project>
