@@ -5,6 +5,9 @@ import lombok.*;
 
 import java.time.LocalDate;
 
+/**
+ * Request payload carrying user details and credentials for registration.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

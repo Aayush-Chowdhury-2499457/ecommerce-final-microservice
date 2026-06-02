@@ -6,6 +6,7 @@ import com.cts.userservice.exception.GlobalExceptionHandler;
 import com.cts.userservice.exception.custom.ResourceNotFoundException;
 import com.cts.userservice.service.AddressService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,6 +25,10 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+/**
+ * Standalone MockMvc tests for {@link AddressController} covering routing and authorization.
+ */
+@Slf4j
 @ExtendWith(MockitoExtension.class)
 class AddressControllerTest {
 
@@ -36,6 +41,7 @@ class AddressControllerTest {
     private AddressDTO dto;
     private AddressResponseDTO resp;
 
+    /** Sets up MockMvc with the controller advice plus sample request/response data. */
     @BeforeEach
     void setUp() {
         mvc = MockMvcBuilders.standaloneSetup(controller)
@@ -55,6 +61,7 @@ class AddressControllerTest {
                 .city("NYC").state("NY").country("US").pincode("12345").build();
     }
 
+    /** Owner adding an address receives HTTP 201. */
     @Test
     void add_self_returns201() throws Exception {
         when(addressService.add(eq(1L), any())).thenReturn(resp);
@@ -67,6 +74,7 @@ class AddressControllerTest {
                 .andExpect(jsonPath("$.addressId").value(5));
     }
 
+    /** Non-owner adding an address receives HTTP 403. */
     @Test
     void add_notSelf_returns403() throws Exception {
         mvc.perform(post("/api/users/1/addresses")
@@ -76,6 +84,7 @@ class AddressControllerTest {
                 .andExpect(status().isForbidden());
     }
 
+    /** Invalid request body receives HTTP 400. */
     @Test
     void add_invalidBody_returns400() throws Exception {
         dto.setCity("");
@@ -88,6 +97,7 @@ class AddressControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
+    /** Owner listing addresses receives HTTP 200. */
     @Test
     void list_self_returns200() throws Exception {
         when(addressService.listForUser(1L)).thenReturn(List.of(resp));
@@ -98,6 +108,7 @@ class AddressControllerTest {
                 .andExpect(jsonPath("$[0].city").value("NYC"));
     }
 
+    /** Owner fetching one address receives HTTP 200. */
     @Test
     void getOne_withCaller_returns200() throws Exception {
         when(addressService.getOne(1L, 5L)).thenReturn(resp);
@@ -107,6 +118,7 @@ class AddressControllerTest {
                 .andExpect(status().isOk());
     }
 
+    /** Internal call without a caller id skips auth and receives HTTP 200. */
     @Test
     void getOne_internalNoCaller_returns200() throws Exception {
         when(addressService.getOne(1L, 5L)).thenReturn(resp);
@@ -115,6 +127,7 @@ class AddressControllerTest {
                 .andExpect(status().isOk());
     }
 
+    /** Missing address receives HTTP 404. */
     @Test
     void getOne_notFound_returns404() throws Exception {
         when(addressService.getOne(1L, 5L))
@@ -125,6 +138,7 @@ class AddressControllerTest {
                 .andExpect(status().isNotFound());
     }
 
+    /** Owner updating an address receives HTTP 200. */
     @Test
     void update_self_returns200() throws Exception {
         when(addressService.update(eq(1L), eq(5L), any())).thenReturn(resp);
@@ -136,6 +150,7 @@ class AddressControllerTest {
                 .andExpect(status().isOk());
     }
 
+    /** Owner deleting an address receives HTTP 204. */
     @Test
     void delete_self_returns204() throws Exception {
         mvc.perform(delete("/api/users/1/addresses/5")
@@ -144,6 +159,7 @@ class AddressControllerTest {
         verify(addressService).delete(1L, 5L);
     }
 
+    /** Non-owner deleting an address receives HTTP 403. */
     @Test
     void delete_notSelf_returns403() throws Exception {
         mvc.perform(delete("/api/users/1/addresses/5")

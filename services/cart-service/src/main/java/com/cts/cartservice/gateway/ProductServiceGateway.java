@@ -14,6 +14,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
+/**
+ * Resilience-wrapped gateway for fetching product details from the product-service.
+ */
 @Slf4j
 @Component
 @RequiredArgsConstructor
@@ -23,14 +26,17 @@ public class ProductServiceGateway {
 
     private final ProductServiceClient productServiceClient;
 
+    /** Fetches a product by id, guarded by rate limiter, retry, and circuit breaker. */
     @RateLimiter(name = PRODUCT_SERVICE_CB)
     @Retry(name = PRODUCT_SERVICE_CB)
     @CircuitBreaker(name = PRODUCT_SERVICE_CB, fallbackMethod = "fetchProductFallback")
     public ProductDTO fetchProduct(Long productId) {
+        log.debug("Calling product-service to fetch productId={}", productId);
         ResponseEntity<ProductDTO> response = productServiceClient.getProductById(productId);
         return response.getBody();
     }
 
+    /** Fallback invoked when the product-service call fails; surfaces a downstream or unavailable error. */
     public ProductDTO fetchProductFallback(Long productId, Throwable ex) {
         if (ex instanceof DownstreamException de) {
             throw new DownstreamException("Product not found for id=" + productId, HttpStatus.NOT_FOUND);

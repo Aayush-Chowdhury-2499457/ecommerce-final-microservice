@@ -19,6 +19,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * Default {@link AuthService} implementation handling registration,
+ * login, and token validation backed by the User Service and JWT utilities.
+ */
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -29,9 +33,11 @@ public class AuthServiceImpl implements AuthService {
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
 
+    /** {@inheritDoc} */
     @Override
     @Transactional
     public RegisterResponseDTO register(RegisterRequestDTO registerRequestDTO) {
+        log.info("Registering new user: {}", registerRequestDTO.getUsername());
         // 1. Build the create-user payload
         CreateUserRequestDTO createUserRequestDTO = CreateUserRequestDTO.builder()
                     .name(registerRequestDTO.getName())
@@ -55,9 +61,11 @@ public class AuthServiceImpl implements AuthService {
         return registerResponseDTO;
     }
 
+    /** {@inheritDoc} */
     @Override
     @Transactional
     public LoginResponseDTO login(LoginRequestDTO loginRequestDTO) {
+        log.info("Processing login for: {}", loginRequestDTO.getUsernameOrEmail());
         // 1. Find User in User Service by Username or Email
         UserDTO userDTO = resolveUser(loginRequestDTO.getUsernameOrEmail());
 
@@ -67,6 +75,7 @@ public class AuthServiceImpl implements AuthService {
 
         // 3. Compare password
         if(!passwordEncoder.matches(loginRequestDTO.getPassword(), auth.getHashedPassword())) {
+            log.warn("Password mismatch for userId: {}", userDTO.getUserId());
             throw new AuthException("Invalid Credentials");
         }
 
@@ -76,6 +85,13 @@ public class AuthServiceImpl implements AuthService {
         return new LoginResponseDTO("Bearer " + token);
     }
 
+    /**
+     * Resolves a user by treating the input as an email if it contains '@',
+     * otherwise as a username.
+     *
+     * @param usernameOrEmail the login identifier
+     * @return the resolved user details
+     */
     private UserDTO resolveUser(String usernameOrEmail) {
         if (usernameOrEmail.contains("@")) {
             return userServiceGateway.getUserByEmail(usernameOrEmail);
@@ -83,9 +99,11 @@ public class AuthServiceImpl implements AuthService {
         return userServiceGateway.getUserByUsername(usernameOrEmail);
     }
 
+    /** {@inheritDoc} */
     @Override
     public ValidateResponseDTO validate(String authHeader) {
         if(authHeader == null || !authHeader.startsWith("Bearer ")) {
+            log.warn("Token validation failed: missing or malformed Authorization header");
             throw new AuthException("Missing or Malformed Authorization Header");
         }
         String token = authHeader.substring(7).trim();

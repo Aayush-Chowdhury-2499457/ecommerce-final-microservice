@@ -12,6 +12,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
+/**
+ * Resilience-wrapped gateway for calling the order-service to place orders.
+ */
 @Slf4j
 @Component
 @RequiredArgsConstructor
@@ -20,14 +23,17 @@ public class OrderServiceGateway {
     private static final String ORDER_SERVICE_CB = "orderService";
     private final OrderServiceClient orderServiceClient;
 
+    /** Places an order via the order-service, guarded by rate limiter, retry, and circuit breaker. */
     @RateLimiter(name = ORDER_SERVICE_CB)
     @Retry(name = ORDER_SERVICE_CB)
     @CircuitBreaker(name = ORDER_SERVICE_CB, fallbackMethod = "placeOrderFallback")
     public OrderResponseDTO placeOrder(PlaceOrderDTO placeOrderDTO) {
+        log.debug("Calling order-service to place order for userId={}", placeOrderDTO.getUserId());
         ResponseEntity<OrderResponseDTO> response = orderServiceClient.placeOrder(placeOrderDTO);
         return response.getBody();
     }
 
+    /** Fallback invoked when the order-service call fails; surfaces a service-unavailable error. */
     public OrderResponseDTO placeOrderFallback(PlaceOrderDTO placeOrderDTO, Throwable ex) {
         log.error("Order Service Fallback for Checkout: {}", ex.getMessage());
         throw new ServiceUnavailableException("Order Service Unavailable, please try again later");

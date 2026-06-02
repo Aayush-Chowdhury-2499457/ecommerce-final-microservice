@@ -4,6 +4,9 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
+/**
+ * Standard error payload returned to clients describing a failed request.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

@@ -25,6 +25,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Default {@link CartService} implementation handling cart persistence,
+ * stock validation, and checkout orchestration with downstream services.
+ */
 @Slf4j
 @Service
 @AllArgsConstructor
@@ -35,9 +39,11 @@ public class CartServiceImpl implements CartService {
     private final ProductServiceGateway productServiceGateway;
     private final OrderServiceGateway orderServiceGateway;
 
+    /** {@inheritDoc} Creates an empty cart for the user when none exists. */
     @Override
     @Transactional
     public ShoppingCartResponseDTO getOrCreateCart(Long userId) {
+        log.debug("getOrCreateCart called for userId={}", userId);
         ShoppingCart cart = shoppingCartRepository.findByUserId(userId)
                 .orElseGet(() -> {
                     log.info("No cart for userId={}, creating one", userId);
@@ -48,6 +54,7 @@ public class CartServiceImpl implements CartService {
         return toCartResponse(cart);
     }
 
+    /** {@inheritDoc} */
     @Override
     @Transactional
     public void clearCart(Long userId) {
@@ -59,9 +66,11 @@ public class CartServiceImpl implements CartService {
         log.info("Cart has been cleared for userId={}", userId);
     }
 
+    /** {@inheritDoc} Validates stock before adding or incrementing the item. */
     @Override
     @Transactional
     public ShoppingCartResponseDTO addItem(Long userId, AddCartItemDTO request) {
+        log.debug("addItem productId={} qty={} for userId={}", request.getProductId(), request.getQuantity(), userId);
         ShoppingCart shoppingCart = shoppingCartRepository.findByUserId(userId)
                 .orElseGet(() -> shoppingCartRepository.save(ShoppingCart.builder()
                         .userId((userId))
@@ -69,6 +78,8 @@ public class CartServiceImpl implements CartService {
 
         ProductDTO product = productServiceGateway.fetchProduct(request.getProductId());
         if (product.getStock() != null && product.getStock() < request.getQuantity()) {
+            log.warn("Insufficient stock for productId={}: requested={} available={}",
+                    request.getProductId(), request.getQuantity(), product.getStock());
             throw new InvalidCartOperationException(
                     "Insufficient stock for " + request.getProductId() + ". Available : " + product.getStock());
         }
@@ -94,6 +105,7 @@ public class CartServiceImpl implements CartService {
         return toCartResponse(shoppingCart);
     }
 
+    /** {@inheritDoc} Validates stock before applying the new quantity. */
     @Override
     @Transactional
     public ShoppingCartResponseDTO updateItemQuantity(Long userId, UpdateCartItemDTO request) {
@@ -118,6 +130,7 @@ public class CartServiceImpl implements CartService {
         return toCartResponse(shoppingCart);
     }
 
+    /** {@inheritDoc} Verifies the item belongs to the user's cart before removal. */
     @Override
     @Transactional
     public ShoppingCartResponseDTO removeItem(Long userId, Long cartItemId) {
@@ -142,6 +155,7 @@ public class CartServiceImpl implements CartService {
         return toCartResponse(shoppingCart);
     }
 
+    /** {@inheritDoc} Places the order downstream and clears the cart on success. */
     @Override
     @Transactional
     public CheckoutResponseDTO checkout(Long userId, CheckoutDTO request) {
@@ -186,6 +200,7 @@ public class CartServiceImpl implements CartService {
     }
 
 
+    /** Maps a cart entity to its response DTO, computing the total price. */
     private ShoppingCartResponseDTO toCartResponse(ShoppingCart shoppingCart) {
         List<CartItemResponseDTO> cartItemResponseDTOList = new ArrayList<>();
         double total = 0.0;
@@ -206,6 +221,7 @@ public class CartServiceImpl implements CartService {
                 .build();
     }
 
+    /** Maps a cart item entity to its response DTO, enriching it with product details. */
     private CartItemResponseDTO toCartItemResponse(CartItem cartItem) {
         ProductDTO productDTO;
         try {

@@ -10,6 +10,7 @@ import com.cts.reviewservice.exception.custom.ResourceNotFoundException;
 import com.cts.reviewservice.gateway.OrderServiceGateway;
 import com.cts.reviewservice.repository.ReviewRepository;
 import com.cts.reviewservice.service.impl.ReviewServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -24,6 +25,10 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
+/**
+ * Unit tests for {@link ReviewServiceImpl} covering create, read, update and delete flows.
+ */
+@Slf4j
 @ExtendWith(MockitoExtension.class)
 class ReviewServiceImplTest {
 

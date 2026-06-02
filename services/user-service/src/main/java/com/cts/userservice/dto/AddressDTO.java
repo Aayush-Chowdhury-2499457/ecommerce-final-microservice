@@ -3,6 +3,9 @@ package com.cts.userservice.dto;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
+/**
+ * Request payload carrying the fields required to create or update an address.
+ */
 @Data
 public class AddressDTO {
 

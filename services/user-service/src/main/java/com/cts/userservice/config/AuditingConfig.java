@@ -1,6 +1,7 @@
 package com.cts.userservice.config;
 
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
@@ -9,6 +10,10 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import java.util.Optional;
 
+/**
+ * Configures JPA auditing by deriving the current auditor from gateway-supplied request headers.
+ */
+@Slf4j
 @Configuration
 public class AuditingConfig {
 
@@ -19,6 +24,7 @@ public class AuditingConfig {
      */
     @Bean
     public AuditorAware<String> auditorAware() {
+        log.debug("Initializing AuditorAware for JPA auditing");
         return () -> {
             ServletRequestAttributes attrs =
                     (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();

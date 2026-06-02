@@ -10,6 +10,9 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
+/**
+ * JPA entity representing a single product line item within a shopping cart.
+ */
 @Entity @Data
 @Builder
 @NoArgsConstructor

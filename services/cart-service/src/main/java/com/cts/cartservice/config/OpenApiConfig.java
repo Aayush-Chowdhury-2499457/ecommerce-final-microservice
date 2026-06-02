@@ -12,8 +12,12 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
+/**
+ * Configures the OpenAPI/Swagger documentation, security scheme, and parameter hiding.
+ */
 @Configuration
 public class OpenApiConfig {
+    /** Builds the OpenAPI metadata, server, and bearer-token security scheme. */
     @Bean
     public OpenAPI apiInfo() {
         return new OpenAPI()
@@ -27,6 +31,7 @@ public class OpenApiConfig {
                     .bearerFormat("JWT")));
     }
 
+    /** Hides internal gateway-injected headers (X-User-Id/X-User-Role) from the API docs. */
     @Bean
     public OperationCustomizer hideGatewayHeaders() {
         return (operation, handlerMethod) -> {

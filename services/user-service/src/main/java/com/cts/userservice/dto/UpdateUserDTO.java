@@ -5,6 +5,9 @@ import lombok.Data;
 
 import java.time.LocalDate;
 
+/**
+ * Request payload holding the optionally-updatable fields of a user.
+ */
 @Data
 public class UpdateUserDTO {
 

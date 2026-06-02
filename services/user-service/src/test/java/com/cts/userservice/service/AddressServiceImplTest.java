@@ -8,6 +8,7 @@ import com.cts.userservice.exception.custom.ResourceNotFoundException;
 import com.cts.userservice.repository.AddressRepository;
 import com.cts.userservice.repository.UserRepository;
 import com.cts.userservice.service.impl.AddressServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -23,6 +24,10 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
+/**
+ * Unit tests for {@link AddressServiceImpl} covering address CRUD and ownership checks.
+ */
+@Slf4j
 @ExtendWith(MockitoExtension.class)
 class AddressServiceImplTest {
 
@@ -32,6 +37,7 @@ class AddressServiceImplTest {
 
     private AddressDTO dto;
 
+    /** Initializes a sample address DTO before each test. */
     @BeforeEach
     void setUp() {
         dto = new AddressDTO();
@@ -54,6 +60,7 @@ class AddressServiceImplTest {
                 .country("US").pincode("12345").build();
     }
 
+    /** Verifies an address is created and mapped for an existing user. */
     @Test
     void add_success() {
         when(userRepository.findById(1L)).thenReturn(Optional.of(user(1L)));
@@ -66,6 +73,7 @@ class AddressServiceImplTest {
         assertThat(out.getCity()).isEqualTo("NYC");
     }
 
+    /** Verifies add fails when the target user does not exist. */
     @Test
     void add_userNotFound_throws() {
         when(userRepository.findById(9L)).thenReturn(Optional.empty());
@@ -75,6 +83,7 @@ class AddressServiceImplTest {
         verify(addressRepository, never()).save(any());
     }
 
+    /** Verifies addresses are listed for an existing user. */
     @Test
     void listForUser_success() {
         when(userRepository.existsById(1L)).thenReturn(true);
@@ -83,6 +92,7 @@ class AddressServiceImplTest {
         assertThat(service.listForUser(1L)).hasSize(1);
     }
 
+    /** Verifies listing fails when the user does not exist. */
     @Test
     void listForUser_userNotFound_throws() {
         when(userRepository.existsById(9L)).thenReturn(false);
@@ -91,6 +101,7 @@ class AddressServiceImplTest {
                 .isInstanceOf(ResourceNotFoundException.class);
     }
 
+    /** Verifies a single owned address is returned. */
     @Test
     void getOne_success() {
         when(addressRepository.findById(5L)).thenReturn(Optional.of(address(5L, 1L)));
@@ -98,6 +109,7 @@ class AddressServiceImplTest {
         assertThat(service.getOne(1L, 5L).getCity()).isEqualTo("NYC");
     }
 
+    /** Verifies retrieval fails when the address does not exist. */
     @Test
     void getOne_addressNotFound_throws() {
         when(addressRepository.findById(5L)).thenReturn(Optional.empty());
@@ -107,6 +119,7 @@ class AddressServiceImplTest {
                 .hasMessageContaining("Address not found");
     }
 
+    /** Verifies retrieval fails when the address belongs to another user. */
     @Test
     void getOne_belongsToOtherUser_throws() {
         when(addressRepository.findById(5L)).thenReturn(Optional.of(address(5L, 2L)));
@@ -115,6 +128,7 @@ class AddressServiceImplTest {
                 .isInstanceOf(ResourceNotFoundException.class);
     }
 
+    /** Verifies an owned address is updated. */
     @Test
     void update_success() {
         when(addressRepository.findById(5L)).thenReturn(Optional.of(address(5L, 1L)));
@@ -123,6 +137,7 @@ class AddressServiceImplTest {
         assertThat(service.update(1L, 5L, dto).getCity()).isEqualTo("LA");
     }
 
+    /** Verifies update fails when the address does not exist. */
     @Test
     void update_notFound_throws() {
         when(addressRepository.findById(5L)).thenReturn(Optional.empty());
@@ -131,6 +146,7 @@ class AddressServiceImplTest {
                 .isInstanceOf(ResourceNotFoundException.class);
     }
 
+    /** Verifies an owned address is deleted. */
     @Test
     void delete_success() {
         Address a = address(5L, 1L);
@@ -141,6 +157,7 @@ class AddressServiceImplTest {
         verify(addressRepository).delete(a);
     }
 
+    /** Verifies delete fails when the address does not exist. */
     @Test
     void delete_notFound_throws() {
         when(addressRepository.findById(5L)).thenReturn(Optional.empty());

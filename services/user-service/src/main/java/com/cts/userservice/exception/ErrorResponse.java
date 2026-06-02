@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+/**
+ * Standard error payload returned by the API on failed requests.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

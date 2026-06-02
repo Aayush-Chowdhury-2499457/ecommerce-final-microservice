@@ -12,6 +12,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * JPA entity representing a user's shopping cart and its collection of items.
+ */
 @Entity @Data
 @Builder
 @NoArgsConstructor

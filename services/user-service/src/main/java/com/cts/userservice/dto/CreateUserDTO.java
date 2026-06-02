@@ -5,6 +5,9 @@ import lombok.Data;
 
 import java.time.LocalDate;
 
+/**
+ * Request payload carrying the fields required to register a new user.
+ */
 @Data
 public class CreateUserDTO {
 

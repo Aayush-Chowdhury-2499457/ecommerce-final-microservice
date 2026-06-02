@@ -9,6 +9,7 @@ import com.cts.userservice.exception.custom.DuplicateResourceException;
 import com.cts.userservice.exception.custom.ResourceNotFoundException;
 import com.cts.userservice.repository.UserRepository;
 import com.cts.userservice.service.impl.UserServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,6 +26,10 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
+/**
+ * Unit tests for {@link UserServiceImpl} covering create, lookup, update and delete flows.
+ */
+@Slf4j
 @ExtendWith(MockitoExtension.class)
 class UserServiceImplTest {
 
@@ -34,6 +39,7 @@ class UserServiceImplTest {
     private User user;
     private CreateUserDTO createDto;
 
+    /** Initializes a sample user and create DTO before each test. */
     @BeforeEach
     void setUp() {
         user = User.builder()
@@ -50,6 +56,7 @@ class UserServiceImplTest {
         createDto.setDateOfBirth(LocalDate.of(1990, 1, 1));
     }
 
+    /** Verifies a user is created and persisted when all fields are unique. */
     @Test
     void create_success() {
         when(userRepository.existsByUsername("bob")).thenReturn(false);
@@ -64,6 +71,7 @@ class UserServiceImplTest {
         verify(userRepository).save(any(User.class));
     }
 
+    /** Verifies creation fails when the username is already taken. */
     @Test
     void create_duplicateUsername_throws() {
         when(userRepository.existsByUsername("bob")).thenReturn(true);
@@ -74,6 +82,7 @@ class UserServiceImplTest {
         verify(userRepository, never()).save(any());
     }
 
+    /** Verifies creation fails when the email is already in use. */
     @Test
     void create_duplicateEmail_throws() {
         when(userRepository.existsByUsername("bob")).thenReturn(false);
@@ -84,6 +93,7 @@ class UserServiceImplTest {
                 .hasMessage("Email already in use");
     }
 
+    /** Verifies creation fails when the phone number is already in use. */
     @Test
     void create_duplicatePhone_throws() {
         when(userRepository.existsByUsername("bob")).thenReturn(false);
@@ -95,6 +105,7 @@ class UserServiceImplTest {
                 .hasMessage("Phone number already in use");
     }
 
+    /** Verifies all users are returned mapped to response DTOs. */
     @Test
     void findAll_returnsMappedList() {
         when(userRepository.findAll()).thenReturn(List.of(user));
@@ -105,6 +116,7 @@ class UserServiceImplTest {
         assertThat(out.get(0).getUsername()).isEqualTo("bob");
     }
 
+    /** Verifies a user is returned when found by id. */
     @Test
     void findById_success() {
         when(userRepository.findById(1L)).thenReturn(Optional.of(user));
@@ -112,6 +124,7 @@ class UserServiceImplTest {
         assertThat(service.findById(1L).getUserId()).isEqualTo(1L);
     }
 
+    /** Verifies a not-found error is thrown when the id does not exist. */
     @Test
     void findById_notFound_throws() {
         when(userRepository.findById(9L)).thenReturn(Optional.empty());
@@ -121,6 +134,7 @@ class UserServiceImplTest {
                 .hasMessageContaining("User not found");
     }
 
+    /** Verifies a user is returned when found by username. */
     @Test
     void findByUsername_success() {
         when(userRepository.findByUsername("bob")).thenReturn(Optional.of(user));
@@ -128,6 +142,7 @@ class UserServiceImplTest {
         assertThat(service.findByUsername("bob").getEmail()).isEqualTo("bob@x.com");
     }
 
+    /** Verifies a not-found error is thrown when the username does not exist. */
     @Test
     void findByUsername_notFound_throws() {
         when(userRepository.findByUsername("x")).thenReturn(Optional.empty());
@@ -136,6 +151,7 @@ class UserServiceImplTest {
                 .isInstanceOf(ResourceNotFoundException.class);
     }
 
+    /** Verifies a user is returned when found by email. */
     @Test
     void findByEmail_success() {
         when(userRepository.findByEmail("bob@x.com")).thenReturn(Optional.of(user));
@@ -143,6 +159,7 @@ class UserServiceImplTest {
         assertThat(service.findByEmail("bob@x.com").getUsername()).isEqualTo("bob");
     }
 
+    /** Verifies a not-found error is thrown when the email does not exist. */
     @Test
     void findByEmail_notFound_throws() {
         when(userRepository.findByEmail("x@x.com")).thenReturn(Optional.empty());
@@ -151,6 +168,7 @@ class UserServiceImplTest {
                 .isInstanceOf(ResourceNotFoundException.class);
     }
 
+    /** Verifies all provided fields are applied on update. */
     @Test
     void update_allFields_success() {
         when(userRepository.findById(1L)).thenReturn(Optional.of(user));
@@ -171,6 +189,7 @@ class UserServiceImplTest {
         assertThat(out.getDateOfBirth()).isEqualTo(LocalDate.of(2000, 5, 5));
     }
 
+    /** Verifies update fails when the user does not exist. */
     @Test
     void update_notFound_throws() {
         when(userRepository.findById(9L)).thenReturn(Optional.empty());
@@ -179,6 +198,7 @@ class UserServiceImplTest {
                 .isInstanceOf(ResourceNotFoundException.class);
     }
 
+    /** Verifies update fails when the new email is already in use. */
     @Test
     void update_emailDuplicate_throws() {
         when(userRepository.findById(1L)).thenReturn(Optional.of(user));
@@ -192,6 +212,7 @@ class UserServiceImplTest {
                 .hasMessage("Email already in use");
     }
 
+    /** Verifies update fails when the new phone number is already in use. */
     @Test
     void update_phoneDuplicate_throws() {
         when(userRepository.findById(1L)).thenReturn(Optional.of(user));
@@ -205,6 +226,7 @@ class UserServiceImplTest {
                 .hasMessage("Phone number already in use");
     }
 
+    /** Verifies uniqueness checks are skipped when values are unchanged. */
     @Test
     void update_sameValues_skipsDuplicateChecks() {
         when(userRepository.findById(1L)).thenReturn(Optional.of(user));
@@ -220,6 +242,7 @@ class UserServiceImplTest {
         verify(userRepository, never()).existsByPhoneNumber(any());
     }
 
+    /** Verifies existing values are retained when update fields are null. */
     @Test
     void update_nullFields_keepsExisting() {
         when(userRepository.findById(1L)).thenReturn(Optional.of(user));
@@ -229,6 +252,7 @@ class UserServiceImplTest {
         assertThat(out.getName()).isEqualTo("Bob");
     }
 
+    /** Verifies a user is deleted when it exists. */
     @Test
     void delete_success() {
         when(userRepository.existsById(1L)).thenReturn(true);
@@ -238,6 +262,7 @@ class UserServiceImplTest {
         verify(userRepository).deleteById(1L);
     }
 
+    /** Verifies delete fails when the user does not exist. */
     @Test
     void delete_notFound_throws() {
         when(userRepository.existsById(9L)).thenReturn(false);
