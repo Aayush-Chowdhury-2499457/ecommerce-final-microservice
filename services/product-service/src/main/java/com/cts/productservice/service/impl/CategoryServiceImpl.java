@@ -1,7 +1,7 @@
 package com.cts.productservice.service.impl;
 
-import com.cts.productservice.dto.CategoryDTO;
-import com.cts.productservice.dto.CategoryResponseDTO;
+import com.cts.productservice.dto.request.CategoryDTO;
+import com.cts.productservice.dto.response.CategoryResponseDTO;
 import com.cts.productservice.entity.Category;
 import com.cts.productservice.exception.custom.DuplicateResourceException;
 import com.cts.productservice.exception.custom.InvalidOperationException;

@@ -1,0 +1,55 @@
+{
+  "info": {
+    "_postman_id": "ecom-payment-service",
+    "name": "payment-service (via gateway)",
+    "description": "Payment endpoints routed through the API gateway (http://localhost:8080). Requires a valid JWT - run auth-service > Login first. Initiate is CUSTOMER-only; get-all is ADMIN; single/by-order lookups are owner-or-admin.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [ { "key": "token", "value": "{{token}}", "type": "string" } ]
+  },
+  "item": [
+    {
+      "name": "Initiate Payment (CUSTOMER)",
+      "request": {
+        "method": "POST",
+        "header": [ { "key": "Content-Type", "value": "application/json" } ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"orderId\": {{orderId}},\n  \"amount\": 74999.0\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": { "raw": "{{base_url}}/api/payments/initiate", "host": [ "{{base_url}}" ], "path": [ "api", "payments", "initiate" ] }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Payments (ADMIN)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": { "raw": "{{base_url}}/api/payments", "host": [ "{{base_url}}" ], "path": [ "api", "payments" ] }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Payment By Id (owner-or-admin)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": { "raw": "{{base_url}}/api/payments/{{paymentId}}", "host": [ "{{base_url}}" ], "path": [ "api", "payments", "{{paymentId}}" ] }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Payment By Order (owner-or-admin)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": { "raw": "{{base_url}}/api/payments/orders/{{orderId}}", "host": [ "{{base_url}}" ], "path": [ "api", "payments", "orders", "{{orderId}}" ] }
+      },
+      "response": []
+    }
+  ]
+}

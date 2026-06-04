@@ -1,6 +1,7 @@
 package com.cts.productservice.controller;
 
-import com.cts.productservice.dto.*;
+import com.cts.productservice.dto.request.*;
+import com.cts.productservice.dto.response.*;
 import com.cts.productservice.service.ProductService;
 import com.cts.productservice.util.AuthUtil;
 import jakarta.validation.Valid;

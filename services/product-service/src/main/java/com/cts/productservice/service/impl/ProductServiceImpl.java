@@ -1,6 +1,7 @@
 package com.cts.productservice.service.impl;
 
-import com.cts.productservice.dto.*;
+import com.cts.productservice.dto.request.*;
+import com.cts.productservice.dto.response.*;
 import com.cts.productservice.entity.Category;
 import com.cts.productservice.entity.Product;
 import com.cts.productservice.exception.custom.InvalidOperationException;

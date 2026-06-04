@@ -1,6 +1,7 @@
 package com.cts.productservice.service;
 
-import com.cts.productservice.dto.*;
+import com.cts.productservice.dto.request.*;
+import com.cts.productservice.dto.response.*;
 
 import java.util.List;
 

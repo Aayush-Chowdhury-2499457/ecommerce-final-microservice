@@ -1,4 +1,4 @@
-package com.cts.productservice.dto;
+package com.cts.productservice.dto.request;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.Data;

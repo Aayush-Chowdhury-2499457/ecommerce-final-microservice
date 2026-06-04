@@ -1,7 +1,7 @@
 package com.cts.productservice.service;
 
-import com.cts.productservice.dto.CategoryDTO;
-import com.cts.productservice.dto.CategoryResponseDTO;
+import com.cts.productservice.dto.request.CategoryDTO;
+import com.cts.productservice.dto.response.CategoryResponseDTO;
 
 import java.util.List;
 

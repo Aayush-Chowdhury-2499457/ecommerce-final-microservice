@@ -1,4 +1,4 @@
-package com.cts.productservice.dto;
+package com.cts.productservice.dto.response;
 
 import lombok.*;
 

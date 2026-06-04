@@ -1,7 +1,7 @@
 package com.cts.productservice.controller;
 
-import com.cts.productservice.dto.CategoryDTO;
-import com.cts.productservice.dto.CategoryResponseDTO;
+import com.cts.productservice.dto.request.CategoryDTO;
+import com.cts.productservice.dto.response.CategoryResponseDTO;
 import com.cts.productservice.service.CategoryService;
 import com.cts.productservice.util.AuthUtil;
 import jakarta.validation.Valid;

@@ -1,0 +1,25 @@
+{
+  "info": {
+    "_postman_id": "ecom-dummy-payment-api",
+    "name": "dummy-payment-api (direct - NOT gateway)",
+    "description": "Standalone payment simulator. IMPORTANT: this service is NOT registered as a gateway route - the gateway only proxies /api/** paths. It runs directly on http://localhost:9090 and is normally called server-to-server by payment-service. It is included here for manual testing only and uses {{dummy_payment_url}} instead of {{base_url}}. No auth required.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": { "type": "noauth" },
+  "item": [
+    {
+      "name": "Process Payment (direct :9090)",
+      "request": {
+        "method": "POST",
+        "header": [ { "key": "Content-Type", "value": "application/json" } ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"orderId\": {{orderId}},\n  \"amount\": 74999.0,\n  \"currency\": \"INR\"\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": { "raw": "{{dummy_payment_url}}/dummy-payment/process", "host": [ "{{dummy_payment_url}}" ], "path": [ "dummy-payment", "process" ] }
+      },
+      "response": []
+    }
+  ]
+}
