@@ -14,10 +14,21 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.time.LocalDateTime;
 import java.util.stream.Collectors;
 
+/**
+ * Centralized exception handler translating application exceptions into
+ * standardized {@link ErrorResponse} payloads with appropriate HTTP statuses.
+ */
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+    /**
+     * Handles authentication failures as 401 Unauthorized.
+     *
+     * @param ex      the authentication exception
+     * @param request the current request
+     * @return a 401 error response
+     */
     @ExceptionHandler(AuthException.class)
     public ResponseEntity<ErrorResponse> handleAuth(AuthException ex,
                                                     HttpServletRequest request) {
@@ -25,6 +36,13 @@ public class GlobalExceptionHandler {
         return buildResponse(HttpStatus.UNAUTHORIZED, ex, request.getRequestURI(), ex.getMessage());
     }
 
+    /**
+     * Handles downstream unavailability as 503 Service Unavailable.
+     *
+     * @param ex      the service-unavailable exception
+     * @param request the current request
+     * @return a 503 error response
+     */
     @ExceptionHandler(ServiceUnavailableException.class)
     public ResponseEntity<ErrorResponse> handleServiceUnavailable(ServiceUnavailableException ex,
                                                                   HttpServletRequest request) {
@@ -32,6 +50,13 @@ public class GlobalExceptionHandler {
         return buildResponse(HttpStatus.SERVICE_UNAVAILABLE, ex, request.getRequestURI(), ex.getMessage());
     }
 
+    /**
+     * Handles downstream errors by propagating their originating HTTP status.
+     *
+     * @param ex      the downstream exception
+     * @param request the current request
+     * @return an error response with the downstream status
+     */
     @ExceptionHandler(DownstreamException.class)
     public ResponseEntity<ErrorResponse> handleDownstream(DownstreamException ex,
                                                           HttpServletRequest request) {
@@ -40,6 +65,13 @@ public class GlobalExceptionHandler {
         return buildResponse(status, ex, request.getRequestURI(), ex.getMessage());
     }
 
+    /**
+     * Handles bean-validation failures as 400 Bad Request.
+     *
+     * @param ex      the validation exception
+     * @param request the current request
+     * @return a 400 error response listing the field errors
+     */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> handleValidation(MethodArgumentNotValidException ex,
                                                           HttpServletRequest request) {
@@ -51,6 +83,13 @@ public class GlobalExceptionHandler {
         return buildResponse(HttpStatus.BAD_REQUEST, ex, request.getRequestURI(), fieldErrors);
     }
 
+    /**
+     * Catch-all handler returning 500 Internal Server Error for unexpected failures.
+     *
+     * @param ex      the unexpected exception
+     * @param request the current request
+     * @return a 500 error response
+     */
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGeneric(Exception ex,
                                                        HttpServletRequest request) {

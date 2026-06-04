@@ -10,6 +10,7 @@ import com.cts.cartservice.exception.custom.ServiceUnavailableException;
 import com.cts.cartservice.exception.custom.ShoppingCartNotFoundException;
 import com.cts.cartservice.service.CartService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -28,6 +29,10 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+/**
+ * Web-layer tests for {@link CartController} using standalone MockMvc.
+ */
+@Slf4j
 @ExtendWith(MockitoExtension.class)
 class CartControllerTest {
 

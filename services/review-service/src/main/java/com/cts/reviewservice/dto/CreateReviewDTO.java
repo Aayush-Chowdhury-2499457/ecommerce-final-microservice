@@ -3,6 +3,9 @@ package com.cts.reviewservice.dto;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
+/**
+ * Request payload for creating a new product review.
+ */
 @Data
 public class CreateReviewDTO {
 

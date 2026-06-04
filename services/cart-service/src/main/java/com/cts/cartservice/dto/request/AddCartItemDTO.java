@@ -4,6 +4,9 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
+/**
+ * Request payload to add a product (with quantity) to the cart.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

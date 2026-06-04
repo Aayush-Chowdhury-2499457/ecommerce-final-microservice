@@ -10,6 +10,9 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
+/**
+ * JPA entity representing a postal address belonging to a {@link User}.
+ */
 @Entity
 @Table(name = "address")
 @EntityListeners(AuditingEntityListener.class)

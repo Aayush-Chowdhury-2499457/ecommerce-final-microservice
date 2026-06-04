@@ -9,6 +9,9 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import java.util.Optional;
 
+/**
+ * JPA auditing configuration that resolves the current auditor from request headers.
+ */
 @Configuration
 public class AuditingConfig {
 

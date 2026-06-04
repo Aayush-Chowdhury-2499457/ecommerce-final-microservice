@@ -10,20 +10,27 @@ import com.cts.userservice.exception.custom.ResourceNotFoundException;
 import com.cts.userservice.repository.UserRepository;
 import com.cts.userservice.service.UserService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * Default {@link UserService} implementation backed by {@link UserRepository}.
+ */
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
 
+    /** Registers a new user after enforcing username/email/phone uniqueness. */
     @Override
     @Transactional
     public UserResponseDTO create(CreateUserDTO dto) {
+        log.info("Creating user {}", dto.getUsername());
         if (userRepository.existsByUsername(dto.getUsername()))
             throw new DuplicateResourceException("Username already taken");
         if (userRepository.existsByEmail(dto.getEmail()))
@@ -43,35 +50,45 @@ public class UserServiceImpl implements UserService {
         return toDto(userRepository.save(user));
     }
 
+    /** Returns all users mapped to response DTOs. */
     @Override
     @Transactional(readOnly = true)
     public List<UserResponseDTO> findAll() {
+        log.debug("Fetching all users");
         return userRepository.findAll().stream().map(this::toDto).toList();
     }
 
+    /** Retrieves a user by id or throws if not found. */
     @Override
     @Transactional(readOnly = true)
     public UserResponseDTO findById(Long userId) {
+        log.debug("Fetching user by id {}", userId);
         return toDto(getOrThrow(userId));
     }
 
+    /** Retrieves a user by username or throws if not found. */
     @Override
     @Transactional(readOnly = true)
     public UserResponseDTO findByUsername(String username) {
+        log.debug("Fetching user by username {}", username);
         return toDto(userRepository.findByUsername(username)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found: " + username)));
     }
 
+    /** Retrieves a user by email or throws if not found. */
     @Override
     @Transactional(readOnly = true)
     public UserResponseDTO findByEmail(String email) {
+        log.debug("Fetching user by email {}", email);
         return toDto(userRepository.findByEmail(email)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found: " + email)));
     }
 
+    /** Applies non-null fields from the DTO, re-checking uniqueness for changed email/phone. */
     @Override
     @Transactional
     public UserResponseDTO update(Long userId, UpdateUserDTO dto) {
+        log.info("Updating user {}", userId);
         User user = getOrThrow(userId);
 
         if (dto.getEmail() != null && !dto.getEmail().equals(user.getEmail())) {
@@ -90,9 +107,11 @@ public class UserServiceImpl implements UserService {
         return toDto(user);
     }
 
+    /** Deletes a user by id, throwing if the user does not exist. */
     @Override
     @Transactional
     public void delete(Long userId) {
+        log.info("Deleting user {}", userId);
         if (!userRepository.existsById(userId))
             throw new ResourceNotFoundException("User not found: " + userId);
         userRepository.deleteById(userId);

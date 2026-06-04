@@ -6,6 +6,9 @@ import lombok.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+/**
+ * Response payload representing a user along with its auditing metadata.
+ */
 @Data
 @Builder
 @NoArgsConstructor

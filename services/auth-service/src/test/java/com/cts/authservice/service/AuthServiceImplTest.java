@@ -12,6 +12,7 @@ import com.cts.authservice.gateway.UserServiceGateway;
 import com.cts.authservice.repository.AuthRepository;
 import com.cts.authservice.security.util.JwtUtil;
 import com.cts.authservice.service.impl.AuthServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -28,6 +29,11 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
+/**
+ * Unit tests for {@link AuthServiceImpl} covering registration, login by
+ * username/email, and token validation including failure scenarios.
+ */
+@Slf4j
 @ExtendWith(MockitoExtension.class)
 class AuthServiceImplTest {
 

@@ -3,6 +3,9 @@ package com.cts.reviewservice.dto;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
+/**
+ * Request payload for updating an existing review's rating and description.
+ */
 @Data
 public class UpdateReviewDTO {
 

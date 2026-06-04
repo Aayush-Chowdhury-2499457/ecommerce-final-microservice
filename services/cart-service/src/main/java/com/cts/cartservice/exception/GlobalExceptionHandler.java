@@ -12,10 +12,14 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.time.LocalDateTime;
 import java.util.stream.Collectors;
 
+/**
+ * Centralized REST exception handler that maps cart-service exceptions to HTTP error responses.
+ */
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+    /** Maps a missing cart to HTTP 404. */
     @ExceptionHandler(ShoppingCartNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleShoppingCartNotFound(ShoppingCartNotFoundException ex,
                                                                     HttpServletRequest request) {
@@ -23,6 +27,7 @@ public class GlobalExceptionHandler {
         return buildResponse(HttpStatus.NOT_FOUND, ex, request.getRequestURI(), ex.getMessage());
     }
 
+    /** Maps an invalid cart operation to HTTP 400. */
     @ExceptionHandler(InvalidCartOperationException.class)
     public ResponseEntity<ErrorResponse> handleInvalidCartOperation(InvalidCartOperationException ex,
                                                                     HttpServletRequest request) {
@@ -30,6 +35,7 @@ public class GlobalExceptionHandler {
         return buildResponse(HttpStatus.BAD_REQUEST, ex, request.getRequestURI(), ex.getMessage());
     }
 
+    /** Maps a downstream service outage to HTTP 503. */
     @ExceptionHandler(ServiceUnavailableException.class)
     public ResponseEntity<ErrorResponse> handleServiceUnavailable(ServiceUnavailableException ex,
                                                                   HttpServletRequest request) {
@@ -37,6 +43,7 @@ public class GlobalExceptionHandler {
         return buildResponse(HttpStatus.SERVICE_UNAVAILABLE, ex, request.getRequestURI(), ex.getMessage());
     }
 
+    /** Maps a downstream error to its preserved HTTP status. */
     @ExceptionHandler(DownstreamException.class)
     public ResponseEntity<ErrorResponse> handleDownstream(DownstreamException ex,
                                                           HttpServletRequest request) {
@@ -45,6 +52,7 @@ public class GlobalExceptionHandler {
         return buildResponse(status, ex, request.getRequestURI(), ex.getMessage());
     }
 
+    /** Maps bean-validation failures to HTTP 400 with field error details. */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> handleValidation(MethodArgumentNotValidException ex,
                                                           HttpServletRequest request) {
@@ -56,12 +64,14 @@ public class GlobalExceptionHandler {
         return buildResponse(HttpStatus.BAD_REQUEST, ex, request.getRequestURI(), fieldErrors);
     }
 
+    /** Maps an authorization failure to HTTP 403. */
     @ExceptionHandler(UnauthorizedAccessException.class)
     public ResponseEntity<ErrorResponse> handleUnauthorizedAccess(UnauthorizedAccessException ex, HttpServletRequest request) {
         log.warn("Access denied: {}", ex.getMessage());
         return buildResponse(HttpStatus.FORBIDDEN, ex, request.getRequestURI(), ex.getMessage());
     }
 
+    /** Catch-all that maps any unhandled exception to HTTP 500. */
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGeneric(Exception ex,
                                                        HttpServletRequest request) {

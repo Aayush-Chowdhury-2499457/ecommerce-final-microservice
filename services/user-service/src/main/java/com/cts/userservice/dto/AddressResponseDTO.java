@@ -4,6 +4,9 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
+/**
+ * Response payload representing an address along with its auditing metadata.
+ */
 @Data
 @Builder
 @NoArgsConstructor

@@ -4,6 +4,9 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
+/**
+ * Request payload to set a new absolute quantity for a product in the cart.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

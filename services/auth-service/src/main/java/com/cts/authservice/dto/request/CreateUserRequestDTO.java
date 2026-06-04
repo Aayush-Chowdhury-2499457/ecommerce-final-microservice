@@ -3,6 +3,9 @@ package com.cts.authservice.dto.request;
 import lombok.*;
 import java.time.LocalDate;
 
+/**
+ * Request payload sent to the User Service to create a new user profile.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

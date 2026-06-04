@@ -4,6 +4,9 @@ import lombok.*;
 
 import java.util.List;
 
+/**
+ * Response view of a shopping cart with its items and computed total price.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

@@ -17,6 +17,7 @@ import com.cts.cartservice.gateway.ProductServiceGateway;
 import com.cts.cartservice.repository.CartItemRepository;
 import com.cts.cartservice.repository.ShoppingCartRepository;
 import com.cts.cartservice.service.impl.CartServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -32,6 +33,10 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
+/**
+ * Unit tests for {@link CartServiceImpl} covering cart CRUD, stock checks, and checkout.
+ */
+@Slf4j
 @ExtendWith(MockitoExtension.class)
 class CartServiceImplTest {
 

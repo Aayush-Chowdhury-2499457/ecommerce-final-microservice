@@ -9,11 +9,16 @@ import com.cts.userservice.repository.AddressRepository;
 import com.cts.userservice.repository.UserRepository;
 import com.cts.userservice.service.AddressService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * Default {@link AddressService} implementation backed by {@link AddressRepository}.
+ */
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class AddressServiceImpl implements AddressService {
@@ -21,9 +26,11 @@ public class AddressServiceImpl implements AddressService {
     private final AddressRepository addressRepository;
     private final UserRepository userRepository;
 
+    /** Creates a new address for the given user, throwing if the user does not exist. */
     @Override
     @Transactional
     public AddressResponseDTO add(Long userId, AddressDTO dto) {
+        log.info("Adding address for user {}", userId);
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found: " + userId));
 
@@ -40,24 +47,30 @@ public class AddressServiceImpl implements AddressService {
         return toDto(addressRepository.save(address));
     }
 
+    /** Lists all addresses for the given user, throwing if the user does not exist. */
     @Override
     @Transactional(readOnly = true)
     public List<AddressResponseDTO> listForUser(Long userId) {
+        log.debug("Listing addresses for user {}", userId);
         if (!userRepository.existsById(userId))
             throw new ResourceNotFoundException("User not found: " + userId);
         return addressRepository.findByUser_UserId(userId).stream().map(this::toDto).toList();
     }
 
+    /** Retrieves a single address owned by the given user. */
     @Override
     @Transactional(readOnly = true)
     public AddressResponseDTO getOne(Long userId, Long addressId) {
+        log.debug("Fetching address {} for user {}", addressId, userId);
         Address a = getAddressForUserOrThrow(userId, addressId);
         return toDto(a);
     }
 
+    /** Updates an address owned by the given user. */
     @Override
     @Transactional
     public AddressResponseDTO update(Long userId, Long addressId, AddressDTO dto) {
+        log.info("Updating address {} for user {}", addressId, userId);
         Address a = getAddressForUserOrThrow(userId, addressId);
 
         a.setHouseNo(dto.getHouseNo());
@@ -70,9 +83,11 @@ public class AddressServiceImpl implements AddressService {
         return toDto(a);
     }
 
+    /** Deletes an address owned by the given user. */
     @Override
     @Transactional
     public void delete(Long userId, Long addressId) {
+        log.info("Deleting address {} for user {}", addressId, userId);
         Address a = getAddressForUserOrThrow(userId, addressId);
         addressRepository.delete(a);
     }

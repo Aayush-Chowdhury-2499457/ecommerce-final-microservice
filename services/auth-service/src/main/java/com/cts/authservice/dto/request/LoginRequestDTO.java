@@ -3,6 +3,9 @@ package com.cts.authservice.dto.request;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
+/**
+ * Request payload carrying credentials for a login attempt.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

@@ -11,6 +11,7 @@ import com.cts.userservice.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -30,6 +31,10 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+/**
+ * Standalone MockMvc tests for {@link UserController} covering routing and authorization.
+ */
+@Slf4j
 @ExtendWith(MockitoExtension.class)
 class UserControllerTest {
 
@@ -44,6 +49,7 @@ class UserControllerTest {
     private UserResponseDTO resp;
     private CreateUserDTO validCreate;
 
+    /** Sets up MockMvc with the controller advice plus sample request/response data. */
     @BeforeEach
     void setUp() {
         mvc = MockMvcBuilders.standaloneSetup(controller)
@@ -62,6 +68,7 @@ class UserControllerTest {
         validCreate.setDateOfBirth(LocalDate.of(1990, 1, 1));
     }
 
+    /** Valid creation request receives HTTP 201. */
     @Test
     void create_returns201() throws Exception {
         when(userService.create(any())).thenReturn(resp);
@@ -73,6 +80,7 @@ class UserControllerTest {
                 .andExpect(jsonPath("$.username").value("bob"));
     }
 
+    /** Invalid creation body receives HTTP 400 and skips the service. */
     @Test
     void create_invalidBody_returns400() throws Exception {
         validCreate.setUsername("");
@@ -86,6 +94,7 @@ class UserControllerTest {
         verify(userService, never()).create(any());
     }
 
+    /** Duplicate resource error receives HTTP 409. */
     @Test
     void create_duplicate_returns409() throws Exception {
         when(userService.create(any()))
@@ -98,6 +107,7 @@ class UserControllerTest {
                 .andExpect(jsonPath("$.message").value("Username already taken"));
     }
 
+    /** Admin listing users receives HTTP 200. */
     @Test
     void all_asAdmin_returns200() throws Exception {
         when(userService.findAll()).thenReturn(List.of(resp));
@@ -107,6 +117,7 @@ class UserControllerTest {
                 .andExpect(jsonPath("$[0].username").value("bob"));
     }
 
+    /** Non-admin listing users receives HTTP 403. */
     @Test
     void all_asNonAdmin_returns403() throws Exception {
         mvc.perform(get("/api/users").header("X-User-Role", "CUSTOMER"))
@@ -114,6 +125,7 @@ class UserControllerTest {
         verify(userService, never()).findAll();
     }
 
+    /** Owner fetching their own user receives HTTP 200. */
     @Test
     void byId_self_returns200() throws Exception {
         when(userService.findById(1L)).thenReturn(resp);
@@ -124,6 +136,7 @@ class UserControllerTest {
                 .andExpect(jsonPath("$.userId").value(1));
     }
 
+    /** Fetching another user's record receives HTTP 403. */
     @Test
     void byId_otherUser_returns403() throws Exception {
         mvc.perform(get("/api/users/2")
@@ -131,6 +144,7 @@ class UserControllerTest {
                 .andExpect(status().isForbidden());
     }
 
+    /** Missing user receives HTTP 404. */
     @Test
     void byId_notFound_returns404() throws Exception {
         when(userService.findById(1L)).thenThrow(new ResourceNotFoundException("User not found: 1"));
@@ -140,6 +154,7 @@ class UserControllerTest {
                 .andExpect(status().isNotFound());
     }
 
+    /** Admin lookup by username receives HTTP 200. */
     @Test
     void byUsername_asAdmin_returns200() throws Exception {
         when(userService.findByUsername("bob")).thenReturn(resp);
@@ -148,6 +163,7 @@ class UserControllerTest {
                 .andExpect(status().isOk());
     }
 
+    /** Internal lookup by username without a role receives HTTP 200. */
     @Test
     void byUsername_noRole_internalCall_returns200() throws Exception {
         when(userService.findByUsername("bob")).thenReturn(resp);
@@ -156,12 +172,14 @@ class UserControllerTest {
                 .andExpect(status().isOk());
     }
 
+    /** Customer lookup by username receives HTTP 403. */
     @Test
     void byUsername_asCustomer_returns403() throws Exception {
         mvc.perform(get("/api/users/username/bob").header("X-User-Role", "CUSTOMER"))
                 .andExpect(status().isForbidden());
     }
 
+    /** Admin lookup by email receives HTTP 200. */
     @Test
     void byEmail_asAdmin_returns200() throws Exception {
         when(userService.findByEmail("bob@x.com")).thenReturn(resp);
@@ -170,6 +188,7 @@ class UserControllerTest {
                 .andExpect(status().isOk());
     }
 
+    /** Owner updating their user receives HTTP 200. */
     @Test
     void update_owner_returns200() throws Exception {
         when(userService.update(eq(1L), any())).thenReturn(resp);
@@ -180,6 +199,7 @@ class UserControllerTest {
                 .andExpect(status().isOk());
     }
 
+    /** Non-owner updating a user receives HTTP 403. */
     @Test
     void update_notOwner_returns403() throws Exception {
         mvc.perform(put("/api/users/1").header("X-User-Id", "2")
@@ -189,6 +209,7 @@ class UserControllerTest {
         verify(userService, never()).update(any(), any());
     }
 
+    /** Admin deleting a user receives HTTP 204. */
     @Test
     void delete_asAdmin_returns204() throws Exception {
         mvc.perform(delete("/api/users/1").header("X-User-Role", "ADMIN"))
@@ -196,6 +217,7 @@ class UserControllerTest {
         verify(userService).delete(1L);
     }
 
+    /** Non-admin deleting a user receives HTTP 403. */
     @Test
     void delete_asNonAdmin_returns403() throws Exception {
         mvc.perform(delete("/api/users/1").header("X-User-Role", "CUSTOMER"))
@@ -203,6 +225,7 @@ class UserControllerTest {
         verify(userService, never()).delete(any());
     }
 
+    /** Unexpected service error is mapped to HTTP 500. */
     @Test
     void unexpectedError_returns500() throws Exception {
         when(userService.findAll()).thenThrow(new RuntimeException("boom"));

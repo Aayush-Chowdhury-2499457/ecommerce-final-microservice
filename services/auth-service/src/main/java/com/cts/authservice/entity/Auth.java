@@ -11,6 +11,10 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
+/**
+ * JPA entity storing a user's hashed credentials and audit timestamps,
+ * linked to a user profile by {@code userId}.
+ */
 @Entity
 @Data
 @NoArgsConstructor

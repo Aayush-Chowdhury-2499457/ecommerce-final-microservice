@@ -2,6 +2,9 @@ package com.cts.cartservice.dto.response;
 
 import lombok.*;
 
+/**
+ * Read-only view of an order returned by the order-service.
+ */
 @Data
 @Builder
 @NoArgsConstructor

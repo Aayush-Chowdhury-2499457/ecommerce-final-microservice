@@ -2,6 +2,9 @@ package com.cts.authservice.dto.response;
 
 import lombok.*;
 
+/**
+ * Response payload representing user details fetched from the User Service.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

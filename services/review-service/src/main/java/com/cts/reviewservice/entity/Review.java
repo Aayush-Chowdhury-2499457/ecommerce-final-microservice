@@ -10,6 +10,10 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
+/**
+ * JPA entity representing a product review, with auditing metadata and a
+ * uniqueness constraint of one review per (user, product).
+ */
 @Entity
 @Table(
         name = "review",

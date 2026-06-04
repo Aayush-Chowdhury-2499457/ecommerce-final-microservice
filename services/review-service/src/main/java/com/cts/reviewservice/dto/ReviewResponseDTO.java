@@ -4,6 +4,9 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
+/**
+ * Response payload representing a review returned to API clients.
+ */
 @Data
 @Builder
 @NoArgsConstructor

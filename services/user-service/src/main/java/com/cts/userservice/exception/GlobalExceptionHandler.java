@@ -14,22 +14,28 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.time.LocalDateTime;
 import java.util.stream.Collectors;
 
+/**
+ * Centralized REST exception handler mapping application exceptions to HTTP error responses.
+ */
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+    /** Handles missing-resource errors, returning HTTP 404. */
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ErrorResponse> notFound(ResourceNotFoundException ex, HttpServletRequest request) {
         log.warn("Resource not found: {}", ex.getMessage());
         return buildResponse(HttpStatus.NOT_FOUND, ex, request.getRequestURI(), ex.getMessage());
     }
 
+    /** Handles duplicate-resource errors, returning HTTP 409. */
     @ExceptionHandler(DuplicateResourceException.class)
     public ResponseEntity<ErrorResponse> conflict(DuplicateResourceException ex, HttpServletRequest request) {
         log.warn("Duplicate resource: {}", ex.getMessage());
         return buildResponse(HttpStatus.CONFLICT, ex, request.getRequestURI(), ex.getMessage());
     }
 
+    /** Handles bean-validation failures, returning HTTP 400 with field error details. */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> validation(MethodArgumentNotValidException ex, HttpServletRequest request) {
         String fieldErrors = ex.getBindingResult().getFieldErrors()
@@ -39,12 +45,14 @@ public class GlobalExceptionHandler {
         return buildResponse(HttpStatus.BAD_REQUEST, ex, request.getRequestURI(), fieldErrors);
     }
 
+    /** Handles authorization failures, returning HTTP 403. */
     @ExceptionHandler(UnauthorizedAccessException.class)
     public ResponseEntity<ErrorResponse> handleUnauthorizedAccess(UnauthorizedAccessException ex, HttpServletRequest request) {
         log.warn("Access denied: {}", ex.getMessage());
         return buildResponse(HttpStatus.FORBIDDEN, ex, request.getRequestURI(), ex.getMessage());
     }
 
+    /** Fallback handler for any unhandled exception, returning HTTP 500. */
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> generic(Exception ex, HttpServletRequest request) {
         log.error("Unexpected error", ex);
