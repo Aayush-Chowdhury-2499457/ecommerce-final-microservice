@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import com.cts.orderservice.enums.PaymentStatus;
 
+/**
+ * Request payload for updating an order's payment status.
+ */
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor

@@ -7,6 +7,10 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
+/**
+ * JPA entity representing a single line item within an {@link Order}, snapshotting the
+ * product name and unit price at the time of purchase.
+ */
 @Entity
 @Table(name = "order_items")
 @EntityListeners(AuditingEntityListener.class)

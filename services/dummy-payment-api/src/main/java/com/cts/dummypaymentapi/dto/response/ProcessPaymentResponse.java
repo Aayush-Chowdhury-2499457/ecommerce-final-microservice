@@ -2,6 +2,9 @@ package com.cts.dummypaymentapi.dto.response;
 
 import lombok.*;
 
+/**
+ * Response payload returned after a payment has been processed.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

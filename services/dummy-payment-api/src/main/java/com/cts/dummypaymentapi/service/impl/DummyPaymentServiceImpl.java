@@ -13,6 +13,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
+/**
+ * Default implementation of {@link DummyPaymentService} that records every
+ * payment as an immediate SUCCESS transaction.
+ */
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -20,6 +24,12 @@ public class DummyPaymentServiceImpl implements DummyPaymentService {
 
     private final DummyTransactionRepository transactionRepository;
 
+    /**
+     * Persists the payment as a SUCCESS transaction and returns a success response.
+     *
+     * @param request the incoming payment request
+     * @return the processed payment response with a generated transaction id
+     */
     @Override
     @Transactional
     public ProcessPaymentResponse processPayment(ProcessPaymentRequest request) {

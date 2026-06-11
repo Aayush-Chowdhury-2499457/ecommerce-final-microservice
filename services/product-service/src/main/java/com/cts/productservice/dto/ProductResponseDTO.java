@@ -4,6 +4,9 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
+/**
+ * Response payload representing a product with category and auditing metadata.
+ */
 @Data
 @Builder
 @NoArgsConstructor

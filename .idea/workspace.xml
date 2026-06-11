@@ -5,125 +5,126 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b8647389-d648-4047-9917-e10377d5d181" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/AuthServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/AuthServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/client/UserServiceClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/client/UserServiceClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/config/AuditorAwareImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/config/AuditorAwareImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/config/FeignConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/config/FeignConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/config/OpenApiConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/config/OpenApiConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/dto/request/CreateUserRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/dto/request/CreateUserRequestDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/dto/request/LoginRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/dto/request/LoginRequestDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/dto/request/RegisterRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/dto/request/RegisterRequestDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/dto/response/LoginResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/dto/response/LoginResponseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/dto/response/RegisterResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/dto/response/RegisterResponseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/dto/response/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/dto/response/UserDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/dto/response/ValidateResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/dto/response/ValidateResponseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/entity/Auth.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/entity/Auth.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/exception/CustomErrorDecoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/exception/CustomErrorDecoder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/exception/ErrorResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/exception/ErrorResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/exception/custom/AuthException.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/exception/custom/AuthException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/exception/custom/DownstreamException.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/exception/custom/DownstreamException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/exception/custom/ServiceUnavailableException.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/exception/custom/ServiceUnavailableException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/gateway/UserServiceGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/gateway/UserServiceGateway.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/repository/AuthRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/repository/AuthRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/security/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/security/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/security/util/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/security/util/JwtUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/service/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/service/impl/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/cts/authservice/service/impl/AuthServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/test/java/com/cts/authservice/controller/AuthControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/test/java/com/cts/authservice/controller/AuthControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/test/java/com/cts/authservice/service/AuthServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/test/java/com/cts/authservice/service/AuthServiceImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/CartServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/CartServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/client/OrderServiceClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/client/OrderServiceClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/client/ProductServiceClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/client/ProductServiceClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/config/AuditingConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/config/AuditingConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/config/FeignConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/config/FeignConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/config/OpenApiConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/config/OpenApiConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/controller/CartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/controller/CartController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/dto/request/AddCartItemDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/dto/request/AddCartItemDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/dto/request/CheckoutDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/dto/request/CheckoutDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/dto/request/PlaceOrderDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/dto/request/PlaceOrderDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/dto/request/UpdateCartItemDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/dto/request/UpdateCartItemDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/dto/response/CartItemResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/dto/response/CartItemResponseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/dto/response/CheckoutResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/dto/response/CheckoutResponseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/dto/response/OrderResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/dto/response/OrderResponseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/dto/response/ProductDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/dto/response/ProductDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/dto/response/ShoppingCartResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/dto/response/ShoppingCartResponseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/entity/CartItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/entity/CartItem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/entity/ShoppingCart.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/entity/ShoppingCart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/exception/CustomErrorDecoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/exception/CustomErrorDecoder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/exception/ErrorResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/exception/ErrorResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/exception/custom/DownstreamException.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/exception/custom/DownstreamException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/exception/custom/InvalidCartOperationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/exception/custom/InvalidCartOperationException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/exception/custom/ServiceUnavailableException.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/exception/custom/ServiceUnavailableException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/exception/custom/ShoppingCartNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/exception/custom/ShoppingCartNotFoundException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/exception/custom/UnauthorizedAccessException.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/exception/custom/UnauthorizedAccessException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/gateway/OrderServiceGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/gateway/OrderServiceGateway.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/gateway/ProductServiceGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/gateway/ProductServiceGateway.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/repository/CartItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/repository/CartItemRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/repository/ShoppingCartRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/repository/ShoppingCartRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/service/CartService.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/service/CartService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/service/impl/CartServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/service/impl/CartServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/util/AuthUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/main/java/com/cts/cartservice/util/AuthUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cart-service/src/test/java/com/cts/cartservice/controller/CartControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/test/java/com/cts/cartservice/controller/CartControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cart-service/src/test/java/com/cts/cartservice/service/CartServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/cart-service/src/test/java/com/cts/cartservice/service/CartServiceImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/ReviewServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/ReviewServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/client/OrderServiceClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/client/OrderServiceClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/config/AuditingConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/config/AuditingConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/config/FeignConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/config/FeignConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/config/OpenApiConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/config/OpenApiConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/controller/ReviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/controller/ReviewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/dto/CreateReviewDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/dto/CreateReviewDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/dto/ReviewResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/dto/ReviewResponseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/dto/UpdateReviewDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/dto/UpdateReviewDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/entity/Review.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/entity/Review.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/exception/CustomErrorDecoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/exception/CustomErrorDecoder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/exception/ErrorResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/exception/ErrorResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/exception/custom/DownstreamException.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/exception/custom/DownstreamException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/exception/custom/DuplicateReviewException.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/exception/custom/DuplicateReviewException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/exception/custom/PurchaseNotVerifiedException.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/exception/custom/PurchaseNotVerifiedException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/exception/custom/ResourceNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/exception/custom/ResourceNotFoundException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/exception/custom/ServiceUnavailableException.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/exception/custom/ServiceUnavailableException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/exception/custom/UnauthorizedAccessException.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/exception/custom/UnauthorizedAccessException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/gateway/OrderServiceGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/gateway/OrderServiceGateway.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/repository/ReviewRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/repository/ReviewRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/service/ReviewService.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/service/ReviewService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/service/impl/ReviewServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/service/impl/ReviewServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/util/AuthUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/review-service/src/main/java/com/cts/reviewservice/util/AuthUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/review-service/src/test/java/com/cts/reviewservice/controller/ReviewControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/review-service/src/test/java/com/cts/reviewservice/controller/ReviewControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/review-service/src/test/java/com/cts/reviewservice/service/ReviewServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/review-service/src/test/java/com/cts/reviewservice/service/ReviewServiceImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/UserServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/UserServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/config/AuditingConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/config/AuditingConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/config/OpenApiConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/config/OpenApiConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/controller/AddressController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/controller/AddressController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/dto/AddressDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/dto/AddressDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/dto/AddressResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/dto/AddressResponseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/dto/CreateUserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/dto/CreateUserDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/dto/UpdateUserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/dto/UpdateUserDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/dto/UserResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/dto/UserResponseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/entity/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/entity/Address.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/entity/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/entity/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/exception/ErrorResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/exception/ErrorResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/exception/custom/DuplicateResourceException.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/exception/custom/DuplicateResourceException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/exception/custom/ResourceNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/exception/custom/ResourceNotFoundException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/exception/custom/UnauthorizedAccessException.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/exception/custom/UnauthorizedAccessException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/repository/AddressRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/repository/AddressRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/service/AddressService.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/service/AddressService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/service/impl/AddressServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/service/impl/AddressServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/util/AuthUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/cts/userservice/util/AuthUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/test/java/com/cts/userservice/controller/AddressControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/test/java/com/cts/userservice/controller/AddressControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/test/java/com/cts/userservice/controller/UserControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/test/java/com/cts/userservice/controller/UserControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/test/java/com/cts/userservice/service/AddressServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/test/java/com/cts/userservice/service/AddressServiceImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/test/java/com/cts/userservice/service/UserServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/test/java/com/cts/userservice/service/UserServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/dummy-payment-api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/dummy-payment-api/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/dummy-payment-api/src/main/java/com/cts/dummypaymentapi/DummyPaymentApiApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/dummy-payment-api/src/main/java/com/cts/dummypaymentapi/DummyPaymentApiApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/dummy-payment-api/src/main/java/com/cts/dummypaymentapi/controller/DummyPaymentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/dummy-payment-api/src/main/java/com/cts/dummypaymentapi/controller/DummyPaymentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/dummy-payment-api/src/main/java/com/cts/dummypaymentapi/dto/request/ProcessPaymentRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/dummy-payment-api/src/main/java/com/cts/dummypaymentapi/dto/request/ProcessPaymentRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/dummy-payment-api/src/main/java/com/cts/dummypaymentapi/dto/response/ProcessPaymentResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/dummy-payment-api/src/main/java/com/cts/dummypaymentapi/dto/response/ProcessPaymentResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/dummy-payment-api/src/main/java/com/cts/dummypaymentapi/entity/DummyTransaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/dummy-payment-api/src/main/java/com/cts/dummypaymentapi/entity/DummyTransaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/dummy-payment-api/src/main/java/com/cts/dummypaymentapi/enums/TransactionStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/dummy-payment-api/src/main/java/com/cts/dummypaymentapi/enums/TransactionStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/dummy-payment-api/src/main/java/com/cts/dummypaymentapi/exception/ErrorResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/dummy-payment-api/src/main/java/com/cts/dummypaymentapi/exception/ErrorResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/dummy-payment-api/src/main/java/com/cts/dummypaymentapi/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/dummy-payment-api/src/main/java/com/cts/dummypaymentapi/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/dummy-payment-api/src/main/java/com/cts/dummypaymentapi/exception/ResourceNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/dummy-payment-api/src/main/java/com/cts/dummypaymentapi/exception/ResourceNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/dummy-payment-api/src/main/java/com/cts/dummypaymentapi/repository/DummyTransactionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/dummy-payment-api/src/main/java/com/cts/dummypaymentapi/repository/DummyTransactionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/dummy-payment-api/src/main/java/com/cts/dummypaymentapi/service/DummyPaymentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/dummy-payment-api/src/main/java/com/cts/dummypaymentapi/service/DummyPaymentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/dummy-payment-api/src/main/java/com/cts/dummypaymentapi/service/impl/DummyPaymentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/dummy-payment-api/src/main/java/com/cts/dummypaymentapi/service/impl/DummyPaymentServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/dummy-payment-api/src/test/java/com/cts/dummypaymentapi/DummyPaymentApiApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/order-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/OrderServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/OrderServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/client/CartServiceClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/client/CartServiceClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/client/ProductServiceClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/client/ProductServiceClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/client/UserServiceClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/client/UserServiceClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/config/AuditingConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/config/AuditingConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/config/FeignConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/config/FeignConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/config/OpenApiConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/config/OpenApiConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/controller/OrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/dto/external/AddressDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/dto/external/AddressDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/dto/external/CartItemDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/dto/external/CartItemDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/dto/external/ProductDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/dto/external/ProductDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/dto/external/ReduceStockDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/dto/external/ReduceStockDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/dto/external/ShoppingCartDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/dto/external/ShoppingCartDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/dto/request/PlaceOrderRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/dto/request/PlaceOrderRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/dto/request/UpdateOrderStatusRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/dto/request/UpdateOrderStatusRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/dto/request/UpdatePaymentStatusRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/dto/request/UpdatePaymentStatusRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/dto/response/OrderItemResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/dto/response/OrderItemResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/dto/response/OrderResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/dto/response/OrderResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/entity/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/entity/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/entity/OrderItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/entity/OrderItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/enums/OrderStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/enums/OrderStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/enums/PaymentStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/enums/PaymentStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/exception/CustomErrorDecoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/exception/CustomErrorDecoder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/exception/ErrorResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/exception/ErrorResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/exception/custom/DownstreamException.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/exception/custom/DownstreamException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/exception/custom/OrderCancellationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/exception/custom/OrderCancellationException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/exception/custom/ResourceNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/exception/custom/ResourceNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/exception/custom/ServiceUnavailableException.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/exception/custom/ServiceUnavailableException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/exception/custom/UnauthorizedAccessException.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/exception/custom/UnauthorizedAccessException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/gateway/CartServiceGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/gateway/CartServiceGateway.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/gateway/ProductServiceGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/gateway/ProductServiceGateway.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/gateway/UserServiceGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/gateway/UserServiceGateway.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/repository/OrderItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/repository/OrderItemRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/repository/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/repository/OrderRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/service/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/service/impl/OrderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/service/impl/OrderServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/util/AuthUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/order-service/src/main/java/com/cts/orderservice/util/AuthUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/order-service/src/test/java/com/cts/orderservice/OrderServiceApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/payment-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/payment-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/PaymentServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/PaymentServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/client/DummyPaymentClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/client/DummyPaymentClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/client/OrderServiceClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/client/OrderServiceClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/config/AuditingConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/config/AuditingConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/config/FeignConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/config/FeignConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/config/OpenApiConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/config/OpenApiConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/controller/PaymentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/controller/PaymentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/dto/external/ProcessPaymentRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/dto/external/ProcessPaymentRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/dto/external/ProcessPaymentResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/dto/external/ProcessPaymentResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/dto/external/UpdatePaymentStatusRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/dto/external/UpdatePaymentStatusRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/dto/request/InitiatePaymentRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/dto/request/InitiatePaymentRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/dto/response/PaymentResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/dto/response/PaymentResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/entity/Payment.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/entity/Payment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/enums/PaymentStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/enums/PaymentStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/exception/CustomErrorDecoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/exception/CustomErrorDecoder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/exception/ErrorResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/exception/ErrorResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/exception/custom/DownstreamException.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/exception/custom/DownstreamException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/exception/custom/PaymentAlreadyExistsException.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/exception/custom/PaymentAlreadyExistsException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/exception/custom/ResourceNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/exception/custom/ResourceNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/exception/custom/ServiceUnavailableException.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/exception/custom/ServiceUnavailableException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/exception/custom/UnauthorizedAccessException.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/exception/custom/UnauthorizedAccessException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/gateway/DummyPaymentGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/gateway/DummyPaymentGateway.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/gateway/OrderServiceGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/gateway/OrderServiceGateway.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/repository/PaymentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/repository/PaymentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/service/PaymentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/service/PaymentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/service/impl/PaymentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/service/impl/PaymentServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/util/AuthUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/payment-service/src/main/java/com/cts/paymentservice/util/AuthUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/payment-service/src/test/java/com/cts/paymentservice/PaymentServiceApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/product-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/product-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/ProductServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/ProductServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/config/AuditingConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/config/AuditingConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/config/OpenApiConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/config/OpenApiConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/controller/CategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/controller/CategoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/dto/CategoryDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/dto/CategoryDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/dto/CategoryResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/dto/CategoryResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/dto/CreateProductDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/dto/CreateProductDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/dto/ProductResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/dto/ProductResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/dto/StockQuantityDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/dto/StockQuantityDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/dto/UpdateProductDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/dto/UpdateProductDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/entity/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/entity/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/entity/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/exception/ErrorResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/exception/ErrorResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/exception/custom/DuplicateResourceException.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/exception/custom/DuplicateResourceException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/exception/custom/InvalidOperationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/exception/custom/InvalidOperationException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/exception/custom/ResourceNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/exception/custom/ResourceNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/exception/custom/UnauthorizedAccessException.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/exception/custom/UnauthorizedAccessException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/repository/CategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/repository/CategoryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/repository/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/repository/ProductRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/service/CategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/service/CategoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/service/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/service/impl/CategoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/service/impl/CategoryServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/service/impl/ProductServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/service/impl/ProductServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/util/AuthUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/product-service/src/main/java/com/cts/productservice/util/AuthUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/product-service/src/test/java/com/cts/productservice/ProductServiceApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/product-service/src/test/java/com/cts/productservice/service/ProductServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/product-service/src/test/java/com/cts/productservice/service/ProductServiceImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,48 +174,49 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JUnit.All in auth-service.executor": "Coverage",
-    "JUnit.All in cart-service (1).executor": "Coverage",
-    "JUnit.All in cart-service.executor": "Coverage",
-    "JUnit.All in review-service (1).executor": "Coverage",
-    "JUnit.All in review-service.executor": "Coverage",
-    "JUnit.All in user-service (1).executor": "Coverage",
-    "JUnit.All in user-service (2).executor": "Coverage",
-    "JUnit.All in user-service (3).executor": "Coverage",
-    "JUnit.All in user-service.executor": "Coverage",
-    "JUnit.Auth Service Tests.executor": "Coverage",
-    "JUnit.ReviewServiceApplicationTests.executor": "Coverage",
-    "JUnit.User Service Tests.executor": "Coverage",
-    "JUnit.com.cts.userservice in user-service.executor": "Coverage",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "Spring Boot.ApiGatewayApplication.executor": "Run",
-    "Spring Boot.AuthServiceApplication.executor": "Run",
-    "Spring Boot.CartServiceApplication.executor": "Run",
-    "Spring Boot.ConfigServerApplication.executor": "Run",
-    "Spring Boot.DummyPaymentApiApplication.executor": "Run",
-    "Spring Boot.EurekaServerApplication.executor": "Run",
-    "Spring Boot.OrderServiceApplication.executor": "Run",
-    "Spring Boot.PaymentServiceApplication.executor": "Run",
-    "Spring Boot.ProductServiceApplication.executor": "Run",
-    "Spring Boot.ReviewServiceApplication.executor": "Run",
-    "Spring Boot.UserServiceApplication.executor": "Run",
-    "com.intellij.ide.FileNotInSourceRootChecker.no.check": "true",
-    "deletionFromPopupRequiresConfirmation": "false",
-    "git-widget-placeholder": "aayush-branch",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/2499457/Desktop/FINAL PROJECT/ecommerce-final-microservice/services/user-service/src/main/java/com/cts/userservice",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JUnit.All in auth-service.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.All in cart-service (1).executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.All in cart-service.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.All in review-service (1).executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.All in review-service.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.All in user-service (1).executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.All in user-service (2).executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.All in user-service (3).executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.All in user-service.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.Auth Service Tests.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.Cart-Service Tests.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.ReviewServiceApplicationTests.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.User Service Tests.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.com.cts.userservice in user-service.executor&quot;: &quot;Coverage&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Spring Boot.ApiGatewayApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.AuthServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.CartServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.ConfigServerApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.DummyPaymentApiApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.EurekaServerApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.OrderServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.PaymentServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.ProductServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.ReviewServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.UserServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;com.intellij.ide.FileNotInSourceRootChecker.no.check&quot;: &quot;true&quot;,
+    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;aayush-branch&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/2499457/Desktop/FINAL PROJECT/ecommerce-final-microservice/services/user-service/src/main/java/com/cts/userservice&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.appearance&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\2499457\Desktop\FINAL PROJECT\ecommerce-final-microservice\services\user-service\src\main\java\com\cts\userservice" />
@@ -242,10 +244,14 @@
         <entry key="SpringBootApplicationConfigurationType">
           <value>
             <map>
+              <entry key="ApiGatewayApplication" value="STOPPED" />
               <entry key="AuthServiceApplication" value="STOPPED" />
               <entry key="CartServiceApplication" value="STOPPED" />
               <entry key="ConfigServerApplication" value="STOPPED" />
+              <entry key="DummyPaymentApiApplication" value="STOPPED" />
               <entry key="EurekaServerApplication" value="STOPPED" />
+              <entry key="OrderServiceApplication" value="STOPPED" />
+              <entry key="PaymentServiceApplication" value="STOPPED" />
               <entry key="ProductServiceApplication" value="STOPPED" />
               <entry key="ReviewServiceApplication" value="STOPPED" />
               <entry key="UserServiceApplication" value="STOPPED" />
@@ -255,64 +261,40 @@
       </map>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.All in auth-service">
-    <configuration name="All in auth-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Spring Boot.ApiGatewayApplication">
+    <configuration name="Auth-Service Tests" type="JUnit" factoryName="JUnit">
       <module name="auth-service" />
       <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="All in cart-service (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Cart-Service Tests" type="JUnit" factoryName="JUnit">
       <module name="cart-service" />
       <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="All in cart-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="cart-service" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="All in review-service (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Review-Service Tests" type="JUnit" factoryName="JUnit">
       <module name="review-service" />
       <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="All in user-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="User-Service Tests" type="JUnit" factoryName="JUnit">
       <module name="user-service" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Auth Service Tests" type="JUnit" factoryName="JUnit">
-      <module name="auth-service" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.cts.authservice.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-        <pattern>
-          <option name="PATTERN" value="com.cts.authservice.service.impl.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-        <pattern>
-          <option name="PATTERN" value="com.cts.authservice.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.cts.authservice" />
       <option name="MAIN_CLASS_NAME" value="" />
       <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="package" />
@@ -320,46 +302,94 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="User Service Tests" type="JUnit" factoryName="JUnit">
-      <module name="user-service" />
+    <configuration name="ApiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
+      <module name="api-gateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.cts.apigateway.ApiGatewayApplication" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.cts.userservice.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-        <pattern>
-          <option name="PATTERN" value="com.cts.userservice.service.impl.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-        <pattern>
-          <option name="PATTERN" value="com.cts.userservice.controller.*" />
+          <option name="PATTERN" value="com.cts.apigateway.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.cts.userservice" />
-      <option name="MAIN_CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DummyPaymentApiApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
+      <module name="dummy-payment-api" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.cts.dummypaymentapi.DummyPaymentApiApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cts.dummypaymentapi.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OrderServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
+      <module name="order-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.cts.orderservice.OrderServiceApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cts.orderservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PaymentServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
+      <module name="payment-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.cts.paymentservice.PaymentServiceApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cts.paymentservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReviewServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
+      <module name="review-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.cts.reviewservice.ReviewServiceApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cts.reviewservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.User Service Tests" />
-      <item itemvalue="JUnit.Auth Service Tests" />
-      <item itemvalue="JUnit.All in auth-service" />
-      <item itemvalue="JUnit.All in cart-service" />
-      <item itemvalue="JUnit.All in cart-service (1)" />
-      <item itemvalue="JUnit.All in review-service (1)" />
-      <item itemvalue="JUnit.All in user-service" />
+      <item itemvalue="JUnit.Auth-Service Tests" />
+      <item itemvalue="JUnit.Cart-Service Tests" />
+      <item itemvalue="JUnit.Review-Service Tests" />
+      <item itemvalue="JUnit.User-Service Tests" />
+      <item itemvalue="Spring Boot.ApiGatewayApplication" />
+      <item itemvalue="Spring Boot.DummyPaymentApiApplication" />
+      <item itemvalue="Spring Boot.OrderServiceApplication" />
+      <item itemvalue="Spring Boot.PaymentServiceApplication" />
+      <item itemvalue="Spring Boot.ReviewServiceApplication" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.All in auth-service" />
-        <item itemvalue="JUnit.All in review-service (1)" />
-        <item itemvalue="JUnit.All in user-service" />
-        <item itemvalue="JUnit.All in cart-service (1)" />
-        <item itemvalue="JUnit.All in cart-service" />
+        <item itemvalue="Spring Boot.ApiGatewayApplication" />
+        <item itemvalue="Spring Boot.DummyPaymentApiApplication" />
+        <item itemvalue="Spring Boot.OrderServiceApplication" />
+        <item itemvalue="Spring Boot.PaymentServiceApplication" />
+        <item itemvalue="Spring Boot.ReviewServiceApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -402,6 +432,10 @@
       </breakpoints>
     </breakpoint-manager>
   </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ecommerce_final_microservice$Auth_Service_Tests.ic" NAME="Auth Service Tests Coverage Results" MODIFIED="1780335124656" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>com.cts.authservice.service.*</FILTER>
@@ -416,6 +450,7 @@
       <FILTER>com.cts.userservice.controller.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/ecommerce_final_microservice$All_in_review_service.ic" NAME="All in review-service Coverage Results" MODIFIED="1780336778023" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/ecommerce_final_microservice$Cart_Service_Tests.ic" NAME="Cart-Service Tests Coverage Results" MODIFIED="1780641437730" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/ecommerce_final_microservice$All_in_cart_service__1_.ic" NAME="All in cart-service (1) Coverage Results" MODIFIED="1780337060631" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/ecommerce_final_microservice$All_in_user_service.ic" NAME="All in user-service Coverage Results" MODIFIED="1780337111848" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
   </component>

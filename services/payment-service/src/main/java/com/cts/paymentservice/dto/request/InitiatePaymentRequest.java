@@ -4,6 +4,9 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.*;
 
+/**
+ * Request body for initiating a payment: the target order and the amount to charge.
+ */
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor

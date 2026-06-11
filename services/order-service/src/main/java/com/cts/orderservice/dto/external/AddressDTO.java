@@ -2,6 +2,9 @@ package com.cts.orderservice.dto.external;
 
 import lombok.*;
 
+/**
+ * External representation of a user delivery address fetched from the user service.
+ */
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor

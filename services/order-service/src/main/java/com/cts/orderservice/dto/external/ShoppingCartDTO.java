@@ -4,6 +4,9 @@ import lombok.*;
 
 import java.util.List;
 
+/**
+ * External representation of a shopping cart fetched from the cart service.
+ */
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor

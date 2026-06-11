@@ -73,7 +73,7 @@ public class CartServiceImpl implements CartService {
         log.debug("addItem productId={} qty={} for userId={}", request.getProductId(), request.getQuantity(), userId);
         ShoppingCart shoppingCart = shoppingCartRepository.findByUserId(userId)
                 .orElseGet(() -> shoppingCartRepository.save(ShoppingCart.builder()
-                        .userId((userId))
+                        .userId(userId)
                         .build()));
 
         ProductDTO product = productServiceGateway.fetchProduct(request.getProductId());

@@ -38,7 +38,7 @@ public class ProductServiceGateway {
 
     /** Fallback invoked when the product-service call fails; surfaces a downstream or unavailable error. */
     public ProductDTO fetchProductFallback(Long productId, Throwable ex) {
-        if (ex instanceof DownstreamException de) {
+        if (ex instanceof DownstreamException) {
             throw new DownstreamException("Product not found for id=" + productId, HttpStatus.NOT_FOUND);
         }
         log.error("Product Service Fallback: {}", ex.getMessage());

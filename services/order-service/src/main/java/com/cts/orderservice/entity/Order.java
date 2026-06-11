@@ -12,6 +12,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * JPA entity representing a customer order, including its line items, totals,
+ * status, payment status, and auditing timestamps.
+ */
 @Entity
 @Table(name = "orders")
 @EntityListeners(AuditingEntityListener.class)

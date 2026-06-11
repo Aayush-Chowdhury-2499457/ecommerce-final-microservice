@@ -6,6 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Request payload for a partial product update; null fields are left unchanged.
+ */
 @Data
 @Builder
 @NoArgsConstructor

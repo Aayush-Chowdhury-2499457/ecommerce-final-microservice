@@ -6,14 +6,25 @@ import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.servers.Server;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
+import lombok.extern.slf4j.Slf4j;
 import org.springdoc.core.customizers.OperationCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
+/**
+ * springdoc OpenAPI configuration: API metadata, bearer-JWT security scheme, and hiding
+ * of internal gateway headers from the generated documentation.
+ */
+@Slf4j
 @Configuration
 public class OpenApiConfig {
+    /**
+     * Builds the OpenAPI definition with title, server, and bearer security scheme.
+     *
+     * @return the configured {@link OpenAPI} bean
+     */
     @Bean
     public OpenAPI apiInfo() {
         return new OpenAPI()
@@ -26,6 +37,12 @@ public class OpenApiConfig {
                     .scheme("bearer")
                     .bearerFormat("JWT")));
     }
+    /**
+     * Removes internal gateway headers ({@code X-User-Id}, {@code X-User-Role}) from the
+     * generated API documentation.
+     *
+     * @return the operation customizer
+     */
     @Bean
     public OperationCustomizer hideGatewayHeaders() {
         return (operation, handlerMethod) -> {

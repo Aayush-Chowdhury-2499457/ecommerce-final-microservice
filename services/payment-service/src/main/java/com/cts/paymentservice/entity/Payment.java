@@ -9,6 +9,10 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
+/**
+ * JPA entity representing a payment record, including its status, transaction id, and
+ * auditing timestamps.
+ */
 @Entity
 @Table(name = "payments")
 @EntityListeners(AuditingEntityListener.class)

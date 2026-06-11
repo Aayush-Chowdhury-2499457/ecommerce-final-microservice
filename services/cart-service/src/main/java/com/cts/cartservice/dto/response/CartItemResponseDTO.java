@@ -2,8 +2,6 @@ package com.cts.cartservice.dto.response;
 
 import lombok.*;
 
-import java.time.LocalDateTime;
-
 /**
  * Response view of a single cart line item, including price and subtotal.
  */

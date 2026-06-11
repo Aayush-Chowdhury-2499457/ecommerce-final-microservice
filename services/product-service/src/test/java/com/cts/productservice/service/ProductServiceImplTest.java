@@ -8,6 +8,7 @@ import com.cts.productservice.exception.custom.ResourceNotFoundException;
 import com.cts.productservice.repository.CategoryRepository;
 import com.cts.productservice.repository.ProductRepository;
 import com.cts.productservice.service.impl.ProductServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,6 +26,10 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
+/**
+ * Unit tests for {@link ProductServiceImpl} covering happy paths and every exception branch.
+ */
+@Slf4j
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
 class ProductServiceImplTest {

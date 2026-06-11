@@ -6,6 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Request payload for creating a product.
+ */
 @Data
 @Builder
 @NoArgsConstructor

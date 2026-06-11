@@ -1,6 +1,7 @@
 package com.cts.productservice.config;
 
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
@@ -9,6 +10,10 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import java.util.Optional;
 
+/**
+ * Configures the JPA auditor so created/updated-by fields are populated from the request.
+ */
+@Slf4j
 @Configuration
 public class AuditingConfig {
 

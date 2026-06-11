@@ -4,6 +4,9 @@ import com.cts.productservice.dto.*;
 
 import java.util.List;
 
+/**
+ * Business operations for managing products and their stock.
+ */
 public interface ProductService {
 
     ProductResponseDTO create(CreateProductDTO dto);

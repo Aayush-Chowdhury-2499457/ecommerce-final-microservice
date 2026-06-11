@@ -7,9 +7,18 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.time.LocalDateTime;
 
+/**
+ * Centralized exception handling that maps application exceptions to HTTP responses.
+ */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+    /**
+     * Maps {@link ResourceNotFoundException} to HTTP 404.
+     *
+     * @param ex the thrown exception
+     * @return a 404 response with an {@link ErrorResponse} body
+     */
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleResourceNotFoundException(
             ResourceNotFoundException ex) {
@@ -22,6 +31,12 @@ public class GlobalExceptionHandler {
                 ));
     }
 
+    /**
+     * Maps {@link IllegalStateException} to HTTP 400.
+     *
+     * @param ex the thrown exception
+     * @return a 400 response with an {@link ErrorResponse} body
+     */
     @ExceptionHandler(IllegalStateException.class)
     public ResponseEntity<ErrorResponse> handleIllegalStateException(
             IllegalStateException ex) {
@@ -34,6 +49,12 @@ public class GlobalExceptionHandler {
                 ));
     }
 
+    /**
+     * Catch-all handler mapping any uncaught exception to HTTP 500.
+     *
+     * @param ex the thrown exception
+     * @return a 500 response with an {@link ErrorResponse} body
+     */
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGenericException(Exception ex) {
         return ResponseEntity

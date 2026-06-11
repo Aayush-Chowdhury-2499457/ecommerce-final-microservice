@@ -8,6 +8,9 @@ import com.cts.orderservice.enums.PaymentStatus;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * Response payload representing an order, including its items, totals, statuses, and timestamps.
+ */
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor

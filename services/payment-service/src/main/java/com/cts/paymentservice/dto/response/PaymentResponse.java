@@ -5,6 +5,9 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
+/**
+ * Response DTO representing a persisted payment and its current status.
+ */
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor

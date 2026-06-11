@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+/**
+ * Standardized error body returned by {@link GlobalExceptionHandler}.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

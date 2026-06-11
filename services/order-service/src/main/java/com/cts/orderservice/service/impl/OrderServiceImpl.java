@@ -28,6 +28,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
+/**
+ * Default {@link OrderService} implementation. Orchestrates the cart, product, and
+ * user gateways to place orders, and manages cancellation, status, and payment
+ * transitions while keeping product stock consistent.
+ */
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -42,9 +47,18 @@ public class OrderServiceImpl implements OrderService {
 
     // ─── Place Order ──────────────────────────────────────────────────────────
 
+    /**
+     * Places an order: fetches and validates the cart, snapshots product details,
+     * validates the delivery address, reduces stock, and persists the order with items.
+     *
+     * @param request the place-order request
+     * @return the persisted order as a response DTO
+     */
     @Override
     @Transactional
     public OrderResponseDTO placeOrder(PlaceOrderRequestDTO request) {
+
+        log.info("Placing order for userId={}, cartId={}", request.getUserId(), request.getShoppingCartId());
 
         // Step 1: Fetch cart + items via CartServiceClient [circuit breaker]
         ShoppingCartDTO cart = cartServiceGateway.getCart(request.getUserId());
@@ -95,12 +109,18 @@ public class OrderServiceImpl implements OrderService {
         order.getOrderItems().addAll(orderItems);
 
         Order savedOrder = orderRepository.save(order);
+        log.info("Order placed successfully with id={}", savedOrder.getOrderId());
 
         return mapToOrderResponse(savedOrder);
     }
 
     // ─── Queries ──────────────────────────────────────────────────────────────
 
+    /**
+     * Returns all orders in the system.
+     *
+     * @return every order mapped to a response DTO
+     */
     @Override
     public List<OrderResponseDTO> getAllOrders() {
         return orderRepository.findAll()
@@ -109,6 +129,12 @@ public class OrderServiceImpl implements OrderService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Returns all orders belonging to a given user.
+     *
+     * @param userId the user id
+     * @return the user's orders mapped to response DTOs
+     */
     @Override
     public List<OrderResponseDTO> getOrdersByUserId(Long userId) {
         return orderRepository.findByUserId(userId)
@@ -117,12 +143,26 @@ public class OrderServiceImpl implements OrderService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Returns a single order by id.
+     *
+     * @param orderId the order id
+     * @return the order mapped to a response DTO
+     * @throws ResourceNotFoundException if no order exists with the given id
+     */
     @Override
     public OrderResponseDTO getOrderById(Long orderId) {
         Order order = findOrderOrThrow(orderId);
         return mapToOrderResponse(order);
     }
 
+    /**
+     * Reports whether a user has purchased a given product.
+     *
+     * @param userId    the user id
+     * @param productId the product id
+     * @return {@code true} if a matching order item exists
+     */
     @Override
     public boolean hasPurchased(Long userId, Long productId) {
         return orderItemRepository.existsByOrderUserIdAndProductId(userId, productId);
@@ -130,25 +170,53 @@ public class OrderServiceImpl implements OrderService {
 
     // ─── Updates ──────────────────────────────────────────────────────────────
 
+    /**
+     * Updates an order's status.
+     *
+     * @param orderId the order id
+     * @param request the new status
+     * @return the updated order
+     * @throws ResourceNotFoundException if no order exists with the given id
+     */
     @Override
     @Transactional
     public OrderResponseDTO updateOrderStatus(Long orderId, UpdateOrderStatusRequestDTO request) {
+        log.info("Updating status of order id={} to {}", orderId, request.getOrderStatus());
         Order order = findOrderOrThrow(orderId);
         order.setOrderStatus(request.getOrderStatus());
         return mapToOrderResponse(orderRepository.save(order));
     }
 
+    /**
+     * Updates an order's payment status.
+     *
+     * @param orderId the order id
+     * @param request the new payment status
+     * @return the updated order
+     * @throws ResourceNotFoundException if no order exists with the given id
+     */
     @Override
     @Transactional
     public OrderResponseDTO updatePaymentStatus(Long orderId, UpdatePaymentStatusRequestDTO request) {
+        log.info("Updating payment status of order id={} to {}", orderId, request.getPaymentStatus());
         Order order = findOrderOrThrow(orderId);
         order.setPaymentStatus(request.getPaymentStatus());
         return mapToOrderResponse(orderRepository.save(order));
     }
 
+    /**
+     * Cancels an order and restores the stock decremented at placement. Orders that are
+     * already cancelled, shipped, or delivered cannot be cancelled.
+     *
+     * @param orderId the order id
+     * @return the cancelled order
+     * @throws ResourceNotFoundException     if no order exists with the given id
+     * @throws OrderCancellationException     if the order is in a non-cancellable state
+     */
     @Override
     @Transactional
     public OrderResponseDTO cancelOrder(Long orderId) {
+        log.info("Cancelling order id={}", orderId);
         Order order = findOrderOrThrow(orderId);
 
         if (order.getOrderStatus() == OrderStatus.CANCELLED) {
@@ -170,12 +238,26 @@ public class OrderServiceImpl implements OrderService {
 
     // ─── Helpers ──────────────────────────────────────────────────────────────
 
+    /**
+     * Loads an order by id or throws if it is missing.
+     *
+     * @param orderId the order id
+     * @return the order entity
+     * @throws ResourceNotFoundException if no order exists with the given id
+     */
     private Order findOrderOrThrow(Long orderId) {
         return orderRepository.findById(orderId)
                 .orElseThrow(() -> new ResourceNotFoundException(
                         "Order not found with id: " + orderId));
     }
 
+    /**
+     * Maps an {@link Order} entity (and its items) to an {@link OrderResponseDTO},
+     * computing each item subtotal.
+     *
+     * @param order the order entity
+     * @return the corresponding response DTO
+     */
     private OrderResponseDTO mapToOrderResponse(Order order) {
         List<OrderItemResponseDTO> itemResponses = order.getOrderItems()
                 .stream()

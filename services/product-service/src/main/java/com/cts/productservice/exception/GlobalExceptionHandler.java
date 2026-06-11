@@ -15,10 +15,14 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.time.LocalDateTime;
 import java.util.stream.Collectors;
 
+/**
+ * Translates custom and framework exceptions into consistent {@link ErrorResponse} payloads.
+ */
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+    /** Maps {@link ResourceNotFoundException} to HTTP 404. */
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleResourceNotFound(ResourceNotFoundException ex,
                                                                 HttpServletRequest request) {
@@ -26,6 +30,7 @@ public class GlobalExceptionHandler {
         return buildResponse(HttpStatus.NOT_FOUND, ex, request.getRequestURI(), ex.getMessage());
     }
 
+    /** Maps {@link DuplicateResourceException} to HTTP 409. */
     @ExceptionHandler(DuplicateResourceException.class)
     public ResponseEntity<ErrorResponse> handleDuplicateResource(DuplicateResourceException ex,
                                                                  HttpServletRequest request) {
@@ -33,6 +38,7 @@ public class GlobalExceptionHandler {
         return buildResponse(HttpStatus.CONFLICT, ex, request.getRequestURI(), ex.getMessage());
     }
 
+    /** Maps {@link InvalidOperationException} to HTTP 400. */
     @ExceptionHandler(InvalidOperationException.class)
     public ResponseEntity<ErrorResponse> handleInvalidOperation(InvalidOperationException ex,
                                                                 HttpServletRequest request) {
@@ -40,6 +46,7 @@ public class GlobalExceptionHandler {
         return buildResponse(HttpStatus.BAD_REQUEST, ex, request.getRequestURI(), ex.getMessage());
     }
 
+    /** Maps bean-validation failures to HTTP 400 with field-level details. */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> handleValidation(MethodArgumentNotValidException ex,
                                                           HttpServletRequest request) {
@@ -51,6 +58,7 @@ public class GlobalExceptionHandler {
         return buildResponse(HttpStatus.BAD_REQUEST, ex, request.getRequestURI(), fieldErrors);
     }
 
+    /** Maps {@link UnauthorizedAccessException} to HTTP 403. */
     @ExceptionHandler(UnauthorizedAccessException.class)
     public ResponseEntity<ErrorResponse> handleUnauthorizedAccess(UnauthorizedAccessException ex,
                                                                   HttpServletRequest request) {
@@ -58,6 +66,7 @@ public class GlobalExceptionHandler {
         return buildResponse(HttpStatus.FORBIDDEN, ex, request.getRequestURI(), ex.getMessage());
     }
 
+    /** Catch-all mapping any uncaught exception to HTTP 500. */
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGeneric(Exception ex,
                                                        HttpServletRequest request) {
@@ -65,6 +74,7 @@ public class GlobalExceptionHandler {
         return buildResponse(HttpStatus.INTERNAL_SERVER_ERROR, ex, request.getRequestURI(), ex.getMessage());
     }
 
+    /** Builds the standardized error body wrapped in a {@link ResponseEntity}. */
     private ResponseEntity<ErrorResponse> buildResponse(HttpStatus status,
                                                         Exception ex,
                                                         String path,

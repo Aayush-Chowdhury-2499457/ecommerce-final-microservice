@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Outbound request to order-service carrying the new payment status for an order.
+ */
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor

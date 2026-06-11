@@ -5,6 +5,9 @@ import com.cts.productservice.dto.CategoryResponseDTO;
 
 import java.util.List;
 
+/**
+ * Business operations for managing categories.
+ */
 public interface CategoryService {
 
     CategoryResponseDTO create(CategoryDTO dto);

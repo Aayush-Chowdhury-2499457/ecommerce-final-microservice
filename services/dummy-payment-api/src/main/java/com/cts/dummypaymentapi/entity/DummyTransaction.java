@@ -9,6 +9,9 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
+/**
+ * JPA entity representing a persisted dummy payment transaction.
+ */
 @Entity
 @Table(name = "dummy_transactions")
 @EntityListeners(AuditingEntityListener.class)

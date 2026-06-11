@@ -10,6 +10,9 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
+/**
+ * JPA entity for a product category, with JPA auditing fields.
+ */
 @Entity
 @Table(name = "category")
 @EntityListeners(AuditingEntityListener.class)

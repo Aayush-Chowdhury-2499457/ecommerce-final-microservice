@@ -21,6 +21,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Default {@link PaymentService} implementation. Processes payments through the dummy
+ * payment gateway, persists the result, and notifies order-service of the outcome.
+ */
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -32,6 +36,14 @@ public class PaymentServiceImpl implements PaymentService {
 
     // ─── Initiate Payment ─────────────────────────────────────────────────────
 
+    /**
+     * Processes a payment for the given order: rejects duplicates, calls the payment
+     * provider, persists the final status, and notifies order-service.
+     *
+     * @param request the payment request (order id and amount)
+     * @param userId  the paying user's id
+     * @return the persisted payment as a response DTO
+     */
     @Override
     @Transactional
     public PaymentResponse initiatePayment(InitiatePaymentRequest request, Long userId) {
@@ -90,6 +102,11 @@ public class PaymentServiceImpl implements PaymentService {
 
     // ─── Queries ──────────────────────────────────────────────────────────────
 
+    /**
+     * Returns all stored payments.
+     *
+     * @return list of payment response DTOs
+     */
     @Override
     public List<PaymentResponse> getAllPayments() {
         return paymentRepository.findAll()
@@ -98,6 +115,13 @@ public class PaymentServiceImpl implements PaymentService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Returns the payment with the given id.
+     *
+     * @param paymentId the payment id
+     * @return the payment response DTO
+     * @throws ResourceNotFoundException if no payment exists with that id
+     */
     @Override
     public PaymentResponse getPaymentById(Long paymentId) {
         Payment payment = paymentRepository.findById(paymentId)
@@ -106,6 +130,13 @@ public class PaymentServiceImpl implements PaymentService {
         return mapToPaymentResponse(payment);
     }
 
+    /**
+     * Returns the payment associated with the given order id.
+     *
+     * @param orderId the order id
+     * @return the payment response DTO
+     * @throws ResourceNotFoundException if no payment exists for that order
+     */
     @Override
     public PaymentResponse getPaymentByOrderId(Long orderId) {
         Payment payment = paymentRepository.findByOrderId(orderId)
@@ -116,6 +147,12 @@ public class PaymentServiceImpl implements PaymentService {
 
     // ─── Helper ───────────────────────────────────────────────────────────────
 
+    /**
+     * Maps a {@link Payment} entity to its response DTO.
+     *
+     * @param payment the entity to map
+     * @return the corresponding response DTO
+     */
     private PaymentResponse mapToPaymentResponse(Payment payment) {
         return PaymentResponse.builder()
                 .paymentId(payment.getPaymentId())

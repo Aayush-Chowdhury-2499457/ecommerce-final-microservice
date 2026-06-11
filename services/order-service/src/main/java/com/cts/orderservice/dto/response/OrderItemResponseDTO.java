@@ -2,6 +2,9 @@ package com.cts.orderservice.dto.response;
 
 import lombok.*;
 
+/**
+ * Response payload for a single order line item, including the computed subtotal.
+ */
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor

@@ -37,6 +37,7 @@ public class ShoppingCart {
             cascade = CascadeType.ALL,
             orphanRemoval = true,
             fetch = FetchType.LAZY)
+    @Builder.Default
     private List<CartItem> cartItemList = new ArrayList<>();
 
     @CreatedDate

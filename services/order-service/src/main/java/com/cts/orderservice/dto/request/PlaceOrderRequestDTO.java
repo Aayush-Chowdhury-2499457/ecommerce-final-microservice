@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Request payload for placing an order: identifies the user, cart, and delivery address.
+ */
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor

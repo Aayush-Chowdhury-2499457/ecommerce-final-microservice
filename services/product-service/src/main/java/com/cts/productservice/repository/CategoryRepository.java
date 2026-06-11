@@ -6,6 +6,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+/**
+ * Spring Data repository for {@link Category} entities.
+ */
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Long> {
 
