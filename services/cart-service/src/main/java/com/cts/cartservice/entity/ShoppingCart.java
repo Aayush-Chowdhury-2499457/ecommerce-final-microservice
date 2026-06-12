@@ -33,6 +33,7 @@ public class ShoppingCart {
             unique = true)
     private Long userId;
 
+    @Builder.Default
     @OneToMany(mappedBy = "shoppingCart",
             cascade = CascadeType.ALL,
             orphanRemoval = true,

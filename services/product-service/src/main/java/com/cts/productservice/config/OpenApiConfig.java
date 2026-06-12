@@ -12,8 +12,24 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
+/**
+ * Springdoc / OpenAPI configuration for the Product Service.
+ * <p>
+ * Declares the API metadata, the default server, and a bearer-token (JWT) security
+ * scheme so the generated documentation reflects the authentication contract. It
+ * also hides the gateway-injected internal headers from the published specification.
+ *
+ * @since 1.0
+ */
 @Configuration
 public class OpenApiConfig {
+
+    /**
+     * Builds the {@link OpenAPI} document describing this service, including its
+     * title, version, default server, and bearer-token security scheme.
+     *
+     * @return the configured {@link OpenAPI} metadata bean
+     */
     @Bean
     public OpenAPI apiInfo() {
         return new OpenAPI()
@@ -26,6 +42,14 @@ public class OpenApiConfig {
                     .scheme("bearer")
                     .bearerFormat("JWT")));
     }
+
+    /**
+     * Customizes every documented operation to strip the gateway-internal
+     * {@code X-User-Id} and {@code X-User-Role} headers, which are populated by the
+     * API Gateway rather than supplied by API consumers.
+     *
+     * @return an {@link OperationCustomizer} that removes the internal headers
+     */
     @Bean
     public OperationCustomizer hideGatewayHeaders() {
         return (operation, handlerMethod) -> {

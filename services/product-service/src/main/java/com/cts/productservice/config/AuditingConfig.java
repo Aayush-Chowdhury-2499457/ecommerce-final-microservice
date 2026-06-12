@@ -9,13 +9,28 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import java.util.Optional;
 
+/**
+ * Configuration that supplies the auditor used to populate the {@code createdBy}
+ * and {@code updatedBy} fields on audited entities.
+ * <p>
+ * The {@link AuditorAware} bean defined here is wired into JPA auditing via the
+ * {@code auditorAwareRef} declared on
+ * {@link com.cts.productservice.ProductServiceApplication}.
+ *
+ * @since 1.0
+ */
 @Configuration
 public class AuditingConfig {
 
     /**
-     * Pulls the caller's userId from the X-User-Id header injected by the API Gateway
-     * (the gateway validates the JWT and forwards the userId as a header).
-     * Falls back to "SYSTEM" if the header isn't present (e.g. internal calls).
+     * Provides the current auditor for Spring Data JPA auditing.
+     * <p>
+     * Resolves the caller's user id from the {@code X-User-Id} header injected by the
+     * API Gateway (the gateway validates the JWT and forwards the id as a header).
+     * Falls back to {@code "SYSTEM"} when no request context or header is available,
+     * such as for internal or background calls.
+     *
+     * @return an {@link AuditorAware} that yields the current user id, or {@code "SYSTEM"}
      */
     @Bean
     public AuditorAware<String> auditorAware() {
